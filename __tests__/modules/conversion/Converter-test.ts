@@ -1,4 +1,4 @@
-import {Unit, Exercise, Conversion, Converter} from '../../../modules/conversion';
+import {Unit, Exercise, ExerciseConversion, ExerciseConverter} from '../../../modules/conversion';
 
 describe('converts to run', () => {
   test('converts row meter to run', () =>
@@ -85,9 +85,9 @@ const assertConvertion = (
   toValue: number,
   toUnit: Unit,
 ) => {
-  const converter = new Converter(from, fromUnit, fromValue);
+  const converter = new ExerciseConverter(from, fromUnit, fromValue);
 
-  const conversion: Conversion = converter.convertTo(to, toUnit);
+  const conversion: ExerciseConversion = converter.convertTo(to, toUnit);
 
   expect(conversion.value).toEqual(toValue);
 };
