@@ -1,6 +1,6 @@
 enum Unit {
-  Meter,
-  Calories,
+  Meter = 'meter',
+  Calories = 'calories',
 }
 
 export default Unit;

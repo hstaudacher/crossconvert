@@ -1,11 +1,11 @@
 import BaselineDefinition from './BaselineDefinition';
 
 enum Exercise {
-  Row,
-  Run,
-  Bike,
-  Airbike,
-  Ski,
+  Row = 'Row',
+  Run = 'Run',
+  Bike = 'Bike',
+  Airbike = ' Airbike',
+  Ski = 'Ski',
 }
 
 export default Exercise;

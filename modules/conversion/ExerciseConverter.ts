@@ -45,7 +45,12 @@ class ExerciseConverter {
   }
 
   private computeReferenceValue(reference: ExerciseReference, unit: Unit): ExerciseReferenceValue {
-    return reference.values.find((d) => d.unit === unit)!;
+    const value: ExerciseReferenceValue | undefined = reference.values.find((d) => d.unit === unit);
+    if (value === undefined) {
+      const units: Array<Unit> = reference.values.map((v) => v.unit)!;
+      throw new Error(reference.exercise + ' does not know unit ' + unit + '. Known units are: ' + units.join(','));
+    }
+    return value;
   }
 
   private getReference(exercise: Exercise): ExerciseReference {

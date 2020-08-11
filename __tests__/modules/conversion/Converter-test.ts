@@ -77,6 +77,14 @@ describe('converts to air bike', () => {
     assertConvertion(Exercise.Bike, 2000, Unit.Meter, Exercise.Airbike, 60, Unit.Calories));
 });
 
+test('uses existing unit if requested does not exist', () => {
+  const converter = new ExerciseConverter(Exercise.Row, Unit.Calories, 20);
+
+  const throwing = () => converter.convertTo(Exercise.Airbike, Unit.Meter);
+
+  expect(throwing).toThrow('Airbike does not know unit meter. Known units are: calories');
+});
+
 const assertConvertion = (
   from: Exercise,
   fromValue: number,
