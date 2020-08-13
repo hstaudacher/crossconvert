@@ -1,11 +1,11 @@
 import {WeightUnit, WeightConverter, WeightConversion} from '../../../modules/conversion';
 
 describe('converts weight', () => {
-  test('converts kg to lbs', () => assertConvertion(WeightUnit.kg, 40, WeightUnit.lbs, 88));
+  test('converts kg to lbs', () => assertConvertion(WeightUnit.kg, 40, WeightUnit.lbs, 88.18490487395103));
 
-  test('converts kg to lbs rounds up', () => assertConvertion(WeightUnit.kg, 42, WeightUnit.lbs, 93));
+  test('converts kg to lbs rounds up', () => assertConvertion(WeightUnit.kg, 42, WeightUnit.lbs, 92.59415011764858));
 
-  test('converts lbs to kg', () => assertConvertion(WeightUnit.lbs, 40, WeightUnit.kg, 18));
+  test('converts lbs to kg', () => assertConvertion(WeightUnit.lbs, 40, WeightUnit.kg, 18.143694800000002));
 
   test('converts lbs to lbs', () => assertConvertion(WeightUnit.lbs, 40, WeightUnit.lbs, 40));
 

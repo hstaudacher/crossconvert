@@ -1,5 +1,5 @@
 enum WeightUnit {
-  lbs = 'lbs',
+  lbs = 'pound',
   kg = 'kilogram',
 }
 
