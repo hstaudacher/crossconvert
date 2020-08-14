@@ -36,7 +36,7 @@ class ExerciseConverter {
     const toReferenceValue = this.computeReferenceValue(toReference, toUnit);
     const fromReferenceValue = this.computeReferenceValue(this.#fromReference, this.unit);
     const convertedValue: number = this.convertValue(fromReferenceValue, toReferenceValue);
-    return new ExerciseConversion(this.from, to, toReferenceValue.unit, convertedValue);
+    return new ExerciseConversion(this.from, to, toReferenceValue.unit, Math.round(convertedValue));
   }
 
   private convertValue(fromReferenceValue: ExerciseReferenceValue, toReferenceValue: ExerciseReferenceValue): number {
