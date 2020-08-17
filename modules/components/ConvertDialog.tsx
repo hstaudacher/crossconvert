@@ -2,16 +2,17 @@
 import React from 'react';
 import {View} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import {convertUiItems, ConvertUiItem} from './ConvertUiItems';
+import {filterItems, ConvertUiItem} from './ConvertUiItems';
 
-interface ConvertUiItemClickHandler {
+interface ConvertDialogProperties {
+  unit: string;
   handleClick: (item: ConvertUiItem) => void;
 }
 
-export const ConvertDialog = (clickHandler: ConvertUiItemClickHandler) => {
+export const ConvertDialog = (props: ConvertDialogProperties) => {
   return (
     <View>
-      {convertUiItems.map((item, i) => (
+      {filterItems(props.unit).map((item, i) => (
         <ListItem
           key={i}
           title={item.title}
@@ -19,7 +20,7 @@ export const ConvertDialog = (clickHandler: ConvertUiItemClickHandler) => {
           leftIcon={{name: item.icon, type: item.type, reverse: true, color: item.color}}
           bottomDivider
           children
-          onPress={() => clickHandler.handleClick(item)}
+          onPress={() => props.handleClick(item)}
         />
       ))}
     </View>

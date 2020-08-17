@@ -6,7 +6,7 @@ import {ConvertDialog} from './ConvertDialog';
 import {ConvertUiItem} from './ConvertUiItems';
 
 const ConversionSelection = () => {
-  const [value, onChangeText] = React.useState('500');
+  const [value, onChangeText] = React.useState('50');
   const [visible, setVisible] = React.useState(false);
   const [unit, setUnit] = React.useState('cals');
 
@@ -72,7 +72,7 @@ const ConversionSelection = () => {
           position: 'absolute',
           bottom: 0,
         }}>
-        <ConvertDialog handleClick={itemClick} />
+        <ConvertDialog handleClick={itemClick} unit={unit} />
       </Overlay>
     </>
   );
