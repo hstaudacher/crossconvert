@@ -2,6 +2,8 @@
 import React from 'react';
 import {View, TouchableHighlight} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
+import {ConvertDialog} from './ConvertDialog';
+import {ConvertUiItem} from './ConvertUiItems';
 
 const ConversionSelection = () => {
   const [value, onChangeText] = React.useState('500');
@@ -10,6 +12,11 @@ const ConversionSelection = () => {
 
   const toggleOverlay = (): void => {
     setVisible(!visible);
+  };
+
+  const itemClick = (item: ConvertUiItem): void => {
+    console.log(item.title);
+    toggleOverlay();
   };
 
   return (
@@ -22,6 +29,7 @@ const ConversionSelection = () => {
           justifyContent: 'flex-start',
           alignItems: 'flex-end',
           marginBottom: 25,
+          marginLeft: 12,
         }}>
         <View style={{flex: 6}}>
           <Input
@@ -43,7 +51,7 @@ const ConversionSelection = () => {
           />
         </View>
 
-        <View style={{flex: 2, paddingBottom: 18}}>
+        <View style={{flex: 2, paddingBottom: 18, marginLeft: 10}}>
           <Icon type="material" name="rowing" onPress={toggleOverlay} reverse={true} color="tomato" size={20} />
         </View>
 
@@ -55,8 +63,16 @@ const ConversionSelection = () => {
         </View>
       </View>
 
-      <Overlay isVisible={visible} onBackdropPress={toggleOverlay} animationType="fade">
-        <Icon name="rowing" size={20} color="tomato" reverse={true} />
+      <Overlay
+        isVisible={visible}
+        onBackdropPress={toggleOverlay}
+        animationType="slide"
+        overlayStyle={{
+          width: '100%',
+          position: 'absolute',
+          bottom: 0,
+        }}>
+        <ConvertDialog handleClick={itemClick} />
       </Overlay>
     </>
   );
