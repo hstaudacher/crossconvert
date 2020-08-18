@@ -3,18 +3,26 @@ import React from 'react';
 import {View, TouchableHighlight, Keyboard} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
 import {ConvertDialog} from './ConvertDialog';
-import {ConvertUiItem} from './ConvertUiItems';
+import {ConvertUiItem, filterItems} from './ConvertUiItems';
 import {UnitDialog} from './UnitDialog';
 
 const ConversionSelection = () => {
-  const [value, onChangeText] = React.useState('50');
-  const [visible, setVisible] = React.useState(false);
-  const [unitDialogVisible, setUnitDialogVisible] = React.useState(false);
+  const [value, onChangeValue] = React.useState('50');
   const [unit, setUnit] = React.useState('cals');
+  const [unitDialogVisible, setUnitDialogVisible] = React.useState(false);
+  const [from, setFrom] = React.useState(filterItems(unit)[0]);
+  const [fromDialogVisible, setFromDialogVisible] = React.useState(false);
+  const [to, setTo] = React.useState(filterItems(unit)[1]);
+  const [toDialogVisible, setToDialogVisible] = React.useState(false);
 
-  const toggleOverlay = (): void => {
+  const toggleFromDialogOverlay = (): void => {
     Keyboard.dismiss();
-    setVisible(!visible);
+    setFromDialogVisible(!fromDialogVisible);
+  };
+
+  const toggleToDialogOverlay = (): void => {
+    Keyboard.dismiss();
+    setToDialogVisible(!toDialogVisible);
   };
 
   const toggleUnitDialogOverlay = (): void => {
@@ -27,9 +35,14 @@ const ConversionSelection = () => {
     toggleUnitDialogOverlay();
   };
 
-  const itemClick = (item: ConvertUiItem): void => {
-    console.log(item.title);
-    toggleOverlay();
+  const fromItemClick = (item: ConvertUiItem): void => {
+    setFrom(item);
+    toggleFromDialogOverlay();
+  };
+
+  const toItemClick = (item: ConvertUiItem): void => {
+    setTo(item);
+    toggleToDialogOverlay();
   };
 
   return (
@@ -59,26 +72,40 @@ const ConversionSelection = () => {
             }
             rightIconContainerStyle={{height: 20}}
             keyboardType="numeric"
-            onChangeText={(text) => onChangeText(text)}
+            onChangeText={(text) => onChangeValue(text)}
             inputStyle={{fontSize: 28}}
           />
         </View>
 
         <View style={{flex: 2, paddingBottom: 18, marginLeft: 10}}>
-          <Icon type="material" name="rowing" onPress={toggleOverlay} reverse={true} color="tomato" size={20} />
+          <Icon
+            type={from.type}
+            name={from.icon}
+            onPress={toggleFromDialogOverlay}
+            reverse={true}
+            color={from.color}
+            size={20}
+          />
         </View>
 
         <Text style={{flex: 1, marginBottom: 31}} h4>
           to
         </Text>
         <View style={{flex: 2, paddingBottom: 18}}>
-          <Icon type="material" name="rowing" onPress={toggleOverlay} reverse={true} color="tomato" size={20} />
+          <Icon
+            type={to.type}
+            name={to.icon}
+            onPress={toggleToDialogOverlay}
+            reverse={true}
+            color={to.color}
+            size={20}
+          />
         </View>
       </View>
 
       <Overlay
-        isVisible={visible}
-        onBackdropPress={toggleOverlay}
+        isVisible={fromDialogVisible}
+        onBackdropPress={toggleFromDialogOverlay}
         animationType="slide"
         overlayStyle={{
           width: '100%',
@@ -86,7 +113,20 @@ const ConversionSelection = () => {
           bottom: 0,
         }}
         backdropStyle={{opacity: 0}}>
-        <ConvertDialog handleClick={itemClick} unit={unit} />
+        <ConvertDialog handleClick={fromItemClick} unit={unit} />
+      </Overlay>
+
+      <Overlay
+        isVisible={toDialogVisible}
+        onBackdropPress={toggleToDialogOverlay}
+        animationType="slide"
+        overlayStyle={{
+          width: '100%',
+          position: 'absolute',
+          bottom: 0,
+        }}
+        backdropStyle={{opacity: 0}}>
+        <ConvertDialog handleClick={toItemClick} unit={unit} />
       </Overlay>
 
       <Overlay
