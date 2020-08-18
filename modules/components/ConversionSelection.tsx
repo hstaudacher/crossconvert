@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, TouchableHighlight} from 'react-native';
+import {View, TouchableHighlight, Keyboard} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
 import {ConvertDialog} from './ConvertDialog';
 import {ConvertUiItem} from './ConvertUiItems';
@@ -11,6 +11,7 @@ const ConversionSelection = () => {
   const [unit, setUnit] = React.useState('cals');
 
   const toggleOverlay = (): void => {
+    Keyboard.dismiss();
     setVisible(!visible);
   };
 
