@@ -84,7 +84,8 @@ const ConversionSelection = () => {
           width: '100%',
           position: 'absolute',
           bottom: 0,
-        }}>
+        }}
+        backdropStyle={{opacity: 0}}>
         <ConvertDialog handleClick={itemClick} unit={unit} />
       </Overlay>
 
@@ -96,7 +97,8 @@ const ConversionSelection = () => {
           width: '100%',
           position: 'absolute',
           bottom: 0,
-        }}>
+        }}
+        backdropStyle={{opacity: 0}}>
         <UnitDialog handleClick={updateUnit} />
       </Overlay>
     </>
