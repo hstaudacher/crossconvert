@@ -21,7 +21,7 @@ const reduceItems = (toContain: Array<string>): Array<ConvertUiItem> => {
 export const filterItems = (unit: string): Array<ConvertUiItem> => {
   if (unit === 'cals') {
     return reduceItems(['Row', 'Ski', 'Air Bike', 'Bike']);
-  } else if (unit === 'meter') {
+  } else if (unit === 'm') {
     return reduceItems(['Row', 'Ski', 'Air Bike', 'Bike', 'Run', 'Distance']);
   } else if (unit === 'lbs' || unit === 'kg') {
     return reduceItems(['Weight']);

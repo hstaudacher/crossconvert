@@ -4,15 +4,27 @@ import {View, TouchableHighlight, Keyboard} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
 import {ConvertDialog} from './ConvertDialog';
 import {ConvertUiItem} from './ConvertUiItems';
+import {UnitDialog} from './UnitDialog';
 
 const ConversionSelection = () => {
   const [value, onChangeText] = React.useState('50');
   const [visible, setVisible] = React.useState(false);
+  const [unitDialogVisible, setUnitDialogVisible] = React.useState(false);
   const [unit, setUnit] = React.useState('cals');
 
   const toggleOverlay = (): void => {
     Keyboard.dismiss();
     setVisible(!visible);
+  };
+
+  const toggleUnitDialogOverlay = (): void => {
+    Keyboard.dismiss();
+    setUnitDialogVisible(!unitDialogVisible);
+  };
+
+  const updateUnit = (newUnit: string): void => {
+    setUnit(newUnit);
+    toggleUnitDialogOverlay();
   };
 
   const itemClick = (item: ConvertUiItem): void => {
@@ -36,7 +48,7 @@ const ConversionSelection = () => {
           <Input
             placeholder={value}
             rightIcon={
-              <TouchableHighlight onPress={toggleOverlay}>
+              <TouchableHighlight onPress={toggleUnitDialogOverlay}>
                 <View style={{flexDirection: 'row', marginTop: 5}}>
                   <Text style={{color: 'tomato', marginBottom: 0, height: 40}} h4>
                     {unit}
@@ -74,6 +86,18 @@ const ConversionSelection = () => {
           bottom: 0,
         }}>
         <ConvertDialog handleClick={itemClick} unit={unit} />
+      </Overlay>
+
+      <Overlay
+        isVisible={unitDialogVisible}
+        onBackdropPress={toggleUnitDialogOverlay}
+        animationType="slide"
+        overlayStyle={{
+          width: '100%',
+          position: 'absolute',
+          bottom: 0,
+        }}>
+        <UnitDialog handleClick={updateUnit} />
       </Overlay>
     </>
   );
