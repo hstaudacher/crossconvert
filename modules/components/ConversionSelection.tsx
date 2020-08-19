@@ -45,6 +45,10 @@ const ConversionSelection = () => {
     toggleToDialogOverlay();
   };
 
+  const isToVisible = (): boolean => {
+    return from.title !== 'Distance' && from.title !== 'Weight';
+  };
+
   return (
     <>
       <View
@@ -88,19 +92,27 @@ const ConversionSelection = () => {
           />
         </View>
 
-        <Text style={{flex: 1, marginBottom: 31}} h4>
-          to
-        </Text>
-        <View style={{flex: 2, paddingBottom: 18}}>
-          <Icon
-            type={to.type}
-            name={to.icon}
-            onPress={toggleToDialogOverlay}
-            reverse={true}
-            color={to.color}
-            size={20}
-          />
-        </View>
+        {isToVisible() ? (
+          <>
+            <Text style={{flex: 1, marginBottom: 31}} h4>
+              to
+            </Text>
+            <View style={{flex: 2, paddingBottom: 18}}>
+              <Icon
+                type={to.type}
+                name={to.icon}
+                onPress={toggleToDialogOverlay}
+                reverse={true}
+                color={to.color}
+                size={20}
+              />
+            </View>
+          </>
+        ) : (
+          <>
+            <View style={{flex: 3}} />
+          </>
+        )}
       </View>
 
       <Overlay
