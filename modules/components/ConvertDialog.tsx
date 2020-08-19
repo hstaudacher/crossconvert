@@ -2,17 +2,18 @@
 import React from 'react';
 import {View} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import {filterItems, ConvertUiItem} from './ConvertUiItems';
+import {ConvertUiItem} from './ConvertUiItems';
 
 interface ConvertDialogProperties {
   unit: string;
   handleClick: (item: ConvertUiItem) => void;
+  filter: (unit: string) => Array<ConvertUiItem>;
 }
 
 export const ConvertDialog = (props: ConvertDialogProperties) => {
   return (
     <View>
-      {filterItems(props.unit).map((item, i) => (
+      {props.filter(props.unit).map((item, i) => (
         <ListItem
           key={i}
           title={item.title}

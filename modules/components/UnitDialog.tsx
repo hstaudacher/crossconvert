@@ -7,11 +7,17 @@ interface UnitDialogProperties {
   handleClick: (item: string) => void;
 }
 
-const units = [
-  {title: 'cals', subtitle: 'Calories'},
-  {title: 'm', subtitle: 'Meters'},
-  {title: 'lbs', subtitle: 'Pounds'},
-  {title: 'kg', subtitle: 'Kilogram'},
+export class UiUnit {
+  constructor(readonly title: string, readonly subtitle: string) {}
+}
+
+export const units: Array<UiUnit> = [
+  new UiUnit('cal', 'Calories'),
+  new UiUnit('m', 'Meters'),
+  new UiUnit('mi', 'Miles'),
+  new UiUnit('ft', 'Feet'),
+  new UiUnit('lbs', 'Pounds'),
+  new UiUnit('kg', 'Kilogram'),
 ];
 
 export const UnitDialog = (props: UnitDialogProperties) => {

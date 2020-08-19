@@ -18,13 +18,24 @@ const reduceItems = (toContain: Array<string>): Array<ConvertUiItem> => {
   });
 };
 
-export const filterItems = (unit: string): Array<ConvertUiItem> => {
-  if (unit === 'cals') {
+export const filterFromItems = (unit: string): Array<ConvertUiItem> => {
+  if (unit === 'cal') {
     return reduceItems(['Row', 'Ski', 'Air Bike', 'Bike']);
-  } else if (unit === 'm') {
+  } else if (unit === 'm' || unit === 'mi') {
     return reduceItems(['Row', 'Ski', 'Air Bike', 'Bike', 'Run', 'Distance']);
   } else if (unit === 'lbs' || unit === 'kg') {
     return reduceItems(['Weight']);
+  } else if (unit === 'ft') {
+    return reduceItems(['Distance']);
+  }
+  return [];
+};
+
+export const filterToItems = (unit: string): Array<ConvertUiItem> => {
+  if (unit === 'cal') {
+    return reduceItems(['Row', 'Ski', 'Air Bike', 'Bike', 'Run']);
+  } else if (unit === 'm') {
+    return reduceItems(['Row', 'Ski', 'Air Bike', 'Bike', 'Run']);
   }
   return [];
 };

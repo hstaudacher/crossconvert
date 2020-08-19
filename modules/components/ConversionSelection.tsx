@@ -3,16 +3,16 @@ import React from 'react';
 import {View, TouchableHighlight, Keyboard} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
 import {ConvertDialog} from './ConvertDialog';
-import {ConvertUiItem, filterItems} from './ConvertUiItems';
-import {UnitDialog} from './UnitDialog';
+import {ConvertUiItem, filterFromItems, filterToItems} from './ConvertUiItems';
+import {UnitDialog, units} from './UnitDialog';
 
 const ConversionSelection = () => {
   const [value, onChangeValue] = React.useState('50');
-  const [unit, setUnit] = React.useState('cals');
+  const [unit, setUnit] = React.useState(units[0].title);
   const [unitDialogVisible, setUnitDialogVisible] = React.useState(false);
-  const [from, setFrom] = React.useState(filterItems(unit)[0]);
+  const [from, setFrom] = React.useState(filterFromItems(unit)[0]);
   const [fromDialogVisible, setFromDialogVisible] = React.useState(false);
-  const [to, setTo] = React.useState(filterItems(unit)[1]);
+  const [to, setTo] = React.useState(filterFromItems(unit)[1]);
   const [toDialogVisible, setToDialogVisible] = React.useState(false);
 
   const toggleFromDialogOverlay = (): void => {
@@ -113,7 +113,7 @@ const ConversionSelection = () => {
           bottom: 0,
         }}
         backdropStyle={{opacity: 0}}>
-        <ConvertDialog handleClick={fromItemClick} unit={unit} />
+        <ConvertDialog handleClick={fromItemClick} unit={unit} filter={filterFromItems} />
       </Overlay>
 
       <Overlay
@@ -126,7 +126,7 @@ const ConversionSelection = () => {
           bottom: 0,
         }}
         backdropStyle={{opacity: 0}}>
-        <ConvertDialog handleClick={toItemClick} unit={unit} />
+        <ConvertDialog handleClick={toItemClick} unit={unit} filter={filterToItems} />
       </Overlay>
 
       <Overlay
