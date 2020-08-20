@@ -18,8 +18,8 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
   const [unitSelectionVisible, setUnitSelectionVisible] = React.useState(false);
   const [fromSelectionVisible, setFromSelectionVisible] = React.useState(false);
 
-  const onFromOptionClick = (item: FromOption): void => {
-    props.changeConfiguration(configuration.copyWithFrom(item));
+  const onFromOptionClick = (option: FromOption): void => {
+    props.changeConfiguration(configuration.copyWithFrom(option));
     toggleFromSelectionOverlay();
   };
 
