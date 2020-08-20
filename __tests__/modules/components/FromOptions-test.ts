@@ -1,0 +1,23 @@
+import {fromOptions} from '../../../modules/components/FromOptions';
+
+describe('filters from options', () => {
+  test('filters options based on cal', () => assertFromContains('cal', ['Row', 'Ski', 'Air Bike', 'Bike']));
+
+  test('filters options based on m', () =>
+    assertFromContains('m', ['Row', 'Ski', 'Air Bike', 'Bike', 'Run', 'Distance']));
+
+  test('filters options based on mi', () =>
+    assertFromContains('mi', ['Row', 'Ski', 'Air Bike', 'Bike', 'Run', 'Distance']));
+
+  test('filters options based on ft', () => assertFromContains('ft', ['Distance']));
+
+  test('filters options based on lbs', () => assertFromContains('lbs', ['Weight']));
+
+  test('filters options based on kg', () => assertFromContains('kg', ['Weight']));
+});
+
+const assertFromContains = (unit: string, expected: Array<string>): void => {
+  const options: Array<string> = fromOptions(unit).map((i) => i.title);
+
+  expect(options).toEqual(expect.arrayContaining(expected));
+};
