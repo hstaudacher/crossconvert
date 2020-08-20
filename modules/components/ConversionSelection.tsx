@@ -3,7 +3,7 @@ import React from 'react';
 import {View, TouchableHighlight, Keyboard} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
 import {ConvertDialog} from './ConvertDialog';
-import {ConvertUiItem, filterFromItems, filterToItems} from './ConvertUiItems';
+import {ConvertUiItem, filterFromItems} from './ConvertUiItems';
 import {UnitDialog, units} from './UnitDialog';
 
 const ConversionSelection = () => {
@@ -12,17 +12,10 @@ const ConversionSelection = () => {
   const [unitDialogVisible, setUnitDialogVisible] = React.useState(false);
   const [from, setFrom] = React.useState(filterFromItems(unit)[0]);
   const [fromDialogVisible, setFromDialogVisible] = React.useState(false);
-  const [to, setTo] = React.useState(filterFromItems(unit)[1]);
-  const [toDialogVisible, setToDialogVisible] = React.useState(false);
 
   const toggleFromDialogOverlay = (): void => {
     Keyboard.dismiss();
     setFromDialogVisible(!fromDialogVisible);
-  };
-
-  const toggleToDialogOverlay = (): void => {
-    Keyboard.dismiss();
-    setToDialogVisible(!toDialogVisible);
   };
 
   const toggleUnitDialogOverlay = (): void => {
@@ -38,15 +31,6 @@ const ConversionSelection = () => {
   const fromItemClick = (item: ConvertUiItem): void => {
     setFrom(item);
     toggleFromDialogOverlay();
-  };
-
-  const toItemClick = (item: ConvertUiItem): void => {
-    setTo(item);
-    toggleToDialogOverlay();
-  };
-
-  const isToVisible = (): boolean => {
-    return from.title !== 'Distance' && from.title !== 'Weight';
   };
 
   return (
@@ -81,38 +65,16 @@ const ConversionSelection = () => {
           />
         </View>
 
-        <View style={{flex: 2, paddingBottom: 18, marginLeft: 10}}>
+        <View style={{flex: 2, paddingBottom: 12, marginLeft: 20}}>
           <Icon
             type={from.type}
             name={from.icon}
             onPress={toggleFromDialogOverlay}
             reverse={true}
             color={from.color}
-            size={20}
+            size={25}
           />
         </View>
-
-        {isToVisible() ? (
-          <>
-            <Text style={{flex: 1, marginBottom: 31}} h4>
-              to
-            </Text>
-            <View style={{flex: 2, paddingBottom: 18}}>
-              <Icon
-                type={to.type}
-                name={to.icon}
-                onPress={toggleToDialogOverlay}
-                reverse={true}
-                color={to.color}
-                size={20}
-              />
-            </View>
-          </>
-        ) : (
-          <>
-            <View style={{flex: 3}} />
-          </>
-        )}
       </View>
 
       <Overlay
@@ -126,19 +88,6 @@ const ConversionSelection = () => {
         }}
         backdropStyle={{opacity: 0}}>
         <ConvertDialog handleClick={fromItemClick} unit={unit} filter={filterFromItems} />
-      </Overlay>
-
-      <Overlay
-        isVisible={toDialogVisible}
-        onBackdropPress={toggleToDialogOverlay}
-        animationType="slide"
-        overlayStyle={{
-          width: '100%',
-          position: 'absolute',
-          bottom: 0,
-        }}
-        backdropStyle={{opacity: 0}}>
-        <ConvertDialog handleClick={toItemClick} unit={unit} filter={filterToItems} />
       </Overlay>
 
       <Overlay

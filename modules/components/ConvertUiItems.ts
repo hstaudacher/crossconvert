@@ -6,7 +6,7 @@ const convertUiItems: Array<ConvertUiItem> = [
   new ConvertUiItem('Row', 'rowing', 'material', 'tomato'),
   new ConvertUiItem('Ski', 'skiing-nordic', 'font-awesome-5', 'lightblue'),
   new ConvertUiItem('Bike', 'biking', 'font-awesome-5', 'orange'),
-  new ConvertUiItem('Air Bike', 'skull-crossbones', 'font-awesome-5', 'grey'),
+  new ConvertUiItem('Air Bike', 'skull-crossbones', 'font-awesome-5', 'purple'),
   new ConvertUiItem('Run', 'running', 'font-awesome-5', 'blue'),
   new ConvertUiItem('Weight', 'barbell-outline', 'ionicon', 'green'),
   new ConvertUiItem('Distance', 'ruler', 'font-awesome-5', 'firebrick'),
@@ -27,15 +27,6 @@ export const filterFromItems = (unit: string): Array<ConvertUiItem> => {
     return reduceItems(['Weight']);
   } else if (unit === 'ft') {
     return reduceItems(['Distance']);
-  }
-  return [];
-};
-
-export const filterToItems = (unit: string): Array<ConvertUiItem> => {
-  if (unit === 'cal') {
-    return reduceItems(['Row', 'Ski', 'Air Bike', 'Bike', 'Run']);
-  } else if (unit === 'm') {
-    return reduceItems(['Row', 'Ski', 'Air Bike', 'Bike', 'Run']);
   }
   return [];
 };
