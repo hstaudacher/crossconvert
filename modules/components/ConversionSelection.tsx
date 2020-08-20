@@ -4,44 +4,47 @@ import {View, TouchableHighlight, Keyboard} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
 import {ConvertDialog} from './ConvertDialog';
 import {ConvertUiItem, filterFromItems} from './ConvertUiItems';
-import {UnitDialog, units} from './UnitDialog';
+import {UnitDialog} from './UnitDialog';
+import {ConversionProperties} from './ConversionContext';
 
-const ConversionSelection = () => {
-  const [value, onChangeValue] = React.useState('50');
-  const [unit, setUnit] = React.useState(units[0].title);
+const ConversionSelection = (props: ConversionProperties) => {
+  const context = props.context;
   const [unitDialogVisible, setUnitDialogVisible] = React.useState(false);
-  const [from, setFrom] = React.useState(filterFromItems(unit)[0]);
   const [fromDialogVisible, setFromDialogVisible] = React.useState(false);
 
   const fromItemClick = (item: ConvertUiItem): void => {
-    setFrom(item);
+    props.changeContext(context.copyWithFrom(item));
     toggleFromDialogOverlay();
   };
 
   const toggleFromDialogOverlay = (): void => {
     Keyboard.dismiss();
-    if (filterFromItems(unit).length > 1) {
+    if (filterFromItems(context.unit).length > 1) {
       setFromDialogVisible(!fromDialogVisible);
     }
   };
 
   const updateUnit = (newUnit: string): void => {
     ensureFromExists(newUnit);
-    setUnit(newUnit);
+    props.changeContext(context.copyWithUnit(newUnit));
     toggleUnitDialogOverlay();
   };
 
   const ensureFromExists = (newUnit: string): void => {
     const items: Array<ConvertUiItem> = filterFromItems(newUnit);
-    const indexOfFrom: number = items.findIndex((i) => i.title === from.title);
+    const indexOfFrom: number = items.findIndex((i) => i.title === context.from.title);
     if (indexOfFrom === -1) {
-      setFrom(items[0]);
+      props.changeContext(context.copyWithFrom(items[0]));
     }
   };
 
   const toggleUnitDialogOverlay = (): void => {
     Keyboard.dismiss();
     setUnitDialogVisible(!unitDialogVisible);
+  };
+
+  const changeValue = (newValue: string) => {
+    props.changeContext(context.copyWithValue(newValue));
   };
 
   return (
@@ -58,12 +61,12 @@ const ConversionSelection = () => {
         }}>
         <View style={{flex: 6}}>
           <Input
-            placeholder={value}
+            placeholder={context.value}
             rightIcon={
               <TouchableHighlight onPress={toggleUnitDialogOverlay}>
                 <View style={{flexDirection: 'row', marginTop: 5}}>
                   <Text style={{color: 'tomato', marginBottom: 0, height: 40}} h4>
-                    {unit}
+                    {context.unit}
                   </Text>
                   <Icon type="ionicon" name="chevron-down-outline" color="tomato" size={20} style={{paddingTop: 8}} />
                 </View>
@@ -71,18 +74,18 @@ const ConversionSelection = () => {
             }
             rightIconContainerStyle={{height: 20}}
             keyboardType="numeric"
-            onChangeText={(text) => onChangeValue(text)}
+            onChangeText={(text) => changeValue(text)}
             inputStyle={{fontSize: 28}}
           />
         </View>
 
         <View style={{flex: 2, paddingBottom: 12, marginLeft: 20}}>
           <Icon
-            type={from.type}
-            name={from.icon}
+            type={context.from.type}
+            name={context.from.icon}
             onPress={toggleFromDialogOverlay}
             reverse={true}
-            color={from.color}
+            color={context.from.color}
             size={25}
           />
         </View>
@@ -98,7 +101,7 @@ const ConversionSelection = () => {
           bottom: 0,
         }}
         backdropStyle={{opacity: 0}}>
-        <ConvertDialog handleClick={fromItemClick} unit={unit} filter={filterFromItems} />
+        <ConvertDialog handleClick={fromItemClick} unit={context.unit} filter={filterFromItems} />
       </Overlay>
 
       <Overlay
