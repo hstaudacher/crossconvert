@@ -20,7 +20,9 @@ const ConversionSelection = () => {
 
   const toggleFromDialogOverlay = (): void => {
     Keyboard.dismiss();
-    setFromDialogVisible(!fromDialogVisible);
+    if (filterFromItems(unit).length > 1) {
+      setFromDialogVisible(!fromDialogVisible);
+    }
   };
 
   const updateUnit = (newUnit: string): void => {
