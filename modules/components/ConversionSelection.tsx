@@ -13,24 +13,33 @@ const ConversionSelection = () => {
   const [from, setFrom] = React.useState(filterFromItems(unit)[0]);
   const [fromDialogVisible, setFromDialogVisible] = React.useState(false);
 
+  const fromItemClick = (item: ConvertUiItem): void => {
+    setFrom(item);
+    toggleFromDialogOverlay();
+  };
+
   const toggleFromDialogOverlay = (): void => {
     Keyboard.dismiss();
     setFromDialogVisible(!fromDialogVisible);
   };
 
-  const toggleUnitDialogOverlay = (): void => {
-    Keyboard.dismiss();
-    setUnitDialogVisible(!unitDialogVisible);
-  };
-
   const updateUnit = (newUnit: string): void => {
+    ensureFromExists(newUnit);
     setUnit(newUnit);
     toggleUnitDialogOverlay();
   };
 
-  const fromItemClick = (item: ConvertUiItem): void => {
-    setFrom(item);
-    toggleFromDialogOverlay();
+  const ensureFromExists = (newUnit: string): void => {
+    const items: Array<ConvertUiItem> = filterFromItems(newUnit);
+    const indexOfFrom: number = items.findIndex((i) => i.title === from.title);
+    if (indexOfFrom === -1) {
+      setFrom(items[0]);
+    }
+  };
+
+  const toggleUnitDialogOverlay = (): void => {
+    Keyboard.dismiss();
+    setUnitDialogVisible(!unitDialogVisible);
   };
 
   return (
