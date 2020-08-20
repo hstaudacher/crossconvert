@@ -2,7 +2,7 @@
 import React from 'react';
 import {KeyboardAvoidingView, Pressable, Keyboard} from 'react-native';
 import ConversionSelection from './ConversionSelection';
-import {ConversionContext} from './ConversionContext';
+import ConversionContext from './ConversionContext';
 import ConversionResultView from './ConversionResultView';
 import {units} from './UnitDialog';
 import {filterFromItems} from './ConvertUiItems';
@@ -17,7 +17,7 @@ const MainScreen = () => {
     <>
       <Pressable style={{flex: 1}} onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView style={{flex: 1}} behavior={'position'} contentContainerStyle={{flex: 1}}>
-          <ConversionResultView context={context} changeContext={() => null} />
+          <ConversionResultView context={context} />
           <ConversionSelection context={context} changeContext={(c) => changeContext(c)} />
         </KeyboardAvoidingView>
       </Pressable>

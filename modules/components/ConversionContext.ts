@@ -1,6 +1,6 @@
 import {ConvertUiItem} from './ConvertUiItems';
 
-export class ConversionContext {
+export default class ConversionContext {
   constructor(readonly unit: string, readonly value: string, readonly from: ConvertUiItem) {}
 
   copyWithUnit(unit: string): ConversionContext {
@@ -14,9 +14,4 @@ export class ConversionContext {
   copyWithFrom(from: ConvertUiItem): ConversionContext {
     return new ConversionContext(this.unit, this.value, from);
   }
-}
-
-export interface ConversionProperties {
-  context: ConversionContext;
-  changeContext: (context: ConversionContext) => void;
 }

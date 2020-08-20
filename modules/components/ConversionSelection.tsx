@@ -5,9 +5,14 @@ import {Input, Text, Overlay, Icon} from 'react-native-elements';
 import {ConvertDialog} from './ConvertDialog';
 import {ConvertUiItem, filterFromItems} from './ConvertUiItems';
 import {UnitDialog} from './UnitDialog';
-import {ConversionProperties} from './ConversionContext';
+import ConversionContext from './ConversionContext';
 
-const ConversionSelection = (props: ConversionProperties) => {
+export interface ConversionSelectionProperties {
+  context: ConversionContext;
+  changeContext: (context: ConversionContext) => void;
+}
+
+const ConversionSelection = (props: ConversionSelectionProperties) => {
   const context = props.context;
   const [unitDialogVisible, setUnitDialogVisible] = React.useState(false);
   const [fromDialogVisible, setFromDialogVisible] = React.useState(false);

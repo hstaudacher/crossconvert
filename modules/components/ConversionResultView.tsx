@@ -1,8 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {ConversionProperties} from './ConversionContext';
+import ConversionContext from './ConversionContext';
 
-const ConversionResultView = (props: ConversionProperties) => {
+interface ConversionResultViewProperties {
+  context: ConversionContext;
+}
+
+const ConversionResultView = (props: ConversionResultViewProperties) => {
   return (
     <>
       <View style={{backgroundColor: 'orange', flex: 8}}>

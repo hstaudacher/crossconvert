@@ -1,3 +1,4 @@
+// todo rename
 export class ConvertUiItem {
   constructor(readonly title: string, readonly icon: string, readonly type: string, readonly color: string) {}
 }
