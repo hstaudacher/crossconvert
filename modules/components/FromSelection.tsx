@@ -2,15 +2,15 @@
 import React from 'react';
 import {View} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import {ConvertUiItem} from './ConvertUiItems';
+import {FromOption} from './FromOptions';
 
-interface ConvertDialogProperties {
+interface FromSelectionProperties {
   unit: string;
-  handleClick: (item: ConvertUiItem) => void;
-  filter: (unit: string) => Array<ConvertUiItem>;
+  handleClick: (item: FromOption) => void;
+  filter: (unit: string) => Array<FromOption>;
 }
 
-export const ConvertDialog = (props: ConvertDialogProperties) => {
+export const FromSelection = (props: FromSelectionProperties) => {
   return (
     <View>
       {props.filter(props.unit).map((item, i) => (

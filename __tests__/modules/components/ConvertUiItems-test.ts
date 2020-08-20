@@ -1,4 +1,4 @@
-import {filterFromItems} from '../../../modules/components/ConvertUiItems';
+import {fromOptions} from '../../../modules/components/FromOptions';
 
 describe('filters from items', () => {
   test('filters items based on cal', () => assertFromContains('cal', ['Row', 'Ski', 'Air Bike', 'Bike']));
@@ -17,7 +17,7 @@ describe('filters from items', () => {
 });
 
 const assertFromContains = (unit: string, expected: Array<string>): void => {
-  const items: Array<string> = filterFromItems(unit).map((i) => i.title);
+  const items: Array<string> = fromOptions(unit).map((i) => i.title);
 
   expect(items).toEqual(expect.arrayContaining(expected));
 };

@@ -1,9 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text} from 'react-native';
-import ConversionContext from './ConversionContext';
+import ConversionConfiguration from './ConversionConfiguration';
 
 interface ConversionResultViewProperties {
-  context: ConversionContext;
+  configuration: ConversionConfiguration;
 }
 
 const ConversionResultView = (props: ConversionResultViewProperties) => {
@@ -11,9 +12,9 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
     <>
       <View style={{backgroundColor: 'orange', flex: 8}}>
         <View style={{flex: 1, margin: 40}}>
-          <Text>{props.context.unit}</Text>
-          <Text>{props.context.value}</Text>
-          <Text>{props.context.from.title}</Text>
+          <Text>{props.configuration.unit}</Text>
+          <Text>{props.configuration.value}</Text>
+          <Text>{props.configuration.from.title}</Text>
         </View>
       </View>
     </>
