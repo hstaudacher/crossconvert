@@ -14,39 +14,50 @@ export interface ConversionConfigurationViewProperties {
 }
 
 const ConversionConfigurationView = (props: ConversionConfigurationViewProperties) => {
-  const configuration = props.configuration;
   const [unitSelectionVisible, setUnitSelectionVisible] = React.useState(false);
   const [fromSelectionVisible, setFromSelectionVisible] = React.useState(false);
 
   const onFromOptionClick = (option: FromOption): void => {
-    props.changeConfiguration(configuration.copyWithFrom(option));
+    props.configuration.from = option;
+    fireConfigurationChange();
     toggleFromSelectionOverlay();
   };
 
   const toggleFromSelectionOverlay = (): void => {
     Keyboard.dismiss();
-    if (fromOptions(configuration.unit).length > 1) {
+    if (fromOptions(props.configuration.unit).length > 1) {
       setFromSelectionVisible(!fromSelectionVisible);
     }
   };
 
   const updateUnit = (newUnit: string): void => {
     ensureFromOptionExists(newUnit);
-    props.changeConfiguration(configuration.copyWithUnit(newUnit));
+    props.configuration.unit = newUnit;
+    fireConfigurationChange();
     toggleUnitSelectionOverlay();
   };
 
   const ensureFromOptionExists = (newUnit: string): void => {
     const options: Array<FromOption> = fromOptions(newUnit);
-    const indexOfFrom: number = options.findIndex((i) => i.title === configuration.from.title);
+    const indexOfFrom: number = options.findIndex((i) => i.title === props.configuration.from.title);
     if (indexOfFrom === -1) {
-      props.changeConfiguration(configuration.copyWithFrom(options[0]));
+      props.configuration.from = options[0];
+      fireConfigurationChange();
     }
   };
 
   const toggleUnitSelectionOverlay = (): void => {
     Keyboard.dismiss();
     setUnitSelectionVisible(!unitSelectionVisible);
+  };
+
+  const changeValue = (value: string): void => {
+    props.configuration.value = value;
+    fireConfigurationChange();
+  };
+
+  const fireConfigurationChange = (): void => {
+    props.changeConfiguration(props.configuration.copy());
   };
 
   return (
@@ -63,12 +74,12 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
         }}>
         <View style={{flex: 6}}>
           <Input
-            placeholder={configuration.value}
+            placeholder={props.configuration.value}
             rightIcon={
               <TouchableHighlight onPress={toggleUnitSelectionOverlay}>
                 <View style={{flexDirection: 'row', marginTop: 5}}>
                   <Text style={{color: 'tomato', marginBottom: 0, height: 40}} h4>
-                    {configuration.unit}
+                    {props.configuration.unit}
                   </Text>
                   <Icon type="ionicon" name="chevron-down-outline" color="tomato" size={20} style={{paddingTop: 8}} />
                 </View>
@@ -76,18 +87,19 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
             }
             rightIconContainerStyle={{height: 20}}
             keyboardType="numeric"
-            onChangeText={(text) => props.changeConfiguration(configuration.copyWithValue(text))}
+            onChangeText={changeValue}
             inputStyle={{fontSize: 28}}
           />
         </View>
 
         <View style={{flex: 2, paddingBottom: 12, marginLeft: 20}}>
           <Icon
-            type={configuration.from.type}
-            name={configuration.from.icon}
+            key={props.configuration.unit}
+            type={props.configuration.from.type}
+            name={props.configuration.from.icon}
             onPress={toggleFromSelectionOverlay}
             reverse={true}
-            color={configuration.from.color}
+            color={props.configuration.from.color}
             size={25}
           />
         </View>
@@ -103,7 +115,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
           bottom: 0,
         }}
         backdropStyle={{opacity: 0}}>
-        <FromSelection handleClick={onFromOptionClick} unit={configuration.unit} filter={fromOptions} />
+        <FromSelection handleClick={onFromOptionClick} unit={props.configuration.unit} filter={fromOptions} />
       </Overlay>
 
       <Overlay
