@@ -6,7 +6,7 @@ import ConversionConfiguration from './ConversionConfiguration';
 import ConversionResultView from './ConversionResultView';
 import {units} from './UnitSelection';
 import {fromOptions} from './FromOptions';
-import {Header, Icon} from 'react-native-elements';
+import {Header, Icon, Divider} from 'react-native-elements';
 
 const MainScreen = () => {
   const defaultUnit = units[0].title;
@@ -23,7 +23,9 @@ const MainScreen = () => {
             leftComponent={{text: '3,2,1...GO', style: {color: 'tomato'}}}
             backgroundColor={'#fff'}
           />
+          <Divider />
           <ConversionResultView configuration={configuration} />
+          <Divider />
           <ConversionConfigurationView
             configuration={configuration}
             changeConfiguration={(c) => changeConfiguration(c)}
