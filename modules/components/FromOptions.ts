@@ -27,6 +27,8 @@ export const fromOptions = (unit: string): Array<FromOption> => {
     return reduceOptions(['Weight']);
   } else if (unit === 'ft') {
     return reduceOptions(['Distance']);
+  } else if (unit === 'all') {
+    return options;
   }
   return [];
 };

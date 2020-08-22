@@ -6,6 +6,7 @@ import ConversionConfiguration from './ConversionConfiguration';
 import ConversionResultView from './ConversionResultView';
 import {units} from './UnitSelection';
 import {fromOptions} from './FromOptions';
+import {Header, Icon} from 'react-native-elements';
 
 const MainScreen = () => {
   const defaultUnit = units[0].title;
@@ -17,6 +18,11 @@ const MainScreen = () => {
     <>
       <Pressable style={{flex: 1}} onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView style={{flex: 1}} behavior={'position'} contentContainerStyle={{flex: 1}}>
+          <Header
+            rightComponent={<Icon name={'menu'} color={'tomato'} />}
+            leftComponent={{text: '3,2,1...GO', style: {color: 'tomato'}}}
+            backgroundColor={'#fff'}
+          />
           <ConversionResultView configuration={configuration} />
           <ConversionConfigurationView
             configuration={configuration}
