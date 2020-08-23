@@ -1,5 +1,3 @@
-import BaselineDefinition from './BaselineDefinition';
-
 enum Exercise {
   Row = 'Row',
   Run = 'Run',

@@ -1,18 +1,15 @@
 import {FromOption} from './FromOption';
-import RowOption from './RowOption';
-import SkiOption from './SkiOption';
-import BikeOption from './BikeOption';
-import AirBikeOption from './AirBikeOption';
-import RunOption from './RunOption';
 import WeightOption from './WeightOption';
 import DistanceOption from './DistanceOption';
+import ExerciseOption from './ExerciseOption';
+import {Exercise} from '../../conversion';
 
 const options: Array<FromOption> = [
-  new RowOption(),
-  new SkiOption(),
-  new BikeOption(),
-  new AirBikeOption(),
-  new RunOption(),
+  new ExerciseOption('Row', 'rowing', 'material', 'tomato', Exercise.Row),
+  new ExerciseOption('Ski', 'skiing-nordic', 'font-awesome-5', 'lightblue', Exercise.Ski),
+  new ExerciseOption('Bike', 'biking', 'font-awesome-5', 'orange', Exercise.Bike),
+  new ExerciseOption('Air Bike', 'skull-crossbones', 'font-awesome-5', 'purple', Exercise.Airbike),
+  new ExerciseOption('Run', 'running', 'font-awesome-5', 'blue', Exercise.Run),
   new WeightOption(),
   new DistanceOption(),
 ];

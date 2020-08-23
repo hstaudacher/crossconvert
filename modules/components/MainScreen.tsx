@@ -11,7 +11,7 @@ import {Header, Icon, Divider} from 'react-native-elements';
 const MainScreen = () => {
   const defaultUnit = units[0].title;
   const [configuration, changeConfiguration] = React.useState(
-    new ConversionConfiguration(defaultUnit, '50', fromOptions(defaultUnit)[0]),
+    new ConversionConfiguration(defaultUnit, '0', fromOptions(defaultUnit)[0]),
   );
 
   return (

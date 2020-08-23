@@ -56,6 +56,11 @@ class ExerciseConverter {
   private getReference(exercise: Exercise): ExerciseReference {
     return refrences.find((b) => b.exercise === exercise)!;
   }
+
+  getSupportedUnits = (exercise: Exercise): Array<Unit> => {
+    const reference = this.getReference(exercise);
+    return reference.values.map((v) => v.unit);
+  };
 }
 
 export default ExerciseConverter;
