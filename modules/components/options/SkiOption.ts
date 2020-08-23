@@ -8,6 +8,6 @@ export default class SkiOption extends FromOption {
 
   convert(configuration: ConversionConfiguration): Array<ConversionResult> {
     console.log(configuration);
-    return [];
+    return [new ConversionResult(500, 'm')];
   }
 }

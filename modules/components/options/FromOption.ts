@@ -7,5 +7,5 @@ export abstract class FromOption {
 }
 
 export class ConversionResult {
-  constructor(readonly value: string, readonly unit: string) {}
+  constructor(readonly value: number, readonly unit: string) {}
 }

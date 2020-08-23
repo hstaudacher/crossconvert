@@ -8,6 +8,6 @@ export default class RowOption extends FromOption {
 
   convert(configuration: ConversionConfiguration): Array<ConversionResult> {
     console.log(configuration);
-    return [];
+    return [new ConversionResult(200, 'm'), new ConversionResult(15, 'cal')];
   }
 }

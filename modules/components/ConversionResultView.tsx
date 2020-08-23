@@ -4,10 +4,23 @@ import {View, Text, StyleSheet} from 'react-native';
 import ConversionConfiguration from './ConversionConfiguration';
 import {Card, Icon} from 'react-native-elements';
 import {fromOptions} from './options/FromOptions';
+import {ConversionResult} from './options/FromOption';
 
 interface ConversionResultViewProperties {
   configuration: ConversionConfiguration;
 }
+
+const renderSlash = (index: number): Element | void => {
+  if (index > 0) {
+    return <Text> / </Text>;
+  }
+};
+
+const renderEmpty = (results: Array<ConversionResult>): Element | void => {
+  if (results.length === 0) {
+    return <Text>-- </Text>;
+  }
+};
 
 const ConversionResultView = (props: ConversionResultViewProperties) => {
   return (
@@ -23,9 +36,14 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
               <View style={styles.textBox}>
                 <View style={{flexDirection: 'row'}}>
                   <Text style={styles.text}>
-                    200<Text style={styles.unitText}>m</Text>
-                    <Text style={{color: option.color}}> / </Text>
-                    50<Text style={styles.unitText}>cal</Text>
+                    {option.convert(props.configuration).map((result, j) => (
+                      <Text key={j}>
+                        {renderSlash(j)}
+                        {result.value}
+                        <Text style={styles.unitText}>{result.unit}</Text>
+                      </Text>
+                    ))}
+                    {renderEmpty(option.convert(props.configuration))}
                   </Text>
                 </View>
               </View>
