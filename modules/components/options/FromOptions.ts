@@ -1,15 +1,20 @@
-export class FromOption {
-  constructor(readonly title: string, readonly icon: string, readonly type: string, readonly color: string) {}
-}
+import {FromOption} from './FromOption';
+import RowOption from './RowOption';
+import SkiOption from './SkiOption';
+import BikeOption from './BikeOption';
+import AirBikeOption from './AirBikeOption';
+import RunOption from './RunOption';
+import WeightOption from './WeightOption';
+import DistanceOption from './DistanceOption';
 
 const options: Array<FromOption> = [
-  new FromOption('Row', 'rowing', 'material', 'tomato'),
-  new FromOption('Ski', 'skiing-nordic', 'font-awesome-5', 'lightblue'),
-  new FromOption('Bike', 'biking', 'font-awesome-5', 'orange'),
-  new FromOption('Air Bike', 'skull-crossbones', 'font-awesome-5', 'purple'),
-  new FromOption('Run', 'running', 'font-awesome-5', 'blue'),
-  new FromOption('Weight', 'barbell-outline', 'ionicon', 'green'),
-  new FromOption('Distance', 'ruler', 'font-awesome-5', 'firebrick'),
+  new RowOption(),
+  new SkiOption(),
+  new BikeOption(),
+  new AirBikeOption(),
+  new RunOption(),
+  new WeightOption(),
+  new DistanceOption(),
 ];
 
 const reduceOptions = (mustBeContained: Array<string>): Array<FromOption> => {

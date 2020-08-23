@@ -1,4 +1,4 @@
-import {fromOptions} from '../../../modules/components/FromOptions';
+import {fromOptions} from '../../../modules/components/options/FromOptions';
 
 describe('filters from options', () => {
   test('filters options based on cal', () => assertFromContains('cal', ['Row', 'Ski', 'Air Bike', 'Bike']));

@@ -1,4 +1,4 @@
-import {FromOption} from './FromOptions';
+import {FromOption} from './options/FromOption';
 
 export default class ConversionConfiguration {
   constructor(public unit: string, public value: string, public from: FromOption) {}

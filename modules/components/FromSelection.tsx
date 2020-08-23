@@ -2,7 +2,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import {FromOption} from './FromOptions';
+import {FromOption} from './options/FromOption';
 
 interface FromSelectionProperties {
   unit: string;

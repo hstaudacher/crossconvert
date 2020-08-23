@@ -3,7 +3,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import ConversionConfiguration from './ConversionConfiguration';
 import {Card, Icon} from 'react-native-elements';
-import {fromOptions} from './FromOptions';
+import {fromOptions} from './options/FromOptions';
 
 interface ConversionResultViewProperties {
   configuration: ConversionConfiguration;
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 25,
-    fontWeight: 'bold',
     color: '#020202',
   },
   descriptionBox: {

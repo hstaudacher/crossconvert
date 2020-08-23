@@ -5,7 +5,7 @@ import ConversionConfigurationView from './ConversionConfigurationView';
 import ConversionConfiguration from './ConversionConfiguration';
 import ConversionResultView from './ConversionResultView';
 import {units} from './UnitSelection';
-import {fromOptions} from './FromOptions';
+import {fromOptions} from './options/FromOptions';
 import {Header, Icon, Divider} from 'react-native-elements';
 
 const MainScreen = () => {
