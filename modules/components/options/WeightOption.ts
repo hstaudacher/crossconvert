@@ -1,13 +1,22 @@
 import {FromOption, ConversionResult} from './FromOption';
 import ConversionConfiguration from '../ConversionConfiguration';
+import {WeightConverter, WeightUnit, WeightConversion} from '../../conversion';
 
 export default class WeightOption extends FromOption {
-  constructor() {
-    super('Weight', 'barbell-outline', 'ionicon', 'green');
-  }
-
   convert(configuration: ConversionConfiguration): Array<ConversionResult> {
-    console.log(configuration);
+    const value: number = +configuration.value;
+    if (configuration.unit === 'lbs') {
+      const converter = new WeightConverter(WeightUnit.lbs, value);
+      return [this.getConversionResult(converter.convertTo(WeightUnit.kg))];
+    } else if (configuration.unit === 'kg') {
+      const converter = new WeightConverter(WeightUnit.kg, value);
+      return [this.getConversionResult(converter.convertTo(WeightUnit.lbs))];
+    }
     return [];
   }
+
+  private getConversionResult = (conversion: WeightConversion): ConversionResult => {
+    const unit = conversion.toUnit === WeightUnit.kg ? 'kg' : 'lbs';
+    return new ConversionResult(conversion.toWeight, unit);
+  };
 }

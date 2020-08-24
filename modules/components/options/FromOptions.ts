@@ -10,7 +10,7 @@ const options: Array<FromOption> = [
   new ExerciseOption('Bike', 'biking', 'font-awesome-5', 'orange', Exercise.Bike),
   new ExerciseOption('Air Bike', 'skull-crossbones', 'font-awesome-5', 'purple', Exercise.Airbike),
   new ExerciseOption('Run', 'running', 'font-awesome-5', 'blue', Exercise.Run),
-  new WeightOption(),
+  new WeightOption('Weight', 'barbell-outline', 'ionicon', 'green'),
   new DistanceOption(),
 ];
 
