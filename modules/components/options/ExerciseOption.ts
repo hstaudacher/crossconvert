@@ -13,18 +13,6 @@ export default class ExerciseOption extends FromOption {
     super(title, icon, type, color);
   }
 
-  private getUnit = (unit: string): Unit => {
-    if (unit === 'cal') {
-      return Unit.Calories;
-    }
-    return Unit.Meter;
-  };
-
-  private getConversionResult = (conversion: ExerciseConversion): ConversionResult => {
-    const unit = conversion.unit === Unit.Calories ? 'cal' : 'm';
-    return new ConversionResult(conversion.value, unit);
-  };
-
   convert(configuration: ConversionConfiguration): Array<ConversionResult> {
     if (configuration.from instanceof ExerciseOption) {
       const fromExercise = configuration.from as ExerciseOption;
@@ -43,4 +31,16 @@ export default class ExerciseOption extends FromOption {
     }
     return [];
   }
+
+  private getUnit = (unit: string): Unit => {
+    if (unit === 'cal') {
+      return Unit.Calories;
+    }
+    return Unit.Meter;
+  };
+
+  private getConversionResult = (conversion: ExerciseConversion): ConversionResult => {
+    const unit = conversion.unit === Unit.Calories ? 'cal' : 'm';
+    return new ConversionResult(conversion.value, unit);
+  };
 }

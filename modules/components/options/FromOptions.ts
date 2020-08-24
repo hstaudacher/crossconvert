@@ -14,12 +14,6 @@ const options: Array<FromOption> = [
   new DistanceOption(),
 ];
 
-const reduceOptions = (mustBeContained: Array<string>): Array<FromOption> => {
-  return options.filter((i) => {
-    return mustBeContained.find((title) => title === i.title) !== undefined;
-  });
-};
-
 export const fromOptions = (unit: string): Array<FromOption> => {
   if (unit === 'cal') {
     return reduceOptions(['Row', 'Ski', 'Air Bike', 'Bike']);
@@ -33,4 +27,10 @@ export const fromOptions = (unit: string): Array<FromOption> => {
     return options;
   }
   return [];
+};
+
+const reduceOptions = (mustBeContained: Array<string>): Array<FromOption> => {
+  return options.filter((i) => {
+    return mustBeContained.find((title) => title === i.title) !== undefined;
+  });
 };
