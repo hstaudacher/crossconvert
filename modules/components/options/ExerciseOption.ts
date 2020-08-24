@@ -17,20 +17,21 @@ export default class ExerciseOption extends FromOption {
     if (configuration.from instanceof ExerciseOption) {
       const fromExercise = configuration.from as ExerciseOption;
       if (configuration.unit === 'cal' || configuration.unit === 'm') {
-        const unit: Unit = this.getUnit(configuration.unit);
-        const value: number = +configuration.value;
-        const converter = new ExerciseConverter(fromExercise.exercise, unit, value);
-        const units = converter.getSupportedUnits(this.exercise);
-        const conversions = [];
-        for (let u of units) {
-          const conversion = converter.convertTo(this.exercise, u);
-          conversions.push(this.getConversionResult(conversion));
-        }
-        return conversions;
+        const converter = this.createConverter(configuration, fromExercise);
+        return this.doConversion(converter);
       }
     }
     return [];
   }
+
+  private createConverter = (
+    configuration: ConversionConfiguration,
+    fromExercise: ExerciseOption,
+  ): ExerciseConverter => {
+    const unit: Unit = this.getUnit(configuration.unit);
+    const value: number = +configuration.value;
+    return new ExerciseConverter(fromExercise.exercise, unit, value);
+  };
 
   private getUnit = (unit: string): Unit => {
     if (unit === 'cal') {
@@ -42,5 +43,15 @@ export default class ExerciseOption extends FromOption {
   private getConversionResult = (conversion: ExerciseConversion): ConversionResult => {
     const unit = conversion.unit === Unit.Calories ? 'cal' : 'm';
     return new ConversionResult(conversion.value, unit);
+  };
+
+  private doConversion = (converter: ExerciseConverter): Array<ConversionResult> => {
+    const units = converter.getSupportedUnits(this.exercise);
+    const conversions = [];
+    for (let u of units) {
+      const conversion = converter.convertTo(this.exercise, u);
+      conversions.push(this.getConversionResult(conversion));
+    }
+    return conversions;
   };
 }
