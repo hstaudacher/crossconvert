@@ -6,10 +6,12 @@ export abstract class FromOption {
 
   private format = (value: number, unit: string): string => {
     console.log(unit);
-    if (unit === 'cal' || unit === 'lbs') {
+    if (value < 1 && value > 0 && unit !== 'cal') {
+      return numeral(value).format('0,0.00');
+    } else if (unit === 'cal' || unit === 'lbs' || unit === 'kg') {
       return numeral(value).format();
     }
-    return numeral(value).format('0,0.00');
+    return numeral(value).format('0,0');
   };
 
   convert = (configuration: ConversionConfiguration): Array<ConversionResult> => {

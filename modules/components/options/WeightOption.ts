@@ -1,10 +1,11 @@
 import {FromOption, ConversionResult} from './FromOption';
 import ConversionConfiguration from '../ConversionConfiguration';
 import {WeightConverter, WeightUnit, WeightConversion} from '../../conversion';
+import numeral from 'numeral';
 
 export default class WeightOption extends FromOption {
   doConversion(configuration: ConversionConfiguration): Array<ConversionResult> {
-    const value: number = +configuration.value;
+    const value: number = numeral(configuration.value).value();
     if (configuration.unit === 'lbs') {
       const converter = new WeightConverter(WeightUnit.lbs, value);
       return [this.getConversionResult(converter.convertTo(WeightUnit.kg))];
