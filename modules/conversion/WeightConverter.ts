@@ -8,6 +8,6 @@ export default class WeightConverter {
 
   convertTo(toUnit: WeightUnit): WeightConversion {
     const convertedWeight: number = convert(this.weight).from(this.unit).to(toUnit);
-    return new WeightConversion(this.unit, this.weight, toUnit, Math.round(convertedWeight));
+    return new WeightConversion(this.unit, this.weight, toUnit, convertedWeight);
   }
 }

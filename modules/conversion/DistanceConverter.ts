@@ -8,6 +8,6 @@ export default class DistanceConverter {
 
   convertTo(toUnit: DistanceUnit): DistanceConversion {
     const convertedDistance: number = convert(this.distance).from(this.unit).to(toUnit);
-    return new DistanceConversion(this.unit, this.distance, toUnit, Math.round(convertedDistance));
+    return new DistanceConversion(this.unit, this.distance, toUnit, convertedDistance);
   }
 }
