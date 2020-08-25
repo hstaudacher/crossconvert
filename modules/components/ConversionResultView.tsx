@@ -1,10 +1,21 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import ConversionConfiguration from './ConversionConfiguration';
 import {Card, Icon} from 'react-native-elements';
 import {fromOptions} from './options/FromOptions';
-import {ConversionResult} from './options/FromOption';
+import {ConversionResult, FromOption} from './options/FromOption';
+
+class ConvertedOption {
+  conversionResults: Array<ConversionResult>;
+  constructor(readonly option: FromOption, readonly configuration: ConversionConfiguration) {
+    this.conversionResults = option.convert(configuration);
+  }
+
+  isEmpty = (): boolean => {
+    return this.conversionResults.length === 0;
+  };
+}
 
 interface ConversionResultViewProperties {
   configuration: ConversionConfiguration;
@@ -16,40 +27,56 @@ const renderSlash = (index: number): Element | void => {
   }
 };
 
-const renderEmpty = (results: Array<ConversionResult>): Element | void => {
-  if (results.length === 0) {
+const renderEmpty = (convertedOption: ConvertedOption): Element | void => {
+  if (convertedOption.isEmpty()) {
     return <Text>-- </Text>;
   }
+};
+
+const determineContainerStyle = (convertedOption: ConvertedOption): StyleProp<ViewStyle> => {
+  if (convertedOption.isEmpty()) {
+    return styles.containerEmpty;
+  }
+  return styles.container;
 };
 
 const ConversionResultView = (props: ConversionResultViewProperties) => {
   return (
     <>
       <View style={{backgroundColor: '#f2f1f6', flex: 7}}>
-        {fromOptions('all').map((option, i) => (
-          <Card key={i} containerStyle={styles.container}>
-            <View style={{flexDirection: 'row'}}>
-              <View style={styles.descriptionBox}>
-                <Icon name={option.icon} type={option.type} color={option.color} size={22} />
-                <Text style={{fontSize: 25, color: option.color, marginLeft: 6}}>{option.title}</Text>
-              </View>
-              <View style={styles.textBox}>
-                <View style={{flexDirection: 'row'}}>
-                  <Text style={styles.text}>
-                    {option.convert(props.configuration).map((result, j) => (
-                      <Text key={j}>
-                        {renderSlash(j)}
-                        {result.value}
-                        <Text style={styles.unitText}>{result.unit}</Text>
-                      </Text>
-                    ))}
-                    {renderEmpty(option.convert(props.configuration))}
+        {fromOptions('all')
+          .map((option) => new ConvertedOption(option, props.configuration))
+          .map((convertedOption, i) => (
+            <Card key={i} containerStyle={determineContainerStyle(convertedOption)}>
+              <View style={{flexDirection: 'row'}}>
+                <View style={styles.descriptionBox}>
+                  <Icon
+                    name={convertedOption.option.icon}
+                    type={convertedOption.option.type}
+                    color={convertedOption.option.color}
+                    size={22}
+                  />
+                  <Text style={{fontSize: 25, color: convertedOption.option.color, marginLeft: 6}}>
+                    {convertedOption.option.title}
                   </Text>
                 </View>
+                <View style={styles.textBox}>
+                  <View style={{flexDirection: 'row'}}>
+                    <Text style={styles.text}>
+                      {convertedOption.conversionResults.map((singelResult, j) => (
+                        <Text key={j}>
+                          {renderSlash(j)}
+                          {singelResult.value}
+                          <Text style={styles.unitText}>{singelResult.unit}</Text>
+                        </Text>
+                      ))}
+                      {renderEmpty(convertedOption)}
+                    </Text>
+                  </View>
+                </View>
               </View>
-            </View>
-          </Card>
-        ))}
+            </Card>
+          ))}
       </View>
     </>
   );
@@ -59,6 +86,11 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
     borderWidth: 0,
+  },
+  containerEmpty: {
+    borderRadius: 10,
+    borderWidth: 0,
+    opacity: 0.5,
   },
   unitText: {
     color: '#86858a',
