@@ -3,7 +3,7 @@ import ConversionConfiguration from '../ConversionConfiguration';
 import {WeightConverter, WeightUnit, WeightConversion} from '../../conversion';
 
 export default class WeightOption extends FromOption {
-  convert(configuration: ConversionConfiguration): Array<ConversionResult> {
+  doConversion(configuration: ConversionConfiguration): Array<ConversionResult> {
     const value: number = +configuration.value;
     if (configuration.unit === 'lbs') {
       const converter = new WeightConverter(WeightUnit.lbs, value);

@@ -1,10 +1,11 @@
 import {FromOption, ConversionResult} from './FromOption';
 import ConversionConfiguration from '../ConversionConfiguration';
 import {DistanceConversion, DistanceUnit, DistanceConverter} from '../../conversion';
+import numeral from 'numeral';
 
 export default class DistanceOption extends FromOption {
-  convert(configuration: ConversionConfiguration): Array<ConversionResult> {
-    const value: number = +configuration.value;
+  doConversion(configuration: ConversionConfiguration): Array<ConversionResult> {
+    const value: number = numeral(configuration.value).value();
     if (configuration.unit === 'm') {
       return this.convertMeters(value);
     } else if (configuration.unit === 'mi') {

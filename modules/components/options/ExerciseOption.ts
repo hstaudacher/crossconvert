@@ -13,12 +13,12 @@ export default class ExerciseOption extends FromOption {
     super(title, icon, type, color);
   }
 
-  convert(configuration: ConversionConfiguration): Array<ConversionResult> {
+  doConversion(configuration: ConversionConfiguration): Array<ConversionResult> {
     if (configuration.from instanceof ExerciseOption) {
       const fromExercise = configuration.from as ExerciseOption;
       if (configuration.unit === 'cal' || configuration.unit === 'm') {
         const converter = this.createConverter(configuration, fromExercise);
-        return this.doConversion(converter);
+        return this.doConvert(converter);
       }
     }
     return [];
@@ -45,7 +45,7 @@ export default class ExerciseOption extends FromOption {
     return new ConversionResult(conversion.value, unit);
   };
 
-  private doConversion = (converter: ExerciseConverter): Array<ConversionResult> => {
+  private doConvert = (converter: ExerciseConverter): Array<ConversionResult> => {
     const units = converter.getSupportedUnits(this.exercise);
     const conversions = [];
     for (let u of units) {
