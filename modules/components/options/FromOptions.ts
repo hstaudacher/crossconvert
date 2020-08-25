@@ -18,7 +18,7 @@ export const fromOptions = (unit: string): Array<FromOption> => {
   if (unit === 'cal') {
     return reduceOptions(['Row', 'Ski', 'Air Bike', 'Bike']);
   } else if (unit === 'm' || unit === 'mi') {
-    return reduceOptions(['Row', 'Ski', 'Air Bike', 'Bike', 'Run', 'Distance']);
+    return reduceOptions(['Row', 'Ski', 'Bike', 'Run', 'Distance']);
   } else if (unit === 'lbs' || unit === 'kg') {
     return reduceOptions(['Weight']);
   } else if (unit === 'ft') {
