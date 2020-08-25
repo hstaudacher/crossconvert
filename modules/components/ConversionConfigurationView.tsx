@@ -6,7 +6,8 @@ import {Input, Text, Overlay, Icon} from 'react-native-elements';
 import ConversionConfiguration from './ConversionConfiguration';
 import {FromSelection} from './FromSelection';
 import {UnitSelection} from './UnitSelection';
-import {FromOption, fromOptions} from './options/FromOptions';
+import {fromOptions} from './options/FromOptions';
+import {FromOption} from './options/FromOption';
 
 export interface ConversionConfigurationViewProperties {
   configuration: ConversionConfiguration;
