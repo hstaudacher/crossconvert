@@ -1,6 +1,7 @@
 import {FromOption, ConversionResult} from './FromOption';
 import ConversionConfiguration from '../ConversionConfiguration';
-import {ExerciseConverter, Exercise, Unit, ExerciseConversion} from '../../conversion';
+import {ExerciseConverter, Exercise, Unit, ExerciseConversion, DistanceConverter, DistanceUnit} from '../../conversion';
+import numeral from 'numeral';
 
 export default class ExerciseOption extends FromOption {
   constructor(
@@ -16,7 +17,7 @@ export default class ExerciseOption extends FromOption {
   doConversion(configuration: ConversionConfiguration): Array<ConversionResult> {
     if (configuration.from instanceof ExerciseOption) {
       const fromExercise = configuration.from as ExerciseOption;
-      if (configuration.unit === 'cal' || configuration.unit === 'm') {
+      if (configuration.unit === 'cal' || configuration.unit === 'm' || configuration.unit === 'mi') {
         const converter = this.createConverter(configuration, fromExercise);
         return this.doConvert(converter);
       }
@@ -29,8 +30,16 @@ export default class ExerciseOption extends FromOption {
     fromExercise: ExerciseOption,
   ): ExerciseConverter => {
     const unit: Unit = this.getUnit(configuration.unit);
-    const value: number = +configuration.value;
+    const value: number = this.computeValue(configuration);
     return new ExerciseConverter(fromExercise.exercise, unit, value);
+  };
+
+  private computeValue = (configuration: ConversionConfiguration): number => {
+    if (configuration.unit === 'mi') {
+      const converter = new DistanceConverter(DistanceUnit.mi, numeral(configuration.value).value());
+      return converter.convertTo(DistanceUnit.m).toDistance;
+    }
+    return numeral(configuration.value).value();
   };
 
   private getUnit = (unit: string): Unit => {

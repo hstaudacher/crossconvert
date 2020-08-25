@@ -3,11 +3,9 @@ import {fromOptions} from '../../../modules/components/options/FromOptions';
 describe('filters from options', () => {
   test('filters options based on cal', () => assertFromContains('cal', ['Row', 'Ski', 'Air Bike', 'Bike']));
 
-  test('filters options based on m', () =>
-    assertFromContains('m', ['Row', 'Ski', 'Air Bike', 'Bike', 'Run', 'Distance']));
+  test('filters options based on m', () => assertFromContains('m', ['Row', 'Ski', 'Bike', 'Run', 'Distance']));
 
-  test('filters options based on mi', () =>
-    assertFromContains('mi', ['Row', 'Ski', 'Air Bike', 'Bike', 'Run', 'Distance']));
+  test('filters options based on mi', () => assertFromContains('mi', ['Row', 'Ski', 'Bike', 'Run', 'Distance']));
 
   test('filters options based on ft', () => assertFromContains('ft', ['Distance']));
 
