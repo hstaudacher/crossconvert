@@ -16,13 +16,34 @@ const refrences: Array<ExerciseReference> = [
     new ExerciseReferenceValue(80, Unit.Calories),
   ]),
   new ExerciseReference(Exercise.Run, [new ExerciseReferenceValue(800, Unit.Meter)]),
-  new ExerciseReference(Exercise.Bike, [new ExerciseReferenceValue(2000, Unit.Meter)]),
+  new ExerciseReference(Exercise.Bike, [
+    new ExerciseReferenceValue(2000, Unit.Meter),
+    new ExerciseReferenceValue(80, Unit.Calories),
+  ]),
   new ExerciseReference(Exercise.Airbike, [new ExerciseReferenceValue(60, Unit.Calories)]),
   new ExerciseReference(Exercise.Ski, [
     new ExerciseReferenceValue(1000, Unit.Meter),
     new ExerciseReferenceValue(80, Unit.Calories),
   ]),
 ];
+
+// mayhem references
+// const refrences: Array<ExerciseReference> = [
+//   new ExerciseReference(Exercise.Row, [
+//     new ExerciseReferenceValue(125, Unit.Meter),
+//     new ExerciseReferenceValue(10, Unit.Calories),
+//   ]),
+//   new ExerciseReference(Exercise.Run, [new ExerciseReferenceValue(100, Unit.Meter)]),
+//   new ExerciseReference(Exercise.Bike, [
+//     new ExerciseReferenceValue(200, Unit.Meter),
+//     new ExerciseReferenceValue(10, Unit.Calories),
+//   ]),
+//   new ExerciseReference(Exercise.Airbike, [new ExerciseReferenceValue(7, Unit.Calories)]),
+//   new ExerciseReference(Exercise.Ski, [
+//     new ExerciseReferenceValue(125, Unit.Meter),
+//     new ExerciseReferenceValue(10, Unit.Calories),
+//   ]),
+// ];
 
 class ExerciseConverter {
   readonly #fromReference: ExerciseReference;

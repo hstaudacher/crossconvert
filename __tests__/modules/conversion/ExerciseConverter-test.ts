@@ -7,7 +7,11 @@ describe('converts to run', () => {
   test('converts row cals to run', () =>
     assertConvertion(Exercise.Row, 20, Unit.Calories, Exercise.Run, 200, Unit.Meter));
 
-  test('converts bike to run', () => assertConvertion(Exercise.Bike, 500, Unit.Meter, Exercise.Run, 200, Unit.Meter));
+  test('converts bike meters to run', () =>
+    assertConvertion(Exercise.Bike, 500, Unit.Meter, Exercise.Run, 200, Unit.Meter));
+
+  test('converts bike cal to run', () =>
+    assertConvertion(Exercise.Bike, 20, Unit.Calories, Exercise.Run, 200, Unit.Meter));
 
   test('converts airbike to run', () =>
     assertConvertion(Exercise.Airbike, 15, Unit.Calories, Exercise.Run, 200, Unit.Meter));
@@ -22,7 +26,11 @@ describe('converts to run', () => {
 describe('converts to row', () => {
   test('converts run to row', () => assertConvertion(Exercise.Run, 1200, Unit.Meter, Exercise.Row, 1500, Unit.Meter));
 
-  test('converts bike to row', () => assertConvertion(Exercise.Bike, 3000, Unit.Meter, Exercise.Row, 1500, Unit.Meter));
+  test('converts bike meters to row', () =>
+    assertConvertion(Exercise.Bike, 3000, Unit.Meter, Exercise.Row, 1500, Unit.Meter));
+
+  test('converts bike cal to row', () =>
+    assertConvertion(Exercise.Bike, 30, Unit.Calories, Exercise.Row, 375, Unit.Meter));
 
   test('converts airbike to row cals', () =>
     assertConvertion(Exercise.Airbike, 90, Unit.Calories, Exercise.Row, 120, Unit.Calories));
@@ -41,8 +49,11 @@ describe('converts to bike', () => {
   test('converts airbike to bike', () =>
     assertConvertion(Exercise.Airbike, 300, Unit.Calories, Exercise.Bike, 10000, Unit.Meter));
 
-  test('converts run to bike', () =>
+  test('converts run to bike meters', () =>
     assertConvertion(Exercise.Run, 4000, Unit.Meter, Exercise.Bike, 10000, Unit.Meter));
+
+  test('converts run to bike cal', () =>
+    assertConvertion(Exercise.Run, 4000, Unit.Meter, Exercise.Bike, 400, Unit.Calories));
 
   test('converts row meter to bike', () =>
     assertConvertion(Exercise.Row, 5000, Unit.Meter, Exercise.Bike, 10000, Unit.Meter));
@@ -73,8 +84,11 @@ describe('converts to air bike', () => {
   test('converts ski cals to air bike', () =>
     assertConvertion(Exercise.Ski, 80, Unit.Calories, Exercise.Airbike, 60, Unit.Calories));
 
-  test('converts bike to air bike', () =>
+  test('converts bike meters to air bike', () =>
     assertConvertion(Exercise.Bike, 2000, Unit.Meter, Exercise.Airbike, 60, Unit.Calories));
+
+  test('converts bike cals to air bike', () =>
+    assertConvertion(Exercise.Bike, 20, Unit.Calories, Exercise.Airbike, 15, Unit.Calories));
 });
 
 test('uses existing unit if requested does not exist', () => {
