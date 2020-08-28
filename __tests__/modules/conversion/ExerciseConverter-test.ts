@@ -91,6 +91,26 @@ describe('converts to air bike', () => {
     assertConvertion(Exercise.Bike, 20, Unit.Calories, Exercise.Airbike, 15, Unit.Calories));
 });
 
+describe('converts to burpee', () => {
+  test('converts row meter to burpees', () =>
+    assertConvertion(Exercise.Row, 500, Unit.Meter, Exercise.Burpee, 40, Unit.Reps));
+
+  test('converts ski meter to burpees', () =>
+    assertConvertion(Exercise.Ski, 1000, Unit.Meter, Exercise.Burpee, 80, Unit.Reps));
+
+  test('converts row cals to burpees', () =>
+    assertConvertion(Exercise.Row, 80, Unit.Calories, Exercise.Burpee, 80, Unit.Reps));
+
+  test('converts ski cals to burpess', () =>
+    assertConvertion(Exercise.Ski, 80, Unit.Calories, Exercise.Burpee, 80, Unit.Reps));
+
+  test('converts bike meters to burpees', () =>
+    assertConvertion(Exercise.Bike, 2000, Unit.Meter, Exercise.Burpee, 80, Unit.Reps));
+
+  test('converts bike cals to burpees', () =>
+    assertConvertion(Exercise.Bike, 20, Unit.Calories, Exercise.Burpee, 20, Unit.Reps));
+});
+
 test('uses existing unit if requested does not exist', () => {
   const converter = new ExerciseConverter(Exercise.Row, Unit.Calories, 20);
 

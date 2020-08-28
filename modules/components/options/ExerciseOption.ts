@@ -50,8 +50,15 @@ export default class ExerciseOption extends FromOption {
   };
 
   private getConversionResult = (conversion: ExerciseConversion): ConversionResult => {
-    const unit = conversion.unit === Unit.Calories ? 'cal' : 'm';
-    return new ConversionResult(conversion.value, unit);
+    switch (conversion.unit) {
+      case Unit.Meter:
+        return new ConversionResult(conversion.value, 'm');
+      case Unit.Calories:
+        return new ConversionResult(conversion.value, 'cal');
+      case Unit.Reps:
+        return new ConversionResult(conversion.value, 'rep');
+    }
+    throw new Error("Can't name unit " + conversion.unit);
   };
 
   private doConvert = (converter: ExerciseConverter): Array<ConversionResult> => {

@@ -4,6 +4,7 @@ enum Exercise {
   Bike = 'Bike',
   Airbike = ' Airbike',
   Ski = 'Ski',
+  Burpee = 'Burpee',
 }
 
 export default Exercise;
