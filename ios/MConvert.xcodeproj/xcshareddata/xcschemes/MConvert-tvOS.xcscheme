@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "CrossFitConverter-tvOS.app"
-               BlueprintName = "CrossFitConverter-tvOS"
-               ReferencedContainer = "container:CrossFitConverter.xcodeproj">
+               BuildableName = "MConvert-tvOS.app"
+               BlueprintName = "MConvert-tvOS"
+               ReferencedContainer = "container:MConvert.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "CrossFitConverter-tvOSTests.xctest"
-               BlueprintName = "CrossFitConverter-tvOSTests"
-               ReferencedContainer = "container:CrossFitConverter.xcodeproj">
+               BuildableName = "MConvert-tvOSTests.xctest"
+               BlueprintName = "MConvert-tvOSTests"
+               ReferencedContainer = "container:MConvert.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "CrossFitConverter-tvOS.app"
-            BlueprintName = "CrossFitConverter-tvOS"
-            ReferencedContainer = "container:CrossFitConverter.xcodeproj">
+            BuildableName = "MConvert-tvOS.app"
+            BlueprintName = "MConvert-tvOS"
+            ReferencedContainer = "container:MConvert.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "CrossFitConverter-tvOS.app"
-            BlueprintName = "CrossFitConverter-tvOS"
-            ReferencedContainer = "container:CrossFitConverter.xcodeproj">
+            BuildableName = "MConvert-tvOS.app"
+            BlueprintName = "MConvert-tvOS"
+            ReferencedContainer = "container:MConvert.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

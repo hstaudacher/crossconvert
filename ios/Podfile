@@ -3,12 +3,12 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '13.0'
 
-target 'CrossFitConverter' do
+target 'MConvert' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
-  target 'CrossFitConverterTests' do
+  target 'MConvertTests' do
     inherit! :complete
     # Pods for testing
   end

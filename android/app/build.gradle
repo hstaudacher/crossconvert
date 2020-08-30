@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.crossfitconverter"
+        applicationId "com.mconvert"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
