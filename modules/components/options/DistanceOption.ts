@@ -11,6 +11,9 @@ export default class DistanceOption extends FromOption {
     } else if (configuration.unit === 'mi') {
       const converter = new DistanceConverter(DistanceUnit.mi, value);
       return [this.getConversionResult(converter.convertTo(DistanceUnit.m))];
+    } else if (configuration.unit === 'in') {
+      const converter = new DistanceConverter(DistanceUnit.in, value);
+      return [this.getConversionResult(converter.convertTo(DistanceUnit.cm))];
     } else if (configuration.unit === 'ft') {
       const converter = new DistanceConverter(DistanceUnit.ft, value);
       return [this.getConversionResult(converter.convertTo(DistanceUnit.m))];
@@ -30,6 +33,10 @@ export default class DistanceOption extends FromOption {
 
   private getConversionResult = (conversion: DistanceConversion): ConversionResult => {
     switch (conversion.toUnit) {
+      case DistanceUnit.in:
+        return new ConversionResult(conversion.toDistance, 'in');
+      case DistanceUnit.cm:
+        return new ConversionResult(conversion.toDistance, 'cm');
       case DistanceUnit.ft:
         return new ConversionResult(conversion.toDistance, 'ft');
       case DistanceUnit.km:

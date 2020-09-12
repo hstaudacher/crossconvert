@@ -10,6 +10,8 @@ describe('converts distance', () => {
   test('converts ft to m', () => assertConvertion(DistanceUnit.ft, 120, DistanceUnit.m, 36.576));
 
   test('converts ft to km', () => assertConvertion(DistanceUnit.ft, 120, DistanceUnit.km, 0.036576000000000004));
+
+  test('converts inch to cm', () => assertConvertion(DistanceUnit.in, 30, DistanceUnit.cm, 76.2));
 });
 
 const assertConvertion = (from: DistanceUnit, fromDistance: number, to: DistanceUnit, expectedDistance: number) => {

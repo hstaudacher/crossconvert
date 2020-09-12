@@ -7,6 +7,8 @@ describe('filters from options', () => {
 
   test('filters options based on mi', () => assertFromContains('mi', ['Row', 'Ski', 'Bike', 'Run', 'Distance']));
 
+  test('filters options based on in', () => assertFromContains('in', ['Distance']));
+
   test('filters options based on ft', () => assertFromContains('ft', ['Distance']));
 
   test('filters options based on lbs', () => assertFromContains('lbs', ['Weight']));

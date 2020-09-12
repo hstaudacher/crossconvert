@@ -18,7 +18,7 @@ const MainScreen = () => {
     <>
       <Pressable style={{flex: 1}} onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView style={{flex: 1}} behavior={'position'} contentContainerStyle={{flex: 1}}>
-          <Header leftComponent={{text: '3,2,1...GO', style: {color: 'tomato'}}} backgroundColor={'#fff'} />
+          <Header centerComponent={{text: '3,2,1...GO', style: {color: 'tomato'}}} backgroundColor={'#fff'} />
           <Divider />
           <ConversionResultView configuration={configuration} />
           <Divider />

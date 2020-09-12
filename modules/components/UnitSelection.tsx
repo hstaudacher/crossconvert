@@ -15,6 +15,7 @@ export const units: Array<UnitEntry> = [
   new UnitEntry('cal', 'Calories'),
   new UnitEntry('m', 'Meters'),
   new UnitEntry('mi', 'Miles'),
+  new UnitEntry('in', 'Inch'),
   new UnitEntry('ft', 'Feet'),
   new UnitEntry('lbs', 'Pounds'),
   new UnitEntry('kg', 'Kilogram'),
