@@ -40,12 +40,21 @@ const determineContainerStyle = (convertedOption: ConvertedOption): StyleProp<Vi
   return styles.container;
 };
 
+const shouldRender = (convertedOption: ConvertedOption, configuration: ConversionConfiguration): boolean => {
+  console.log(configuration.value);
+  if (configuration.value === '' || configuration.value === '0') {
+    return true;
+  }
+  return !convertedOption.isEmpty();
+};
+
 const ConversionResultView = (props: ConversionResultViewProperties) => {
   return (
     <>
       <View style={{backgroundColor: '#f2f1f6', flex: 7}}>
         {fromOptions('all')
           .map((option) => new ConvertedOption(option, props.configuration))
+          .filter((option) => shouldRender(option, props.configuration))
           .map((convertedOption, i) => (
             <Card key={i} containerStyle={determineContainerStyle(convertedOption)}>
               <View style={{flexDirection: 'row'}}>
