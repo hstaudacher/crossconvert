@@ -18,6 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* MConvertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MConvertTests.m */; };
 		563EAD4541C2F5673DF862C9 /* libPods-MConvert.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39217B8ADAEF0156C8E1BCF1 /* libPods-MConvert.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		BE54C65225670B0C008F75B5 /* CrossFit.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE54C65125670B0C008F75B5 /* CrossFit.ttf */; };
 		BE868C4D24F681C300600B11 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE868C4C24F681C300600B11 /* AppCenter-Config.plist */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		9E909DBF5F17D32F597CC953 /* Pods-MConvert.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MConvert.debug.xcconfig"; path = "Target Support Files/Pods-MConvert/Pods-MConvert.debug.xcconfig"; sourceTree = "<group>"; };
 		A73D6623F5213E78782B8867 /* Pods-MConvert.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MConvert.release.xcconfig"; path = "Target Support Files/Pods-MConvert/Pods-MConvert.release.xcconfig"; sourceTree = "<group>"; };
 		BC1328E1B85A04ED5DA8A995 /* Pods-MConvert.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MConvert.release.xcconfig"; path = "Target Support Files/Pods-MConvert/Pods-MConvert.release.xcconfig"; sourceTree = "<group>"; };
+		BE54C65125670B0C008F75B5 /* CrossFit.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CrossFit.ttf; sourceTree = "<group>"; };
 		BE868C4C24F681C300600B11 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "MConvert/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		D5B2C53165757B8DB1E88994 /* Pods-MConvert-MConvertTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MConvert-MConvertTests.debug.xcconfig"; path = "Target Support Files/Pods-MConvert-MConvertTests/Pods-MConvert-MConvertTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -154,6 +156,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BE54C65025670ACE008F75B5 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* MConvert */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* MConvertTests */,
@@ -190,6 +193,14 @@
 				343F6CD824C1EAADB92C1111 /* Pods-MConvert-MConvertTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BE54C65025670ACE008F75B5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BE54C65125670B0C008F75B5 /* CrossFit.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +346,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				BE54C65225670B0C008F75B5 /* CrossFit.ttf in Resources */,
 				BE868C4D24F681C300600B11 /* AppCenter-Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

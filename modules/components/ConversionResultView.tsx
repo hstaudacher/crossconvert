@@ -63,7 +63,7 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
                     name={convertedOption.option.icon}
                     type={convertedOption.option.type}
                     color={convertedOption.option.color}
-                    size={22}
+                    size={26}
                   />
                   <Text style={{fontSize: 25, color: convertedOption.option.color, marginLeft: 6}}>
                     {convertedOption.option.title}
