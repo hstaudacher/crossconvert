@@ -25,15 +25,12 @@ export const UnitSelection = (props: UnitSelectionProperties) => {
   return (
     <View>
       {units.map((unit, i) => (
-        <ListItem
-          key={i}
-          title={unit.title}
-          subtitle={unit.subtitle}
-          titleStyle={{fontSize: 28}}
-          bottomDivider
-          children
-          onPress={() => props.handleClick(unit.title)}
-        />
+        <ListItem key={i} bottomDivider onPress={() => props.handleClick(unit.title)}>
+          <ListItem.Content>
+            <ListItem.Title style={{fontSize: 28}}>{unit.title}</ListItem.Title>
+            <ListItem.Subtitle>{unit.subtitle}</ListItem.Subtitle>
+          </ListItem.Content>
+        </ListItem>
       ))}
     </View>
   );
