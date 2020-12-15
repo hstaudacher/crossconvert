@@ -53,7 +53,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
   };
 
   const changeValue = (value: string): void => {
-    props.configuration.value = value;
+    props.configuration.value = value.replace(',', '.');
     fireConfigurationChange();
   };
 

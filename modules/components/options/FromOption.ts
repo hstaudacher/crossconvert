@@ -1,10 +1,11 @@
 import ConversionConfiguration from '../ConversionConfiguration';
 import numeral from 'numeral';
+import * as RNLocalize from 'react-native-localize';
 
 export abstract class FromOption {
   constructor(readonly title: string, readonly icon: string, readonly type: string, readonly color: string) {}
 
-  private format = (value: number, unit: string): string => {
+  private formatNumber = (value: number, unit: string): string => {
     if (value < 1 && value > 0 && unit !== 'cal') {
       return numeral(value).format('0,0.00');
     } else if (unit === 'cal' || unit === 'lbs' || unit === 'kg') {
@@ -13,6 +14,19 @@ export abstract class FromOption {
       return numeral(this.roundToNearestTen(value)).format();
     }
     return numeral(value).format('0,0');
+  };
+
+  private format = (value: number, unit: string): string => {
+    var formatedNumber = this.formatNumber(value, unit);
+    const decimalSeparator = RNLocalize.getNumberFormatSettings().decimalSeparator;
+    const groupingSeparator = RNLocalize.getNumberFormatSettings().groupingSeparator;
+    if (decimalSeparator === ',') {
+      formatedNumber = formatedNumber.replace('.', 'XXX');
+    }
+    if (groupingSeparator === '.') {
+      formatedNumber = formatedNumber.replace(',', groupingSeparator);
+    }
+    return formatedNumber.replace('XXX', decimalSeparator);
   };
 
   private roundToNearestTen = (value: number): number => {

@@ -316,7 +316,9 @@ PODS:
     - React-jsi (= 0.63.0)
   - RNCMaskedView (0.1.10):
     - React
-  - RNVectorIcons (7.0.0):
+  - RNLocalize (2.0.1):
+    - React-Core
+  - RNVectorIcons (7.1.0):
     - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -373,6 +375,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -452,6 +455,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -500,7 +505,8 @@ SPEC CHECKSUMS:
   React-RCTVibration: 77ab1cf4a5eb854b88ad5ed3e9d8509ed124525e
   ReactCommon: f63556ee9e41e9802257228237e5e660451a03cf
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
-  RNVectorIcons: da6fe858f5a65d7bbc3379540a889b0b12aa5976
+  RNLocalize: dcf0fdb332b37b0d24178e876a7ce4dbbc9c838d
+  RNVectorIcons: bc69e6a278b14842063605de32bec61f0b251a59
   Yoga: 7d2edc5b410474191962e6dee88ee67f9b328b6b
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
