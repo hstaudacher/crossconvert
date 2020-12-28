@@ -31,6 +31,12 @@ const shouldRender = (convertedOption: ConvertedOption): boolean => {
   return !convertedOption.isEmpty();
 };
 
+const renderChevron = (convertedOption: ConvertedOption): Element | void => {
+  if (convertedOption.configuration.unit === 'lbs' || convertedOption.configuration.unit === 'kg') {
+    return <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />;
+  }
+};
+
 const renderItem = (info: ListRenderItemInfo<ConvertedOption>) => {
   const convertedOption = info.item;
   return (
@@ -52,6 +58,7 @@ const renderItem = (info: ListRenderItemInfo<ConvertedOption>) => {
                 {renderSlash(j)}
                 {singelResult.value}
                 <Text style={styles.unitText}>{singelResult.unit}</Text>
+                {renderChevron(convertedOption)}
               </Text>
             ))}
           </ListItem.Subtitle>
