@@ -31,9 +31,19 @@ const shouldRender = (convertedOption: ConvertedOption): boolean => {
   return !convertedOption.isEmpty();
 };
 
+const isWeightConversion = (convertedOption: ConvertedOption): boolean => {
+  return convertedOption.configuration.unit === 'lbs' || convertedOption.configuration.unit === 'kg';
+};
+
 const renderChevron = (convertedOption: ConvertedOption): Element | void => {
-  if (convertedOption.configuration.unit === 'lbs' || convertedOption.configuration.unit === 'kg') {
+  if (isWeightConversion(convertedOption)) {
     return <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />;
+  }
+};
+
+const onOptionPress = (convertedOption: ConvertedOption) => {
+  if (isWeightConversion(convertedOption)) {
+    console.log('PRESS');
   }
 };
 
@@ -41,7 +51,7 @@ const renderItem = (info: ListRenderItemInfo<ConvertedOption>) => {
   const convertedOption = info.item;
   return (
     <>
-      <ListItem bottomDivider containerStyle={styles.container}>
+      <ListItem bottomDivider containerStyle={styles.container} onPress={() => onOptionPress(convertedOption)}>
         <Icon
           name={convertedOption.option.icon}
           type={convertedOption.option.type}
