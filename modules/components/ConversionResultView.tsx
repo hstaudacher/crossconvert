@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, FlatList, ListRenderItemInfo} from 'react-native';
 import ConversionConfiguration from './ConversionConfiguration';
-import {ListItem, Icon} from 'react-native-elements';
+import {ListItem, Icon, Overlay} from 'react-native-elements';
 import {fromOptions} from './options/FromOptions';
 import {ConversionResult, FromOption} from './options/FromOption';
 
@@ -41,17 +41,19 @@ const renderChevron = (convertedOption: ConvertedOption): Element | void => {
   }
 };
 
-const onOptionPress = (convertedOption: ConvertedOption) => {
+const onOptionPress = (convertedOption: ConvertedOption, toggleOverlay: Function) => {
   if (isWeightConversion(convertedOption)) {
-    console.log('PRESS');
+    toggleOverlay();
   }
 };
 
-const renderItem = (info: ListRenderItemInfo<ConvertedOption>) => {
-  const convertedOption = info.item;
+const renderItem = (convertedOption: ConvertedOption, toggleOverlay: Function) => {
   return (
     <>
-      <ListItem bottomDivider containerStyle={styles.container} onPress={() => onOptionPress(convertedOption)}>
+      <ListItem
+        bottomDivider
+        containerStyle={styles.container}
+        onPress={() => onOptionPress(convertedOption, toggleOverlay)}>
         <Icon
           name={convertedOption.option.icon}
           type={convertedOption.option.type}
@@ -83,6 +85,12 @@ const keyExtractor = (item: ConvertedOption, index: Number): string => {
 };
 
 const ConversionResultView = (props: ConversionResultViewProperties) => {
+  const [visible, setVisible] = useState(false);
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
+
   return (
     <>
       <View style={styles.view}>
@@ -91,8 +99,13 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
           data={fromOptions('all')
             .map((option) => new ConvertedOption(option, props.configuration))
             .filter((option) => shouldRender(option))}
-          renderItem={renderItem}
+          renderItem={(info: ListRenderItemInfo<ConvertedOption>) => {
+            return renderItem(info.item, toggleOverlay);
+          }}
         />
+        <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+          <Text>Hello from Overlay!</Text>
+        </Overlay>
       </View>
     </>
   );
