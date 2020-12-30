@@ -6,21 +6,30 @@ import ConversionConfiguration from './ConversionConfiguration';
 import ConversionResultView from './ConversionResultView';
 import {units} from './UnitSelection';
 import {fromOptions} from './options/FromOptions';
-import {Header, Divider} from 'react-native-elements';
+import {Divider} from 'react-native-elements';
+import {NavigationComponentProps, NavigationFunctionComponent, Navigation} from 'react-native-navigation';
 
-const MainScreen = () => {
+const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps) => {
   const defaultUnit = units[0].title;
   const [configuration, changeConfiguration] = React.useState(
     new ConversionConfiguration(defaultUnit, '0', fromOptions(defaultUnit)[0]),
   );
 
+  const [verticalOffset, changeVerticalOffset] = React.useState(80);
+
+  Navigation.constants().then((constants) => {
+    changeVerticalOffset(constants.topBarHeight + constants.statusBarHeight);
+  });
+
   return (
     <>
       <Pressable style={{flex: 1}} onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView style={{flex: 1}} behavior={'position'} contentContainerStyle={{flex: 1}}>
-          <Header centerComponent={{text: '3,2,1...GO', style: {color: 'tomato'}}} backgroundColor={'#fff'} />
-          <Divider />
-          <ConversionResultView configuration={configuration} />
+        <KeyboardAvoidingView
+          style={{flex: 1}}
+          behavior="position"
+          keyboardVerticalOffset={verticalOffset}
+          contentContainerStyle={{flex: 1}}>
+          <ConversionResultView configuration={configuration} componentId={props.componentId} />
           <Divider />
           <ConversionConfigurationView
             configuration={configuration}
@@ -30,6 +39,18 @@ const MainScreen = () => {
       </Pressable>
     </>
   );
+};
+
+MainScreen.options = {
+  topBar: {
+    title: {
+      text: '3,2,1...GO',
+      color: 'tomato',
+    },
+    background: {
+      // color: '#4d089a',
+    },
+  },
 };
 
 export default MainScreen;

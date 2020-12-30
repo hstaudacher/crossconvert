@@ -314,6 +314,15 @@ PODS:
     - React-Core (= 0.63.0)
     - React-cxxreact (= 0.63.0)
     - React-jsi (= 0.63.0)
+  - ReactNativeNavigation (7.7.0):
+    - React-Core
+    - React-RCTImage
+    - React-RCTText
+    - ReactNativeNavigation/Core (= 7.7.0)
+  - ReactNativeNavigation/Core (7.7.0):
+    - React-Core
+    - React-RCTImage
+    - React-RCTText
   - RNCMaskedView (0.1.10):
     - React
   - RNLocalize (2.0.1):
@@ -374,6 +383,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -453,6 +463,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  ReactNativeNavigation:
+    :path: "../node_modules/react-native-navigation"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
   RNLocalize:
@@ -504,6 +516,7 @@ SPEC CHECKSUMS:
   React-RCTText: ba503bf4cce41881ca258ba789c33e017955efdd
   React-RCTVibration: 77ab1cf4a5eb854b88ad5ed3e9d8509ed124525e
   ReactCommon: f63556ee9e41e9802257228237e5e660451a03cf
+  ReactNativeNavigation: 8a9cf15040eeffcf4a6c750ae7e9a63042aea0aa
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNLocalize: dcf0fdb332b37b0d24178e876a7ce4dbbc9c838d
   RNVectorIcons: bc69e6a278b14842063605de32bec61f0b251a59

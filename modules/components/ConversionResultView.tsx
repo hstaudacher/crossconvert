@@ -1,10 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, FlatList, ListRenderItemInfo} from 'react-native';
 import ConversionConfiguration from './ConversionConfiguration';
-import {ListItem, Icon, Overlay} from 'react-native-elements';
+import {ListItem, Icon} from 'react-native-elements';
 import {fromOptions} from './options/FromOptions';
 import {ConversionResult, FromOption} from './options/FromOption';
+import {Navigation} from 'react-native-navigation';
 
 class ConvertedOption {
   conversionResults: Array<ConversionResult>;
@@ -19,6 +20,7 @@ class ConvertedOption {
 
 interface ConversionResultViewProperties {
   configuration: ConversionConfiguration;
+  componentId: string;
 }
 
 const renderSlash = (index: number): Element | void => {
@@ -41,19 +43,35 @@ const renderChevron = (convertedOption: ConvertedOption): Element | void => {
   }
 };
 
-const onOptionPress = (convertedOption: ConvertedOption, toggleOverlay: Function) => {
+const onOptionPress = (convertedOption: ConvertedOption, componentId: string) => {
   if (isWeightConversion(convertedOption)) {
-    toggleOverlay();
+    Navigation.push(componentId, {
+      component: {
+        name: 'WeightDetails',
+        options: {
+          topBar: {
+            title: {
+              text: 'Weight',
+              color: 'tomato',
+            },
+            backButton: {
+              title: 'Conversion',
+              color: 'tomato',
+            },
+          },
+        },
+      },
+    });
   }
 };
 
-const renderItem = (convertedOption: ConvertedOption, toggleOverlay: Function) => {
+const renderItem = (convertedOption: ConvertedOption, componentId: string) => {
   return (
     <>
       <ListItem
         bottomDivider
         containerStyle={styles.container}
-        onPress={() => onOptionPress(convertedOption, toggleOverlay)}>
+        onPress={() => onOptionPress(convertedOption, componentId)}>
         <Icon
           name={convertedOption.option.icon}
           type={convertedOption.option.type}
@@ -85,12 +103,6 @@ const keyExtractor = (item: ConvertedOption, index: Number): string => {
 };
 
 const ConversionResultView = (props: ConversionResultViewProperties) => {
-  const [visible, setVisible] = useState(false);
-
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
-
   return (
     <>
       <View style={styles.view}>
@@ -100,12 +112,9 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
             .map((option) => new ConvertedOption(option, props.configuration))
             .filter((option) => shouldRender(option))}
           renderItem={(info: ListRenderItemInfo<ConvertedOption>) => {
-            return renderItem(info.item, toggleOverlay);
+            return renderItem(info.item, props.componentId);
           }}
         />
-        <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-          <Text>Hello from Overlay!</Text>
-        </Overlay>
       </View>
     </>
   );
