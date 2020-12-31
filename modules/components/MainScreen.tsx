@@ -47,8 +47,9 @@ MainScreen.options = {
       text: '3,2,1...GO',
       color: 'tomato',
     },
-    background: {
-      // color: '#4d089a',
+    backButton: {
+      color: 'tomato',
+      visible: false,
     },
   },
 };
