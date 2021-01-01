@@ -1,12 +1,24 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Text, View} from 'react-native';
+import {NavigationComponentProps} from 'react-native-navigation';
+import ConversionConfiguration from './ConversionConfiguration';
+import {WeightPercentager, WeightPercentage} from './options/WeightPercentager';
 
-const WeightDetailsScreen = () => {
+interface WeightDetailsScreenProperties extends NavigationComponentProps {
+  configuration: ConversionConfiguration;
+}
+
+const WeightDetailsScreen = (props: WeightDetailsScreenProperties) => {
+  const percentager: WeightPercentager = new WeightPercentager(props.configuration);
+  const percentages: WeightPercentage[] = percentager.getPercentages();
+
   return (
     <>
       <View>
-        <Text>Foo</Text>
+        {percentages.map((p: WeightPercentage, index: number) => (
+          <Text key={index}>{JSON.stringify(p)}</Text>
+        ))}
       </View>
     </>
   );

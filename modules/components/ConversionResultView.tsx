@@ -5,7 +5,7 @@ import ConversionConfiguration from './ConversionConfiguration';
 import {ListItem, Icon} from 'react-native-elements';
 import {fromOptions} from './options/FromOptions';
 import {ConversionResult, FromOption} from './options/FromOption';
-import {Navigation} from 'react-native-navigation';
+import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 
 class ConvertedOption {
   conversionResults: Array<ConversionResult>;
@@ -18,9 +18,8 @@ class ConvertedOption {
   };
 }
 
-interface ConversionResultViewProperties {
+interface ConversionResultViewProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
-  componentId: string;
 }
 
 const renderSlash = (index: number): Element | void => {
@@ -59,6 +58,9 @@ const onOptionPress = (convertedOption: ConvertedOption, componentId: string) =>
               color: 'tomato',
             },
           },
+        },
+        passProps: {
+          configuration: convertedOption.configuration,
         },
       },
     });
