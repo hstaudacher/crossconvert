@@ -9,7 +9,7 @@ interface WeightDetailsScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
 }
 
-const WeightDetailsScreen = (props: WeightDetailsScreenProperties) => {
+const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
   const percentager: WeightPercentager = new WeightPercentager(props.configuration);
   const percentages: WeightPercentage[] = percentager.getPercentages();
 
@@ -24,4 +24,4 @@ const WeightDetailsScreen = (props: WeightDetailsScreenProperties) => {
   );
 };
 
-export default WeightDetailsScreen;
+export default WeightPercentagesScreen;

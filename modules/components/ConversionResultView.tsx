@@ -46,7 +46,7 @@ const onOptionPress = (convertedOption: ConvertedOption, componentId: string) =>
   if (isWeightConversion(convertedOption)) {
     Navigation.push(componentId, {
       component: {
-        name: 'WeightDetails',
+        name: 'WeightPercentages',
         options: {
           topBar: {
             title: {
