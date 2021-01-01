@@ -50,7 +50,7 @@ const onOptionPress = (convertedOption: ConvertedOption, componentId: string) =>
         options: {
           topBar: {
             title: {
-              text: 'Weight',
+              text: 'Percentages',
               color: 'tomato',
             },
             backButton: {
