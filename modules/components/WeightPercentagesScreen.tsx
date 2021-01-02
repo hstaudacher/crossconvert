@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import {WeightUnit} from '../conversion';
 import React from 'react';
-import {Text, View, FlatList, ListRenderItemInfo} from 'react-native';
+import {Text, View, FlatList} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
@@ -55,19 +55,12 @@ const keyExtractor = (item: WeightPercentage, index: Number): string => {
 };
 
 const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
-  const percentager: WeightPercentager = new WeightPercentager(props.configuration);
-  const percentages: WeightPercentage[] = percentager.getPercentages(120, 50);
-
+  const percentager = new WeightPercentager(props.configuration);
+  const percentages = percentager.getPercentages(120, 50);
   return (
     <>
       <View>
-        <FlatList
-          keyExtractor={keyExtractor}
-          data={percentages}
-          renderItem={(info: ListRenderItemInfo<WeightPercentage>) => {
-            return renderItem(info.item);
-          }}
-        />
+        <FlatList keyExtractor={keyExtractor} data={percentages} renderItem={(info) => renderItem(info.item)} />
       </View>
     </>
   );

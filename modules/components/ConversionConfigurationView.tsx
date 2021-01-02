@@ -39,8 +39,8 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
   };
 
   const ensureFromOptionExists = (newUnit: string): void => {
-    const options: Array<FromOption> = fromOptions(newUnit);
-    const indexOfFrom: number = options.findIndex((i) => i.title === props.configuration.from.title);
+    const options = fromOptions(newUnit);
+    const indexOfFrom = options.findIndex((i) => i.title === props.configuration.from.title);
     if (indexOfFrom === -1) {
       props.configuration.from = options[0];
       fireConfigurationChange();

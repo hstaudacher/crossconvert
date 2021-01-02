@@ -7,7 +7,7 @@ export default class DistanceConverter {
   constructor(private readonly unit: DistanceUnit, private readonly distance: number) {}
 
   convertTo(toUnit: DistanceUnit): DistanceConversion {
-    const convertedDistance: number = convert(this.distance).from(this.unit).to(toUnit);
+    const convertedDistance = convert(this.distance).from(this.unit).to(toUnit);
     return new DistanceConversion(this.unit, this.distance, toUnit, convertedDistance);
   }
 }

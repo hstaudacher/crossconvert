@@ -29,8 +29,8 @@ export default class ExerciseOption extends FromOption {
     configuration: ConversionConfiguration,
     fromExercise: ExerciseOption,
   ): ExerciseConverter => {
-    const unit: Unit = this.getUnit(configuration.unit);
-    const value: number = this.computeValue(configuration);
+    const unit = this.getUnit(configuration.unit);
+    const value = this.computeValue(configuration);
     return new ExerciseConverter(fromExercise.exercise, unit, value);
   };
 

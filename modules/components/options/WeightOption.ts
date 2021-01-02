@@ -5,7 +5,7 @@ import numeral from 'numeral';
 
 export default class WeightOption extends FromOption {
   doConversion(configuration: ConversionConfiguration): Array<ConversionResult> {
-    const value: number = numeral(configuration.value).value();
+    const value = numeral(configuration.value).value();
     if (configuration.unit === 'lbs') {
       const converter = new WeightConverter(WeightUnit.lbs, value);
       return [this.getConversionResult(converter.convertTo(WeightUnit.kg))];

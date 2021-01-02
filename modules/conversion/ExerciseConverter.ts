@@ -10,7 +10,7 @@ class ExerciseReference {
   constructor(readonly exercise: Exercise, readonly values: Array<ExerciseReferenceValue>) {}
 }
 
-const refrences: Array<ExerciseReference> = [
+const references: Array<ExerciseReference> = [
   new ExerciseReference(Exercise.Row, [
     new ExerciseReferenceValue(1000, Unit.Meter),
     new ExerciseReferenceValue(80, Unit.Calories),
@@ -54,20 +54,20 @@ class ExerciseConverter {
   }
 
   convertTo(to: Exercise, toUnit: Unit): ExerciseConversion {
-    const toReference: ExerciseReference = this.getReference(to);
+    const toReference = this.getReference(to);
     const toReferenceValue = this.computeReferenceValue(toReference, toUnit);
     const fromReferenceValue = this.computeReferenceValue(this.#fromReference, this.unit);
-    const convertedValue: number = this.convertValue(fromReferenceValue, toReferenceValue);
+    const convertedValue = this.convertValue(fromReferenceValue, toReferenceValue);
     return new ExerciseConversion(this.from, to, toReferenceValue.unit, convertedValue);
   }
 
   private convertValue(fromReferenceValue: ExerciseReferenceValue, toReferenceValue: ExerciseReferenceValue): number {
-    const multiplier: number = this.value / fromReferenceValue.value;
+    const multiplier = this.value / fromReferenceValue.value;
     return toReferenceValue.value * multiplier;
   }
 
   private computeReferenceValue(reference: ExerciseReference, unit: Unit): ExerciseReferenceValue {
-    const value: ExerciseReferenceValue | undefined = reference.values.find((d) => d.unit === unit);
+    const value = reference.values.find((d) => d.unit === unit);
     if (value === undefined) {
       const units: Array<Unit> = reference.values.map((v) => v.unit)!;
       throw new Error(reference.exercise + ' does not know unit ' + unit + '. Known units are: ' + units.join(','));
@@ -76,7 +76,7 @@ class ExerciseConverter {
   }
 
   private getReference(exercise: Exercise): ExerciseReference {
-    return refrences.find((b) => b.exercise === exercise)!;
+    return references.find((b) => b.exercise === exercise)!;
   }
 
   getSupportedUnits = (exercise: Exercise): Array<Unit> => {

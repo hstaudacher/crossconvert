@@ -17,7 +17,7 @@ export abstract class FromOption {
   };
 
   private format = (value: number, unit: string): string => {
-    var formatedNumber = this.formatNumber(value, unit);
+    let formatedNumber = this.formatNumber(value, unit);
     const decimalSeparator = RNLocalize.getNumberFormatSettings().decimalSeparator;
     const groupingSeparator = RNLocalize.getNumberFormatSettings().groupingSeparator;
     if (decimalSeparator === ',') {
