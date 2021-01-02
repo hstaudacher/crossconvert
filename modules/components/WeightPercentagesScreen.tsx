@@ -39,7 +39,7 @@ const keyExtractor = (item: WeightPercentage, index: Number): string => {
 
 const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
   const percentager: WeightPercentager = new WeightPercentager(props.configuration);
-  const percentages: WeightPercentage[] = percentager.getPercentages();
+  const percentages: WeightPercentage[] = percentager.getPercentages(120, 50);
 
   return (
     <>

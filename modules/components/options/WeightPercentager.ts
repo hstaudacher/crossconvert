@@ -9,9 +9,9 @@ class WeightPercentage {
 class WeightPercentager {
   constructor(readonly configuration: ConversionConfiguration) {}
 
-  public getPercentages = (): WeightPercentage[] => {
+  public getPercentages = (startPercentage: number, endPercentage: number): WeightPercentage[] => {
     const percentages: WeightPercentage[] = [];
-    for (var percentage: number = 100; percentage >= 50; percentage -= 5) {
+    for (var percentage: number = startPercentage; percentage >= endPercentage; percentage -= 5) {
       percentages.push(this.calculatePercentage(percentage));
     }
     return percentages;

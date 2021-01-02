@@ -5,36 +5,26 @@ import {WeightUnit} from '../../../../modules/conversion';
 
 describe('calculates percentages', () => {
   test('calculates percentage from 100 kg', () =>
-    assertKgToLbsPercentages(
-      100,
-      [100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50],
-      [220, 209, 198, 187, 176, 165, 154, 143, 132, 121, 110],
-    ));
+    assertKgToLbsPercentages(100, 110, 95, [110, 105, 100, 95], [243, 231, 220, 209]));
 
   test('calculates percentage from 150 kg', () =>
-    assertKgToLbsPercentages(
-      150,
-      [150, 143, 135, 128, 120, 113, 105, 98, 90, 83, 75],
-      [331, 314, 298, 281, 265, 248, 231, 215, 198, 182, 165],
-    ));
+    assertKgToLbsPercentages(150, 100, 80, [150, 143, 135, 128, 120], [331, 314, 298, 281, 265]));
 
   test('calculates percentage from 220 lbs', () =>
-    assertLbsToKgPercentages(
-      220,
-      [220, 209, 198, 187, 176, 165, 154, 143, 132, 121, 110],
-      [100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50],
-    ));
+    assertLbsToKgPercentages(220, 120, 90, [264, 253, 242, 231, 220, 209, 198], [120, 115, 110, 105, 100, 95, 90]));
 
   test('calculates percentage from 331 lbs', () =>
-    assertLbsToKgPercentages(
-      331,
-      [331, 314, 298, 281, 265, 248, 232, 215, 199, 182, 166],
-      [150, 143, 135, 128, 120, 113, 105, 98, 90, 83, 75],
-    ));
+    assertLbsToKgPercentages(331, 100, 80, [331, 314, 298, 281, 265], [150, 143, 135, 128, 120]));
 });
 
-const assertKgToLbsPercentages = (value: number, expectedKgs: Array<number>, expectedLbs: Array<number>): void => {
-  const percentages = getPercentages(value, 'kg');
+const assertKgToLbsPercentages = (
+  value: number,
+  startPercentage: number,
+  endPercentage: number,
+  expectedKgs: Array<number>,
+  expectedLbs: Array<number>,
+): void => {
+  const percentages = getPercentages(value, startPercentage, endPercentage, 'kg');
   expect(percentages.length).toEqual(expectedKgs.length);
   percentages.forEach((p, i) => {
     expect(p.conversion.fromUnit).toEqual(WeightUnit.kg);
@@ -44,8 +34,14 @@ const assertKgToLbsPercentages = (value: number, expectedKgs: Array<number>, exp
   });
 };
 
-const assertLbsToKgPercentages = (value: number, expectedLbs: Array<number>, expectedKgs: Array<number>): void => {
-  const percentages = getPercentages(value, 'lbs');
+const assertLbsToKgPercentages = (
+  value: number,
+  startPercentage: number,
+  endPercentage: number,
+  expectedLbs: Array<number>,
+  expectedKgs: Array<number>,
+): void => {
+  const percentages = getPercentages(value, startPercentage, endPercentage, 'lbs');
   expect(percentages.length).toEqual(expectedKgs.length);
   percentages.forEach((p, i) => {
     expect(p.conversion.fromUnit).toEqual(WeightUnit.lbs);
@@ -55,9 +51,14 @@ const assertLbsToKgPercentages = (value: number, expectedLbs: Array<number>, exp
   });
 };
 
-const getPercentages = (value: number, unit: string): WeightPercentage[] => {
+const getPercentages = (
+  value: number,
+  startPercentage: number,
+  endPercentage: number,
+  unit: string,
+): WeightPercentage[] => {
   const option = new WeightOption('Weight', 'barbell-outline', 'ionicon', 'green');
   const config = new ConversionConfiguration(unit, value.toString(), option);
   const percentager = new WeightPercentager(config);
-  return percentager.getPercentages();
+  return percentager.getPercentages(startPercentage, endPercentage);
 };
