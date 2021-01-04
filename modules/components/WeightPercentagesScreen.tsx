@@ -5,7 +5,7 @@ import {Text, View, FlatList} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
-import {WeightPercentager, WeightPercentage} from './options/WeightPercentager';
+import {WeightPercentager, WeightPercentage} from './weight/WeightPercentager';
 import Color from 'color';
 
 interface WeightDetailsScreenProperties extends NavigationComponentProps {
@@ -39,11 +39,17 @@ const renderItem = (percentage: WeightPercentage) => {
         <Text style={{fontSize: 30, color: computeFontColor(percentage.percentage)}}>{percentage.percentage}%</Text>
         <ListItem.Content style={{alignItems: 'flex-end'}}>
           <ListItem.Title style={{fontSize: 25, opacity: 0.9}}>
-            {percentage.conversion.fromWeight} {formatUnit(percentage.conversion.fromUnit)}
+            <Text>
+              {percentage.conversion.fromWeight}
+              {formatUnit(percentage.conversion.fromUnit)}
+            </Text>
+            <Text style={{fontSize: 20, opacity: 0.6}}> / </Text>
+            <Text style={{fontSize: 20, opacity: 0.6}}>
+              {percentage.conversion.toWeight}
+              {formatUnit(percentage.conversion.toUnit)}
+            </Text>
           </ListItem.Title>
-          <ListItem.Subtitle style={{opacity: 0.6}}>
-            {percentage.conversion.toWeight} {formatUnit(percentage.conversion.toUnit)}
-          </ListItem.Subtitle>
+          <ListItem.Subtitle style={{opacity: 0.6}}></ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>
     </>

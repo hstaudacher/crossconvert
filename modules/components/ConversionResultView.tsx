@@ -50,7 +50,7 @@ const onOptionPress = (convertedOption: ConvertedOption, componentId: string) =>
         options: {
           topBar: {
             title: {
-              text: 'Percentages',
+              text: 'Weights',
               color: 'tomato',
             },
             backButton: {
@@ -78,7 +78,7 @@ const renderItem = (convertedOption: ConvertedOption, componentId: string) => {
           name={convertedOption.option.icon}
           type={convertedOption.option.type}
           color={convertedOption.option.color}
-          size={26}
+          size={36}
         />
         <ListItem.Content>
           <ListItem.Title style={{fontSize: 25, color: convertedOption.option.color, marginLeft: 6}}>

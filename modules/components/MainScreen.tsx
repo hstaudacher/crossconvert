@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {KeyboardAvoidingView, Pressable, Keyboard} from 'react-native';
 import ConversionConfigurationView from './ConversionConfigurationView';
 import ConversionConfiguration from './ConversionConfiguration';
@@ -17,8 +17,16 @@ const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps
 
   const [verticalOffset, changeVerticalOffset] = React.useState(80);
 
-  Navigation.constants().then((constants) => {
-    changeVerticalOffset(constants.topBarHeight + constants.statusBarHeight);
+  useEffect(() => {
+    let isMounted = true;
+    Navigation.constants().then((constants) => {
+      if (isMounted) {
+        changeVerticalOffset(constants.topBarHeight + constants.statusBarHeight);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
   });
 
   return (

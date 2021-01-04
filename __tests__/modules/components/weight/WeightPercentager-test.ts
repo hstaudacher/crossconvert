@@ -1,5 +1,5 @@
 import ConversionConfiguration from '../../../../modules/components/ConversionConfiguration';
-import {WeightPercentage, WeightPercentager} from '../../../../modules/components/options/WeightPercentager';
+import {WeightPercentage, WeightPercentager} from '../../../../modules/components/weight/WeightPercentager';
 import WeightOption from '../../../../modules/components/options/WeightOption';
 import {WeightUnit} from '../../../../modules/conversion';
 

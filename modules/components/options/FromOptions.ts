@@ -9,8 +9,8 @@ const options: Array<FromOption> = [
   new ExerciseOption('Ski', 'skierg', 'crossfit', 'lightblue', Exercise.Ski),
   new ExerciseOption('Bike', 'bikeerg', 'crossfit', 'orange', Exercise.Bike),
   new ExerciseOption('Air Bike', 'airbike', 'crossfit', 'purple', Exercise.Airbike),
-  new ExerciseOption('Run', 'running', 'font-awesome-5', 'blue', Exercise.Run),
-  new ExerciseOption('Burpee', 'accessibility', 'material', 'deeppink', Exercise.Burpee),
+  new ExerciseOption('Run', 'run', 'crossfit', 'blue', Exercise.Run),
+  new ExerciseOption('Burpee', 'burpee', 'crossfit', 'deeppink', Exercise.Burpee),
   new WeightOption('Weight', 'barbell-outline', 'ionicon', 'green'),
   new DistanceOption('Distance', 'ruler', 'font-awesome-5', 'firebrick'),
 ];
