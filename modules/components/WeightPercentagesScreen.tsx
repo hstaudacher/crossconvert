@@ -7,6 +7,7 @@ import {NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager, WeightPercentage} from './weight/WeightPercentager';
 import Color from 'color';
+import {PlateDistributor} from './weight/PlateDistributor';
 
 interface WeightDetailsScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
@@ -32,6 +33,11 @@ const computeFontColor = (percentage: number): string => {
   return '#ff4500';
 };
 
+const getPlates = (weight: number, unit: WeightUnit): string => {
+  const distributor = new PlateDistributor(20, unit);
+  return JSON.stringify(distributor.getPlateDistribution(weight).plates);
+};
+
 const renderItem = (percentage: WeightPercentage) => {
   return (
     <>
@@ -49,7 +55,9 @@ const renderItem = (percentage: WeightPercentage) => {
               {formatUnit(percentage.conversion.toUnit)}
             </Text>
           </ListItem.Title>
-          <ListItem.Subtitle style={{opacity: 0.6}}></ListItem.Subtitle>
+          <ListItem.Subtitle style={{opacity: 0.6}}>
+            {getPlates(percentage.conversion.fromWeight, percentage.conversion.fromUnit)}
+          </ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>
     </>
