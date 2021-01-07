@@ -11,7 +11,7 @@ const options: Array<FromOption> = [
   new ExerciseOption('Air Bike', 'airbike', 'crossfit', 'purple', Exercise.Airbike),
   new ExerciseOption('Run', 'run', 'crossfit', 'blue', Exercise.Run),
   new ExerciseOption('Burpee', 'burpee', 'crossfit', 'deeppink', Exercise.Burpee),
-  new WeightOption('Weight', 'barbell-outline', 'ionicon', 'green'),
+  new WeightOption('Weight', 'plate', 'crossfit', 'green'),
   new DistanceOption('Distance', 'ruler', 'font-awesome-5', 'firebrick'),
 ];
 
