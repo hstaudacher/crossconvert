@@ -36,9 +36,26 @@ const isWeightConversion = (convertedOption: ConvertedOption): boolean => {
   return convertedOption.configuration.unit === 'lbs' || convertedOption.configuration.unit === 'kg';
 };
 
-const renderChevron = (convertedOption: ConvertedOption): Element | void => {
+const renderWeightPercentages = (convertedOption: ConvertedOption, componentId: string): Element | void => {
   if (isWeightConversion(convertedOption)) {
-    return <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />;
+    return (
+      <ListItem
+        bottomDivider
+        containerStyle={styles.container}
+        onPress={() => onOptionPress(convertedOption, componentId)}>
+        <Icon
+          name="percentage"
+          type="font-awesome-5"
+          color="mediumpurple"
+          size={36}
+          iconProps={{name: 'percentage', size: convertedOption.option.resultIconSize}}
+        />
+        <ListItem.Content>
+          <ListItem.Title style={{fontSize: 25, color: 'mediumpurple', marginLeft: 15}}>Percentages</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
+      </ListItem>
+    );
   }
 };
 
@@ -50,7 +67,7 @@ const onOptionPress = (convertedOption: ConvertedOption, componentId: string) =>
         options: {
           topBar: {
             title: {
-              text: 'Weights',
+              text: 'Percentages',
               color: 'tomato',
             },
             backButton: {
@@ -70,10 +87,7 @@ const onOptionPress = (convertedOption: ConvertedOption, componentId: string) =>
 const renderItem = (convertedOption: ConvertedOption, componentId: string) => {
   return (
     <>
-      <ListItem
-        bottomDivider
-        containerStyle={styles.container}
-        onPress={() => onOptionPress(convertedOption, componentId)}>
+      <ListItem bottomDivider containerStyle={styles.container}>
         <Icon
           name={convertedOption.option.icon}
           type={convertedOption.option.type}
@@ -91,12 +105,12 @@ const renderItem = (convertedOption: ConvertedOption, componentId: string) => {
                 {renderSlash(j)}
                 {singelResult.value}
                 <Text style={styles.unitText}>{singelResult.unit}</Text>
-                {renderChevron(convertedOption)}
               </Text>
             ))}
           </ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>
+      {renderWeightPercentages(convertedOption, componentId)}
     </>
   );
 };

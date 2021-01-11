@@ -55,8 +55,9 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
           justifyContent: 'flex-end',
           alignItems: 'stretch',
         }}>
-        {plateGroups.map((group) => (
+        {plateGroups.map((group, index) => (
           <View
+            key={index.toString()}
             style={{
               flexDirection: 'row',
               alignItems: 'flex-end',
