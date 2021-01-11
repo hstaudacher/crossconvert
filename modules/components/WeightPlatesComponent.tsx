@@ -32,11 +32,8 @@ const getPlateFontSize = (plate: Plate): number => {
   const smallPlate = 5;
   switch (plate) {
     case Plate.RED:
-      return bigPlate;
     case Plate.BLUE:
-      return bigPlate;
     case Plate.YELLOW:
-      return bigPlate;
     case Plate.GREEN:
       return bigPlate;
     default:
@@ -54,7 +51,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
           justifyContent: 'flex-end',
           alignItems: 'stretch',
         }}>
-        {plateGroups.map((group, i) => (
+        {plateGroups.map((group) => (
           <View
             style={{
               flexDirection: 'row',
