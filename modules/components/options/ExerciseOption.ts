@@ -9,9 +9,10 @@ export default class ExerciseOption extends FromOption {
     readonly icon: string,
     readonly type: string,
     readonly color: string,
+    readonly selectIconSize: number,
     readonly exercise: Exercise,
   ) {
-    super(title, icon, type, color);
+    super(title, icon, type, color, selectIconSize);
   }
 
   doConversion(configuration: ConversionConfiguration): Array<ConversionResult> {

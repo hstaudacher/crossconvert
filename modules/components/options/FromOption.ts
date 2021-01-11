@@ -3,7 +3,13 @@ import numeral from 'numeral';
 import * as RNLocalize from 'react-native-localize';
 
 export abstract class FromOption {
-  constructor(readonly title: string, readonly icon: string, readonly type: string, readonly color: string) {}
+  constructor(
+    readonly title: string,
+    readonly icon: string,
+    readonly type: string,
+    readonly color: string,
+    readonly selectionIconSize: number,
+  ) {}
 
   private formatNumber = (value: number, unit: string): string => {
     if (value < 1 && value > 0 && unit !== 'cal') {

@@ -36,6 +36,10 @@ const getPlateFontSize = (plate: Plate): number => {
     case Plate.YELLOW:
     case Plate.GREEN:
       return bigPlate;
+    case Plate.WHITE:
+      return 33;
+    case Plate.FRACTIONAL_WHITE:
+      return 24;
     default:
       return smallPlate;
   }
@@ -68,7 +72,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
             />
             <Badge
               value={group.amount}
-              containerStyle={{position: 'absolute', bottom: -4, left: -4}}
+              containerStyle={{position: 'absolute', bottom: -3, left: -3}}
               badgeStyle={{backgroundColor: 'tomato'}}
             />
           </View>

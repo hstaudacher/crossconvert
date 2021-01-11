@@ -5,14 +5,14 @@ import ExerciseOption from './ExerciseOption';
 import {Exercise} from '../../conversion';
 
 const options: Array<FromOption> = [
-  new ExerciseOption('Row', 'rower', 'crossfit', 'tomato', Exercise.Row),
-  new ExerciseOption('Ski', 'skierg', 'crossfit', 'lightblue', Exercise.Ski),
-  new ExerciseOption('Bike', 'bikeerg', 'crossfit', 'orange', Exercise.Bike),
-  new ExerciseOption('Air Bike', 'airbike', 'crossfit', 'purple', Exercise.Airbike),
-  new ExerciseOption('Run', 'run', 'crossfit', 'blue', Exercise.Run),
-  new ExerciseOption('Burpee', 'burpee', 'crossfit', 'deeppink', Exercise.Burpee),
-  new WeightOption('Weight', 'plate', 'crossfit', 'green'),
-  new DistanceOption('Distance', 'ruler', 'font-awesome-5', 'firebrick'),
+  new ExerciseOption('Row', 'rower', 'crossfit', 'tomato', 40, Exercise.Row),
+  new ExerciseOption('Ski', 'skierg', 'crossfit', 'lightblue', 40, Exercise.Ski),
+  new ExerciseOption('Bike', 'bikeerg', 'crossfit', 'orange', 35, Exercise.Bike),
+  new ExerciseOption('Air Bike', 'airbike', 'crossfit', 'purple', 35, Exercise.Airbike),
+  new ExerciseOption('Run', 'run', 'crossfit', 'blue', 32, Exercise.Run),
+  new ExerciseOption('Burpee', 'burpee', 'crossfit', 'deeppink', 35, Exercise.Burpee),
+  new WeightOption('Weight', 'barbell-outline', 'ionicon', 'green', 35),
+  new DistanceOption('Distance', 'ruler', 'font-awesome-5', 'firebrick', 25),
 ];
 
 export const fromOptions = (unit: string): Array<FromOption> => {

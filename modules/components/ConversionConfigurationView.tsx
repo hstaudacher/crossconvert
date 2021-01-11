@@ -102,6 +102,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
             reverse={true}
             color={props.configuration.from.color}
             size={25}
+            iconProps={{name: props.configuration.from.icon, size: props.configuration.from.selectionIconSize}}
           />
         </View>
       </View>
