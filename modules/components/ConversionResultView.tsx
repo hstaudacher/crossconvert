@@ -79,6 +79,7 @@ const renderItem = (convertedOption: ConvertedOption, componentId: string) => {
           type={convertedOption.option.type}
           color={convertedOption.option.color}
           size={36}
+          iconProps={{name: convertedOption.option.icon, size: convertedOption.option.resultIconSize}}
         />
         <ListItem.Content>
           <ListItem.Title style={{fontSize: 25, color: convertedOption.option.color, marginLeft: 6}}>

@@ -9,6 +9,7 @@ export abstract class FromOption {
     readonly type: string,
     readonly color: string,
     readonly selectionIconSize: number,
+    readonly resultIconSize: number,
   ) {}
 
   private formatNumber = (value: number, unit: string): string => {
