@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Plate, PlateDistribution, PlateGroup} from './weight/PlateDistributor';
-import {Text, View} from 'react-native';
-import {Icon} from 'react-native-elements';
+import {View} from 'react-native';
+import {Icon, Badge} from 'react-native-elements';
 
 interface WeightPlatesComponentProperties {
   plateDistribution: PlateDistribution;
@@ -28,8 +28,8 @@ const getPlateColor = (plate: Plate): string => {
 };
 
 const getPlateFontSize = (plate: Plate): number => {
-  const bigPlate = 8;
-  const smallPlate = 5;
+  const bigPlate = 38;
+  const smallPlate = 28;
   switch (plate) {
     case Plate.RED:
     case Plate.BLUE:
@@ -58,14 +58,18 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
               alignItems: 'flex-end',
               marginLeft: 3,
             }}>
-            <Text style={{fontSize: 15, marginBottom: 5, color: '#666666'}}>{group.amount}</Text>
             <Icon
               name={'plate'}
               type={'crossfit'}
               color={getPlateColor(group.plate)}
               size={getPlateFontSize(group.plate)}
               containerStyle={{alignSelf: 'flex-end'}}
-              reverse={true}
+              reverse={false}
+            />
+            <Badge
+              value={group.amount}
+              containerStyle={{position: 'absolute', bottom: -4, left: -4}}
+              badgeStyle={{backgroundColor: 'tomato'}}
             />
           </View>
         ))}
