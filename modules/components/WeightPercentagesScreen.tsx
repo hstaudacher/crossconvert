@@ -7,7 +7,8 @@ import {NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager, WeightPercentage} from './weight/WeightPercentager';
 import Color from 'color';
-import {PlateDistributor} from './weight/PlateDistributor';
+import {PlateDistribution, PlateDistributor} from './weight/PlateDistributor';
+import WeightPlatesComponent from './WeightPlatesComponent';
 
 interface WeightDetailsScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
@@ -33,9 +34,9 @@ const computeFontColor = (percentage: number): string => {
   return '#ff4500';
 };
 
-const getPlates = (weight: number, unit: WeightUnit): string => {
+const getPlates = (weight: number, unit: WeightUnit): PlateDistribution => {
   const distributor = new PlateDistributor(20, unit);
-  return JSON.stringify(distributor.getPlateDistribution(weight).plates);
+  return distributor.getPlateDistribution(weight);
 };
 
 const renderItem = (percentage: WeightPercentage) => {
@@ -55,8 +56,12 @@ const renderItem = (percentage: WeightPercentage) => {
               {formatUnit(percentage.conversion.toUnit)}
             </Text>
           </ListItem.Title>
-          <ListItem.Subtitle style={{opacity: 0.6}}>
-            {getPlates(percentage.conversion.fromWeight, percentage.conversion.fromUnit)}
+          <ListItem.Subtitle style={{opacity: 0.9, marginTop: 4}}>
+            <View>
+              <WeightPlatesComponent
+                plateDistribution={getPlates(percentage.conversion.fromWeight, percentage.conversion.fromUnit)}
+              />
+            </View>
           </ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>
