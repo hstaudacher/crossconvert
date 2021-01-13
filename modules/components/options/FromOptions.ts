@@ -12,7 +12,7 @@ const options: Array<FromOption> = [
   new ExerciseOption('Run', 'run', 'crossfit', 'coral', 32, 40, Exercise.Run),
   new ExerciseOption('Burpee', 'burpee', 'crossfit', 'darkmagenta', 35, 40, Exercise.Burpee),
   new WeightOption('Weight', 'barbell', 'crossfit', '#c3272e', 45, 40),
-  new DistanceOption('Distance', 'distance', 'crossfit', '#193564', 35, 40),
+  new DistanceOption('Distance', 'distance', 'crossfit', '#c3272e', 35, 40),
 ];
 
 export const fromOptions = (unit: string): Array<FromOption> => {
