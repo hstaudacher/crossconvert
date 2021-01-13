@@ -46,12 +46,12 @@ const renderWeightPercentages = (convertedOption: ConvertedOption, componentId: 
         <Icon
           name="percent"
           type="crossfit"
-          color="mediumpurple"
+          color="#33618f"
           size={36}
           iconProps={{name: 'percent', size: convertedOption.option.resultIconSize}}
         />
         <ListItem.Content>
-          <ListItem.Title style={{fontSize: 25, color: 'mediumpurple', marginLeft: 8}}>Percentages</ListItem.Title>
+          <ListItem.Title style={{fontSize: 25, color: '#33618f', marginLeft: 8}}>Percentages</ListItem.Title>
         </ListItem.Content>
         <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
       </ListItem>
