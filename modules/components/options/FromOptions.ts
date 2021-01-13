@@ -11,8 +11,8 @@ const options: Array<FromOption> = [
   new ExerciseOption('Air Bike', 'airbike', 'crossfit', 'purple', 35, 40, Exercise.Airbike),
   new ExerciseOption('Run', 'run', 'crossfit', 'blue', 32, 40, Exercise.Run),
   new ExerciseOption('Burpee', 'burpee', 'crossfit', 'deeppink', 35, 40, Exercise.Burpee),
-  new WeightOption('Weight', 'barbell-outline', 'ionicon', 'green', 35, 40),
-  new DistanceOption('Distance', 'ruler', 'font-awesome-5', 'firebrick', 25, 40),
+  new WeightOption('Weight', 'barbell', 'crossfit', 'green', 45, 40),
+  new DistanceOption('Distance', 'distance', 'crossfit', 'firebrick', 35, 40),
 ];
 
 export const fromOptions = (unit: string): Array<FromOption> => {

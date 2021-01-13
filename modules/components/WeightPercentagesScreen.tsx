@@ -3,7 +3,7 @@ import {WeightUnit} from '../conversion';
 import React from 'react';
 import {Text, View, FlatList} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import {NavigationComponentProps} from 'react-native-navigation';
+import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager, WeightPercentage} from './weight/WeightPercentager';
 import Color from 'color';
@@ -83,6 +83,45 @@ const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
       </View>
     </>
   );
+};
+const onPress = () => {
+  Navigation.push('', {
+    component: {
+      name: 'WeightSettings',
+      options: {
+        topBar: {
+          backButton: {
+            title: 'Percentages',
+            color: 'tomato',
+          },
+        },
+      },
+    },
+  });
+};
+
+WeightPercentagesScreen.options = {
+  topBar: {
+    title: {
+      text: 'Percentages',
+      color: 'tomato',
+    },
+    rightButtons: [
+      {
+        id: 'weightPercentageSettings',
+        text: '',
+        component: {
+          name: 'Icon',
+          passProps: {
+            name: 'sliders',
+            type: 'font-awesome',
+            color: 'tomato',
+            onPress: onPress,
+          },
+        },
+      },
+    ],
+  },
 };
 
 export default WeightPercentagesScreen;

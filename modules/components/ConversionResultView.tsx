@@ -44,14 +44,14 @@ const renderWeightPercentages = (convertedOption: ConvertedOption, componentId: 
         containerStyle={styles.container}
         onPress={() => onOptionPress(convertedOption, componentId)}>
         <Icon
-          name="percentage"
-          type="font-awesome-5"
+          name="percent"
+          type="crossfit"
           color="mediumpurple"
           size={36}
-          iconProps={{name: 'percentage', size: convertedOption.option.resultIconSize}}
+          iconProps={{name: 'percent', size: convertedOption.option.resultIconSize}}
         />
         <ListItem.Content>
-          <ListItem.Title style={{fontSize: 25, color: 'mediumpurple', marginLeft: 15}}>Percentages</ListItem.Title>
+          <ListItem.Title style={{fontSize: 25, color: 'mediumpurple', marginLeft: 8}}>Percentages</ListItem.Title>
         </ListItem.Content>
         <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
       </ListItem>
@@ -66,10 +66,6 @@ const onOptionPress = (convertedOption: ConvertedOption, componentId: string) =>
         name: 'WeightPercentages',
         options: {
           topBar: {
-            title: {
-              text: 'Percentages',
-              color: 'tomato',
-            },
             backButton: {
               title: 'Conversion',
               color: 'tomato',

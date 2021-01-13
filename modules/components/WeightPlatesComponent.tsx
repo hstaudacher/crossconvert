@@ -28,20 +28,18 @@ const getPlateColor = (plate: Plate): string => {
 };
 
 const getPlateFontSize = (plate: Plate): number => {
-  const bigPlate = 38;
-  const smallPlate = 28;
   switch (plate) {
     case Plate.RED:
     case Plate.BLUE:
     case Plate.YELLOW:
     case Plate.GREEN:
-      return bigPlate;
+      return 38;
     case Plate.WHITE:
       return 33;
     case Plate.FRACTIONAL_WHITE:
       return 24;
     default:
-      return smallPlate;
+      return 28;
   }
 };
 
@@ -74,7 +72,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
             <Badge
               value={group.amount}
               containerStyle={{position: 'absolute', bottom: -3, left: -3}}
-              badgeStyle={{backgroundColor: 'tomato'}}
+              badgeStyle={{backgroundColor: 'slategray'}}
             />
           </View>
         ))}
