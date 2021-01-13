@@ -73,21 +73,12 @@ const keyExtractor = (item: WeightPercentage, index: Number): string => {
   return index.toString();
 };
 
-const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
-  const percentager = new WeightPercentager(props.configuration);
-  const percentages = percentager.getPercentages(120, 50);
-  return (
-    <>
-      <View>
-        <FlatList keyExtractor={keyExtractor} data={percentages} renderItem={(info) => renderItem(info.item)} />
-      </View>
-    </>
-  );
-};
-const onPress = () => {
-  Navigation.push('', {
+let componentId = '';
+
+const onSettingsPress = () => {
+  Navigation.push(componentId, {
     component: {
-      name: 'WeightSettings',
+      name: 'WeightPercentagesSettings',
       options: {
         topBar: {
           backButton: {
@@ -100,6 +91,19 @@ const onPress = () => {
   });
 };
 
+const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
+  componentId = props.componentId;
+  const percentager = new WeightPercentager(props.configuration);
+  const percentages = percentager.getPercentages(120, 50);
+  return (
+    <>
+      <View>
+        <FlatList keyExtractor={keyExtractor} data={percentages} renderItem={(info) => renderItem(info.item)} />
+      </View>
+    </>
+  );
+};
+
 WeightPercentagesScreen.options = {
   topBar: {
     title: {
@@ -108,7 +112,7 @@ WeightPercentagesScreen.options = {
     },
     rightButtons: [
       {
-        id: 'weightPercentageSettings',
+        id: 'weightPercentagesSettingsButton',
         text: '',
         component: {
           name: 'Icon',
@@ -116,7 +120,7 @@ WeightPercentagesScreen.options = {
             name: 'sliders',
             type: 'font-awesome',
             color: 'tomato',
-            onPress: onPress,
+            onPress: onSettingsPress,
           },
         },
       },

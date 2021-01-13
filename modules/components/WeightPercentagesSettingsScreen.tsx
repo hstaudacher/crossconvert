@@ -3,9 +3,9 @@ import React from 'react';
 import {Text} from 'react-native';
 import {NavigationComponentProps} from 'react-native-navigation';
 
-interface WeightPercentageSettingsScreenProperties extends NavigationComponentProps {}
+interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {}
 
-const WeightPercentageSettingsScreen = (props: WeightPercentageSettingsScreenProperties) => {
+const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenProperties) => {
   return (
     <>
       <Text>foo</Text>
@@ -13,7 +13,7 @@ const WeightPercentageSettingsScreen = (props: WeightPercentageSettingsScreenPro
   );
 };
 
-WeightPercentageSettingsScreen.options = {
+WeightPercentagesSettingsScreen.options = {
   topBar: {
     title: {
       text: 'Weight Settings',
@@ -22,4 +22,4 @@ WeightPercentageSettingsScreen.options = {
   },
 };
 
-export default WeightPercentageSettingsScreen;
+export default WeightPercentagesSettingsScreen;

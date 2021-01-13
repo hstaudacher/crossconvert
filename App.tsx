@@ -1,6 +1,6 @@
 import MainScreen from './modules/components/MainScreen';
 import WeightPercentagesScreen from './modules/components/WeightPercentagesScreen';
-import WeightPercentageSettingsScreen from './modules/components/WeightPercentageSettingsScreen';
+import WeightPercentagesSettingsScreen from './modules/components/WeightPercentagesSettingsScreen';
 import {registerCustomIconType, Icon} from 'react-native-elements';
 import CrossFitIcons from './fonts/CrossFitIcons';
 import {Navigation} from 'react-native-navigation';
@@ -13,7 +13,7 @@ const start = () => {
   Navigation.registerComponent('Icon', () => Icon);
   Navigation.registerComponent('Main', () => MainScreen);
   Navigation.registerComponent('WeightPercentages', () => WeightPercentagesScreen);
-  Navigation.registerComponent('WeightSettings', () => WeightPercentageSettingsScreen);
+  Navigation.registerComponent('WeightPercentagesSettings', () => WeightPercentagesSettingsScreen);
   Navigation.events().registerAppLaunchedListener(async () => {
     Navigation.setRoot({
       root: {
