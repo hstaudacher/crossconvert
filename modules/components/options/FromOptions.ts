@@ -5,14 +5,14 @@ import ExerciseOption from './ExerciseOption';
 import {Exercise} from '../../conversion';
 
 const options: Array<FromOption> = [
-  new ExerciseOption('Row', 'rower', 'crossfit', 'tomato', 40, 40, Exercise.Row),
-  new ExerciseOption('Ski', 'skierg', 'crossfit', 'lightblue', 40, 40, Exercise.Ski),
-  new ExerciseOption('Bike', 'bikeerg', 'crossfit', 'orange', 35, 40, Exercise.Bike),
-  new ExerciseOption('Air Bike', 'airbike', 'crossfit', 'purple', 35, 40, Exercise.Airbike),
-  new ExerciseOption('Run', 'run', 'crossfit', 'blue', 32, 40, Exercise.Run),
-  new ExerciseOption('Burpee', 'burpee', 'crossfit', 'deeppink', 35, 40, Exercise.Burpee),
-  new WeightOption('Weight', 'barbell', 'crossfit', 'green', 45, 40),
-  new DistanceOption('Distance', 'distance', 'crossfit', 'firebrick', 35, 40),
+  new ExerciseOption('Row', 'rower', 'crossfit', '#36aa40', 40, 40, Exercise.Row),
+  new ExerciseOption('Ski', 'skierg', 'crossfit', '#33618f', 40, 40, Exercise.Ski),
+  new ExerciseOption('Bike', 'bikeerg', 'crossfit', '#e8ae28', 35, 40, Exercise.Bike),
+  new ExerciseOption('Air Bike', 'airbike', 'crossfit', '#af2e33', 35, 40, Exercise.Airbike),
+  new ExerciseOption('Run', 'run', 'crossfit', 'coral', 32, 40, Exercise.Run),
+  new ExerciseOption('Burpee', 'burpee', 'crossfit', 'darkmagenta', 35, 40, Exercise.Burpee),
+  new WeightOption('Weight', 'barbell', 'crossfit', '#c3272e', 45, 40),
+  new DistanceOption('Distance', 'distance', 'crossfit', '#193564', 35, 40),
 ];
 
 export const fromOptions = (unit: string): Array<FromOption> => {
