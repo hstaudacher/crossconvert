@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import {WeightUnit} from '../conversion';
 import React from 'react';
-import {Text, View, FlatList} from 'react-native';
+import {Text, View, FlatList, StyleSheet} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
@@ -97,12 +97,18 @@ const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
   const percentages = percentager.getPercentages(120, 50);
   return (
     <>
-      <View>
+      <View style={styles.view}>
         <FlatList keyExtractor={keyExtractor} data={percentages} renderItem={(info) => renderItem(info.item)} />
       </View>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  view: {
+    backgroundColor: '#f2f1f6',
+  },
+});
 
 WeightPercentagesScreen.options = {
   topBar: {
