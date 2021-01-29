@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {ListItem} from 'react-native-elements';

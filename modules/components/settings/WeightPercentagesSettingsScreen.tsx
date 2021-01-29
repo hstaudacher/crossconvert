@@ -4,9 +4,29 @@ import {SafeAreaView, SectionList, Switch, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
-import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './Settings';
 
 interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {}
+
+enum SettingsType {
+  BOOLEAN,
+  OPTIONS,
+}
+class SettingsSection {
+  constructor(readonly title: string, readonly type: SettingsType, readonly data: SettingsItem[]) {
+    data.forEach((d) => (d.section = this));
+  }
+}
+
+class SettingsItem {
+  section: SettingsSection = new SettingsSection('', SettingsType.BOOLEAN, []);
+  constructor(readonly title: string) {}
+}
+
+class OptionsSettingsItem extends SettingsItem {
+  constructor(readonly title: string, readonly options: string[]) {
+    super(title);
+  }
+}
 
 const SECTIONS: SettingsSection[] = [
   new SettingsSection('Bar', SettingsType.OPTIONS, [new OptionsSettingsItem('Bar Weight', ['20kg', '16kg', '12kg'])]),
