@@ -1,7 +1,7 @@
 import MainScreen from './modules/components/MainScreen';
 import WeightPercentagesScreen from './modules/components/WeightPercentagesScreen';
-import WeightPercentagesSettingsScreen from './modules/components/WeightPercentagesSettingsScreen';
-import OptionsListScreen from './modules/components/OptionsListScreen';
+import WeightPercentagesSettingsScreen from './modules/components/settings/WeightPercentagesSettingsScreen';
+import OptionsListScreen from './modules/components/settings/OptionsListScreen';
 import {registerCustomIconType, Icon} from 'react-native-elements';
 import CrossFitIcons from './fonts/CrossFitIcons';
 import {Navigation} from 'react-native-navigation';

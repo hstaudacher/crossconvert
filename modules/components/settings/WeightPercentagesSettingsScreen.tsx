@@ -4,39 +4,45 @@ import {SafeAreaView, SectionList, Switch, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
+import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './Settings';
 
 interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {}
 
-class SettingsItem {
-  constructor(
-    readonly title: string,
-    readonly type: string,
-    readonly data: string[],
-    readonly options: string[] = [],
-  ) {}
-}
-
-const DATA: SettingsItem[] = [
-  new SettingsItem('Bar', 'options', ['Bar Weight'], ['20kg', '16kg', '12kg']),
-  new SettingsItem('Plates', 'boolean', ['25kg', '20kg', '15kg', '10kg', '5kg', '2kg', '1kg', '0.5kg']),
+const SECTIONS: SettingsSection[] = [
+  new SettingsSection('Bar', SettingsType.OPTIONS, [new OptionsSettingsItem('Bar Weight', ['20kg', '16kg', '12kg'])]),
+  new SettingsSection('Plates', SettingsType.BOOLEAN, [
+    new SettingsItem('25kg'),
+    new SettingsItem('20kg'),
+    new SettingsItem('15kg'),
+    new SettingsItem('10kg'),
+    new SettingsItem('5kg'),
+    new SettingsItem('2kg'),
+    new SettingsItem('1kg'),
+    new SettingsItem('0.5kg'),
+  ]),
 ];
 
+const optionSelected = (item: string) => {
+  console.log('selected ' + item);
+};
+
 const openOptions = (item: SettingsItem, componentId: string) => {
-  if (item.type === 'options') {
+  if (item.section.type === SettingsType.OPTIONS) {
     Navigation.push(componentId, {
       component: {
         name: 'OptionsList',
         options: {
           topBar: {
             backButton: {
-              title: 'Weight Settings',
+              title: 'Settings',
               color: 'tomato',
             },
             title: {text: 'Bar Weight'},
           },
         },
         passProps: {
-          options: item.options,
+          options: (item as OptionsSettingsItem).options,
+          selectionCallback: optionSelected,
         },
       },
     });
@@ -44,21 +50,19 @@ const openOptions = (item: SettingsItem, componentId: string) => {
 };
 
 const renderRightSide = (item: SettingsItem): Element | void => {
-  if (item.type === 'boolean') {
-    return <Switch value={true} />;
-  } else if (item.type === 'options') {
-    return <Text style={{fontSize: 16}}>{item.options[0]}</Text>;
+  switch (item.section.type) {
+    case SettingsType.BOOLEAN:
+      return <Switch value={true} />;
+    case SettingsType.OPTIONS:
+      return <Text style={{fontSize: 16}}>{(item as OptionsSettingsItem).options[0]}</Text>;
   }
 };
 
-const renderItem = (title: string, componentId: string) => {
-  console.log('filter for: ' + title);
-  const item = DATA.filter((i) => i.data.filter((d) => d === title)[0])[0];
-  console.log('item: ' + JSON.stringify(item));
+const renderItem = (item: SettingsItem, componentId: string) => {
   return (
-    <ListItem key={title} bottomDivider onPress={() => openOptions(item, componentId)}>
+    <ListItem key={item.title} bottomDivider onPress={() => openOptions(item, componentId)}>
       <ListItem.Content>
-        <ListItem.Title>{title}</ListItem.Title>
+        <ListItem.Title>{item.title}</ListItem.Title>
       </ListItem.Content>
       {renderRightSide(item)}
     </ListItem>
@@ -70,8 +74,8 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
     <>
       <SafeAreaView style={styles.container}>
         <SectionList
-          sections={DATA}
-          keyExtractor={(item, index) => item + index}
+          sections={SECTIONS}
+          keyExtractor={(item, index) => item.title + index}
           renderItem={(i) => renderItem(i.item, props.componentId)}
           renderSectionHeader={({section: {title}}) => <Text style={styles.header}>{title}</Text>}
         />

@@ -2,16 +2,21 @@
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import {NavigationComponentProps} from 'react-native-navigation';
+import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 
 interface OptionsListScreenProperties extends NavigationComponentProps {
   options: string[];
-  // TODO: callback
+  selectionCallback: Function;
 }
 
-const renderItem = (option: string) => {
+const selectItem = (option: string, selectionCallback: Function, componentId: string) => {
+  selectionCallback(option);
+  Navigation.pop(componentId);
+};
+
+const renderItem = (option: string, selectionCallback: Function, componentId: string) => {
   return (
-    <ListItem key={option} bottomDivider>
+    <ListItem key={option} bottomDivider onPress={() => selectItem(option, selectionCallback, componentId)}>
       <ListItem.Content>
         <ListItem.Title>{option}</ListItem.Title>
       </ListItem.Content>
@@ -27,7 +32,11 @@ const OptionsListScreen = (props: OptionsListScreenProperties) => {
   return (
     <>
       <View style={styles.container}>
-        <FlatList keyExtractor={keyExtractor} data={props.options} renderItem={(info) => renderItem(info.item)} />
+        <FlatList
+          keyExtractor={keyExtractor}
+          data={props.options}
+          renderItem={(info) => renderItem(info.item, props.selectionCallback, props.componentId)}
+        />
       </View>
     </>
   );
