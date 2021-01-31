@@ -4,55 +4,61 @@ import {SafeAreaView, SectionList, Switch, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
+import {Plate, PlateMapping, plateMappings} from './Plates';
 import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './SettingsListTypes';
 
 interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {}
 
 const PLATE_OPTIONS = [0, 2, 4, 6, 8, 10];
 
+// TODO: add icon for plates
+
 class PlateAvailability {
-  constructor(readonly weight: string, readonly availability: number) {}
+  constructor(readonly mapping: PlateMapping, readonly availability: number) {}
 }
 
 class WeightSettings {
   constructor(readonly barWeight: string, readonly availablePlates: PlateAvailability[] = []) {}
 
-  public availability = (weight: string) => {
-    const plateAvailability = this.availablePlates.find((a) => a.weight === weight);
+  public availability(plate: Plate) {
+    const plateAvailability = this.availablePlates.find((a) => a.mapping.plate === plate);
     return plateAvailability?.availability;
-  };
+  }
 
-  public updateBarWeight = (newWeight: string) => {
+  public updateBarWeight(newWeight: string) {
     return new WeightSettings(newWeight, this.availablePlates);
-  };
+  }
 
-  public updateAvailability = (weight: string, availability: number) => {
-    const index = this.availablePlates.findIndex((a) => a.weight === weight);
-    this.availablePlates[index] = new PlateAvailability(weight, availability);
+  public updateAvailability(plate: Plate, availability: number) {
+    const index = this.availablePlates.findIndex((a) => a.mapping.plate === plate);
+    const mapping = this.newMethod(plate);
+    this.availablePlates[index] = new PlateAvailability(mapping, availability);
     return new WeightSettings(this.barWeight, this.availablePlates);
-  };
+  }
+
+  private newMethod(plate: Plate) {
+    const mapping = this.availablePlates.find((a) => a.mapping.plate === plate)?.mapping;
+    if (typeof mapping === 'undefined') {
+      throw new Error();
+    }
+    return mapping;
+  }
 }
 
 const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenProperties) => {
   const [settings, setSettings] = useState(
-    new WeightSettings('20kg', [
-      new PlateAvailability('25kg', 4),
-      new PlateAvailability('20kg', 4),
-      new PlateAvailability('15kg', 4),
-      new PlateAvailability('10kg', 4),
-      new PlateAvailability('5kg', 4),
-      new PlateAvailability('2kg', 4),
-      new PlateAvailability('1kg', 4),
-      new PlateAvailability('0.5kg', 4),
-    ]),
+    new WeightSettings(
+      '20kg',
+      plateMappings.map((m) => new PlateAvailability(m, 4)),
+    ),
   );
 
-  const createPlateItem = (weight: string) => {
+  const createPlateItem = (mapping: PlateMapping) => {
     return new OptionsSettingsItem(
-      weight,
+      mapping.kg + 'kg/' + mapping.lbs + 'lbs',
       PLATE_OPTIONS,
-      () => settings.availability(weight),
-      (o: number) => setSettings(settings.updateAvailability(weight, o)),
+      () => settings.availability(mapping.plate),
+      (o: number) => setSettings(settings.updateAvailability(mapping.plate, o)),
     );
   };
 
@@ -62,18 +68,14 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
         'Bar Weight',
         ['20kg', '16kg', '12kg'],
         () => settings.barWeight,
-        (o: number) => setSettings(settings.updateBarWeight(o)),
+        (o: string) => setSettings(settings.updateBarWeight(o)),
       ),
     ]),
-    new SettingsSection('Plates', SettingsType.OPTIONS, [
-      createPlateItem('25kg'),
-      createPlateItem('20kg'),
-      createPlateItem('10kg'),
-      createPlateItem('5kg'),
-      createPlateItem('2kg'),
-      createPlateItem('1kg'),
-      createPlateItem('0.5kg'),
-    ]),
+    new SettingsSection(
+      'Plates',
+      SettingsType.OPTIONS,
+      plateMappings.map((m) => createPlateItem(m)),
+    ),
   ];
 
   const optionSelected = (item: OptionsSettingsItem, option: string) => {

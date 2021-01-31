@@ -14,7 +14,7 @@ describe('distributes kg plates', () => {
 
   test('distributes 20 kg bar weight', () => assertPlateDistribution(20, WeightUnit.kg, 20, []));
 
-  test('distributes 23 kg plates', () => assertPlateDistribution(23, WeightUnit.kg, 20, [1, 1, 0.5, 0.5]));
+  test('distributes 23 kg plates', () => assertPlateDistribution(23, WeightUnit.kg, 20, [1.5, 1.5]));
 
   test('distributes 20 kg plates with different bar', () => assertPlateDistribution(20, WeightUnit.kg, 16, [2, 2]));
 

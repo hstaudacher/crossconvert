@@ -1,4 +1,5 @@
-import {PlateDistribution, PlateGroup, Plate} from '../../../../modules/components/weight/PlateDistributor';
+import {Plate} from 'modules/components/settings/Plates';
+import {PlateDistribution, PlateGroup} from '../../../../modules/components/weight/PlateDistributor';
 import {WeightUnit} from '../../../../modules/conversion';
 
 describe('plate distribution uses color coded plates', () => {
@@ -36,7 +37,6 @@ describe('plate distribution uses color coded plates', () => {
       new PlateGroup(Plate.BLUE, 2),
       new PlateGroup(Plate.FRACTIONAL_GREEN, 2),
     ]));
-
   test('distributes weights sorted', () =>
     assertPlateDistribution([1, 1, 20, 20], WeightUnit.kg, [
       new PlateGroup(Plate.BLUE, 2),
