@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
-import {OptionsSettingsItem} from './Settings';
+import {OptionsSettingsItem} from './SettingsListTypes';
 
 interface OptionsListScreenProperties extends NavigationComponentProps {
   item: OptionsSettingsItem;
