@@ -4,7 +4,7 @@ import {SafeAreaView, SectionList, Switch, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
-import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './Settings';
+import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './SettingsListTypes';
 
 interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {}
 
