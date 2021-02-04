@@ -1,3 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
+import React from 'react';
+import {ViewStyle} from 'react-native';
+import {StyleProp} from 'react-native';
+import {Icon} from 'react-native-elements';
 import {Plate} from '../settings/Plates';
 
 const getPlateColor = (plate: Plate): string => {
@@ -35,4 +40,18 @@ const getPlateFontSize = (plate: Plate): number => {
   }
 };
 
-export {getPlateColor, getPlateFontSize};
+const renderPlateIcon = (plate: Plate, style: StyleProp<ViewStyle>): Element => {
+  return (
+    <Icon
+      key={plate.toString()}
+      name={'plate'}
+      type={'crossfit'}
+      color={getPlateColor(plate)}
+      size={getPlateFontSize(plate)}
+      containerStyle={style}
+      reverse={false}
+    />
+  );
+};
+
+export {renderPlateIcon};

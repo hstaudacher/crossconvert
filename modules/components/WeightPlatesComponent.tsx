@@ -2,8 +2,8 @@
 import React, {useState} from 'react';
 import {PlateDistribution, PlateGroup} from './weight/PlateDistributor';
 import {Pressable, View} from 'react-native';
-import {Icon, Badge, Overlay, Text} from 'react-native-elements';
-import {getPlateColor, getPlateFontSize} from './weight/PlateVisualization';
+import {Badge, Overlay, Text} from 'react-native-elements';
+import {renderPlateIcon} from './weight/PlateVisualization';
 import {PlateMapping} from './settings/Plates';
 import WeightUnit from '../conversion/WeightUnit';
 
@@ -44,14 +44,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
               alignItems: 'flex-end',
               marginLeft: 3,
             }}>
-            <Icon
-              name={'plate'}
-              type={'crossfit'}
-              color={getPlateColor(group.mapping.plate)}
-              size={getPlateFontSize(group.mapping.plate)}
-              containerStyle={{alignSelf: 'flex-end'}}
-              reverse={false}
-            />
+            {renderPlateIcon(group.mapping.plate, {alignSelf: 'flex-end'})}
             <Badge
               value={group.amount}
               containerStyle={{position: 'absolute', bottom: -3, left: -3}}
@@ -64,14 +57,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
         <View style={{paddingTop: 10}}>
           {plateGroups.map((group) => (
             <View style={{flexDirection: 'row', justifyContent: 'center', marginBottom: 10, marginHorizontal: 10}}>
-              <Icon
-                name={'plate'}
-                type={'crossfit'}
-                color={getPlateColor(group.mapping.plate)}
-                size={getPlateFontSize(group.mapping.plate)}
-                containerStyle={{alignSelf: 'center'}}
-                reverse={false}
-              />
+              {renderPlateIcon(group.mapping.plate, {alignSelf: 'center'})}
               <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: 'tomato'}}>
                 {group.amount}x{' '}
               </Text>

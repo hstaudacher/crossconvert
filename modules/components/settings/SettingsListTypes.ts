@@ -10,7 +10,7 @@ class SettingsSection {
 
 class SettingsItem {
   section: SettingsSection = new SettingsSection('', SettingsType.BOOLEAN, []);
-  constructor(readonly title: string) {}
+  constructor(readonly title: string, readonly renderIcon: Function) {}
 }
 
 class OptionsSettingsItem extends SettingsItem {
@@ -19,8 +19,9 @@ class OptionsSettingsItem extends SettingsItem {
     readonly options: string[] | number[],
     private readonly valueProvider: Function,
     readonly update: Function,
+    readonly renderIcon: Function,
   ) {
-    super(title);
+    super(title, renderIcon);
   }
 
   public value = () => {

@@ -2,8 +2,9 @@
 import React, {useState} from 'react';
 import {SafeAreaView, SectionList, Switch, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
-import {ListItem} from 'react-native-elements';
+import {Icon, ListItem} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
+import {renderPlateIcon} from '../weight/PlateVisualization';
 import {Plate, PlateMapping, plateMappings} from './Plates';
 import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './SettingsListTypes';
 
@@ -60,6 +61,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
       PLATE_OPTIONS,
       () => settings.availability(mapping.plate),
       (o: number) => setSettings(settings.updateAvailability(mapping.plate, o)),
+      () => renderPlateIcon(mapping.plate, {alignSelf: 'flex-end', width: 40}),
     );
   };
 
@@ -70,6 +72,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
         ['20kg', '16kg', '12kg'],
         () => settings.barWeight,
         (o: string) => setSettings(settings.updateBarWeight(o)),
+        () => <Icon name="barbell" type="crossfit" />,
       ),
     ]),
     new SettingsSection(
@@ -117,6 +120,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
   const renderItem = (item: SettingsItem, componentId: string) => {
     return (
       <ListItem key={item.title} bottomDivider onPress={() => openOptions(item, componentId)}>
+        {item.renderIcon()}
         <ListItem.Content>
           <ListItem.Title>{item.title}</ListItem.Title>
         </ListItem.Content>
