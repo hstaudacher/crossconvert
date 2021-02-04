@@ -1,11 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {PlateDistribution, PlateGroup} from './weight/PlateDistributor';
-import {View} from 'react-native';
-import {Icon, Badge, Tooltip, Text} from 'react-native-elements';
+import {Pressable, View} from 'react-native';
+import {Icon, Badge, Overlay, Text} from 'react-native-elements';
 import {getPlateColor, getPlateFontSize} from './weight/PlateVisualization';
-import WeightUnit from '../conversion/WeightUnit';
 import {PlateMapping} from './settings/Plates';
+import WeightUnit from '../conversion/WeightUnit';
 
 interface WeightPlatesComponentProperties {
   plateDistribution: PlateDistribution;
@@ -21,15 +21,21 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
     return mapping.lbs + 'lbs';
   };
 
-  // TODO: fix tooltip
+  const [legendVisible, setLegendVisible] = useState(false);
+
+  const toggleLegend = () => {
+    setLegendVisible(!legendVisible);
+  };
+
   return (
     <>
-      <View
+      <Pressable
         style={{
           flexDirection: 'row',
           justifyContent: 'flex-end',
           alignItems: 'stretch',
-        }}>
+        }}
+        onPress={toggleLegend}>
         {plateGroups.map((group, index) => (
           <View
             key={index.toString()}
@@ -38,16 +44,14 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
               alignItems: 'flex-end',
               marginLeft: 3,
             }}>
-            <Tooltip popover={<Text>{getWeightText(group.mapping)}</Text>}>
-              <Icon
-                name={'plate'}
-                type={'crossfit'}
-                color={getPlateColor(group.mapping.plate)}
-                size={getPlateFontSize(group.mapping.plate)}
-                containerStyle={{alignSelf: 'flex-end'}}
-                reverse={false}
-              />
-            </Tooltip>
+            <Icon
+              name={'plate'}
+              type={'crossfit'}
+              color={getPlateColor(group.mapping.plate)}
+              size={getPlateFontSize(group.mapping.plate)}
+              containerStyle={{alignSelf: 'flex-end'}}
+              reverse={false}
+            />
             <Badge
               value={group.amount}
               containerStyle={{position: 'absolute', bottom: -3, left: -3}}
@@ -55,7 +59,29 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
             />
           </View>
         ))}
-      </View>
+      </Pressable>
+      <Overlay isVisible={legendVisible} onBackdropPress={toggleLegend} overlayStyle={{borderRadius: 5}}>
+        <View style={{paddingTop: 10}}>
+          {plateGroups.map((group) => (
+            <View style={{flexDirection: 'row', justifyContent: 'center', marginBottom: 10, marginHorizontal: 10}}>
+              <Icon
+                name={'plate'}
+                type={'crossfit'}
+                color={getPlateColor(group.mapping.plate)}
+                size={getPlateFontSize(group.mapping.plate)}
+                containerStyle={{alignSelf: 'center'}}
+                reverse={false}
+              />
+              <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: 'tomato'}}>
+                {group.amount}x{' '}
+              </Text>
+              <Text h4 style={{alignSelf: 'center'}}>
+                {getWeightText(group.mapping)}
+              </Text>
+            </View>
+          ))}
+        </View>
+      </Overlay>
     </>
   );
 };
