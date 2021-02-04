@@ -31,6 +31,16 @@ const start = () => {
       },
     });
   });
+  Navigation.setDefaultOptions({
+    topBar: {
+      title: {
+        color: 'tomato',
+      },
+      backButton: {
+        color: 'tomato',
+      },
+    },
+  });
 };
 
 export {start};

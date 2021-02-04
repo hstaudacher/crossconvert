@@ -92,6 +92,7 @@ const onSettingsPress = () => {
 };
 
 const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
+  WeightPercentagesScreen.options = {};
   componentId = props.componentId;
   const percentager = new WeightPercentager(props.configuration);
   const percentages = percentager.getPercentages(120, 50);
@@ -114,7 +115,6 @@ WeightPercentagesScreen.options = {
   topBar: {
     title: {
       text: 'Percentages',
-      color: 'tomato',
     },
     rightButtons: [
       {

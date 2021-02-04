@@ -50,12 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-OptionsListScreen.options = {
-  topBar: {
-    title: {
-      color: 'tomato',
-    },
-  },
-};
-
 export default OptionsListScreen;

@@ -92,7 +92,6 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
             topBar: {
               backButton: {
                 title: 'Settings',
-                color: 'tomato',
               },
               title: {text: item.title},
             },
@@ -161,7 +160,6 @@ WeightPercentagesSettingsScreen.options = {
   topBar: {
     title: {
       text: 'Weight Settings',
-      color: 'tomato',
     },
   },
 };

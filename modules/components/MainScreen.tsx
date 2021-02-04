@@ -53,10 +53,8 @@ MainScreen.options = {
   topBar: {
     title: {
       text: '3,2,1...GO',
-      color: 'tomato',
     },
     backButton: {
-      color: 'tomato',
       visible: false,
     },
   },
