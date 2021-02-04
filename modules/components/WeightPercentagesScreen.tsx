@@ -73,29 +73,52 @@ const keyExtractor = (item: WeightPercentage, index: Number): string => {
   return index.toString();
 };
 
-let componentId = '';
-
-const onSettingsPress = () => {
-  Navigation.push(componentId, {
-    component: {
-      name: 'WeightPercentagesSettings',
-      options: {
-        topBar: {
-          backButton: {
-            title: 'Percentages',
-            color: 'tomato',
+const setupSettingsButton = (props: WeightDetailsScreenProperties) => {
+  const onSettingsPress = () => {
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'WeightPercentagesSettings',
+        options: {
+          topBar: {
+            backButton: {
+              title: 'Percentages',
+              color: 'tomato',
+            },
           },
         },
       },
+    });
+  };
+
+  Navigation.mergeOptions(props.componentId, {
+    topBar: {
+      title: {
+        text: 'Percentages',
+      },
+      rightButtons: [
+        {
+          id: 'weightPercentagesSettingsButton',
+          text: '',
+          component: {
+            name: 'Icon',
+            passProps: {
+              name: 'sliders',
+              type: 'font-awesome',
+              color: 'tomato',
+              onPress: onSettingsPress,
+            },
+          },
+        },
+      ],
     },
   });
 };
 
 const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
-  WeightPercentagesScreen.options = {};
-  componentId = props.componentId;
+  setupSettingsButton(props);
   const percentager = new WeightPercentager(props.configuration);
   const percentages = percentager.getPercentages(120, 50);
+
   return (
     <>
       <View style={styles.view}>
@@ -116,21 +139,6 @@ WeightPercentagesScreen.options = {
     title: {
       text: 'Percentages',
     },
-    rightButtons: [
-      {
-        id: 'weightPercentagesSettingsButton',
-        text: '',
-        component: {
-          name: 'Icon',
-          passProps: {
-            name: 'sliders',
-            type: 'font-awesome',
-            color: 'tomato',
-            onPress: onSettingsPress,
-          },
-        },
-      },
-    ],
   },
 };
 
