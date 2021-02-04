@@ -57,7 +57,7 @@ const getPercentages = (
   endPercentage: number,
   unit: string,
 ): WeightPercentage[] => {
-  const option = new WeightOption('Weight', 'barbell-outline', 'ionicon', 'green');
+  const option = new WeightOption('Weight', 'barbell-outline', 'ionicon', 'green', 10, 10);
   const config = new ConversionConfiguration(unit, value.toString(), option);
   const percentager = new WeightPercentager(config);
   return percentager.getPercentages(startPercentage, endPercentage);

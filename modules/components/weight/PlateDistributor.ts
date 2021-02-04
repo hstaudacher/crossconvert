@@ -1,8 +1,8 @@
 import {WeightUnit} from '../../conversion';
-import {Plate, plateMappings} from '../settings/Plates';
+import {PlateMapping, plateMappings} from '../settings/Plates';
 
 class PlateGroup {
-  constructor(readonly plate: Plate, readonly amount: number) {}
+  constructor(readonly mapping: PlateMapping, readonly amount: number) {}
 }
 
 class PlateDistribution {
@@ -10,13 +10,13 @@ class PlateDistribution {
 
   public getPlateGroups = (): PlateGroup[] => {
     const plateGroups: PlateGroup[] = [];
-    plateMappings.forEach((mapping) => {
+    plateMappings().forEach((mapping) => {
       const amount = this.plates.filter((p) => {
         const weight = this.unit === WeightUnit.kg ? mapping.kg : mapping.lbs;
         return p === weight;
       }).length;
       if (amount > 0) {
-        plateGroups.push(new PlateGroup(mapping.plate, amount));
+        plateGroups.push(new PlateGroup(mapping, amount));
       }
     });
     return plateGroups;
@@ -31,8 +31,8 @@ class PlateDistributor {
     const plates: number[] = [];
     let weightToDistribute = weight - this.barWeight;
     let plate = availablePlates.shift();
-    while (availablePlates.length >= 0 && weightToDistribute > 0) {
-      if (plate !== undefined && weightToDistribute >= plate * 2) {
+    while (plate !== undefined && availablePlates.length >= 0 && weightToDistribute > 0) {
+      if (weightToDistribute >= plate * 2) {
         plates.push(plate);
         plates.push(plate);
         weightToDistribute = weightToDistribute - 2 * plate;
@@ -43,12 +43,16 @@ class PlateDistributor {
     return new PlateDistribution(plates, this.unit);
   };
 
-  private getAvailablePlates = (): number[] => {
+  private getAvailablePlates(): number[] {
     if (this.unit === WeightUnit.kg) {
-      return plateMappings.map((m) => m.kg).sort((a, b) => b - a);
+      return plateMappings()
+        .map((m) => m.kg)
+        .sort((a, b) => b - a);
     }
-    return plateMappings.map((m) => m.lbs).sort((a, b) => b - a);
-  };
+    return plateMappings()
+      .map((m) => m.lbs)
+      .sort((a, b) => b - a);
+  }
 }
 
 export {PlateDistributor, PlateDistribution, PlateGroup};

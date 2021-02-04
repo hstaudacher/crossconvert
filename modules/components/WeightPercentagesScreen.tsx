@@ -7,7 +7,7 @@ import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager, WeightPercentage} from './weight/WeightPercentager';
 import Color from 'color';
-import {PlateDistribution, PlateDistributor} from './weight/PlateDistributor';
+import {PlateDistributor, PlateDistribution} from './weight/PlateDistributor';
 import WeightPlatesComponent from './WeightPlatesComponent';
 
 interface WeightDetailsScreenProperties extends NavigationComponentProps {

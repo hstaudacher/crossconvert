@@ -12,6 +12,7 @@ interface WeightPercentagesSettingsScreenProperties extends NavigationComponentP
 const PLATE_OPTIONS = [0, 2, 4, 6, 8, 10];
 
 // TODO: add icon for plates
+// TODO: persist state
 
 class PlateAvailability {
   constructor(readonly mapping: PlateMapping, readonly availability: number) {}
@@ -31,15 +32,15 @@ class WeightSettings {
 
   public updateAvailability(plate: Plate, availability: number) {
     const index = this.availablePlates.findIndex((a) => a.mapping.plate === plate);
-    const mapping = this.newMethod(plate);
+    const mapping = this.findMapping(plate);
     this.availablePlates[index] = new PlateAvailability(mapping, availability);
     return new WeightSettings(this.barWeight, this.availablePlates);
   }
 
-  private newMethod(plate: Plate) {
+  private findMapping(plate: Plate) {
     const mapping = this.availablePlates.find((a) => a.mapping.plate === plate)?.mapping;
     if (typeof mapping === 'undefined') {
-      throw new Error();
+      throw new Error('could no find mapping for plate: ' + plate.toString());
     }
     return mapping;
   }
@@ -49,7 +50,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
   const [settings, setSettings] = useState(
     new WeightSettings(
       '20kg',
-      plateMappings.map((m) => new PlateAvailability(m, 4)),
+      plateMappings().map((m) => new PlateAvailability(m, 4)),
     ),
   );
 
@@ -74,7 +75,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
     new SettingsSection(
       'Plates',
       SettingsType.OPTIONS,
-      plateMappings.map((m) => createPlateItem(m)),
+      plateMappings().map((m) => createPlateItem(m)),
     ),
   ];
 
