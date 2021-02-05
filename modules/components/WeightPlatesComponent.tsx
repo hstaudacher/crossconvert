@@ -56,7 +56,9 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
       <Overlay isVisible={legendVisible} onBackdropPress={toggleLegend} overlayStyle={{borderRadius: 5}}>
         <View style={{paddingTop: 10}}>
           {plateGroups.map((group) => (
-            <View style={{flexDirection: 'row', marginBottom: 10, marginHorizontal: 10}}>
+            <View
+              style={{flexDirection: 'row', marginBottom: 10, marginHorizontal: 10}}
+              key={group.mapping.plate.toString()}>
               {renderPlateIcon(group.mapping.plate, {alignSelf: 'flex-end', width: 40})}
               <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: 'tomato'}}>
                 {group.amount}x{' '}
