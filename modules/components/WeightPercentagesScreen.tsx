@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import {WeightUnit} from '../conversion';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import {ListItem, Overlay, Text} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
@@ -11,6 +11,7 @@ import {PlateDistributor, PlateDistribution} from './weight/PlateDistributor';
 import WeightPlatesComponent from './WeightPlatesComponent';
 import {renderPlateIcon} from './weight/PlateVisualization';
 import {PlateMapping} from './settings/Plates';
+import {WeightSettingsStore} from './settings/WeightSettings';
 
 interface WeightDetailsScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
@@ -34,11 +35,6 @@ const computeFontColor = (percentage: number): string => {
       .toString();
   }
   return '#ff4500';
-};
-
-const getPlates = (weight: number, unit: WeightUnit): PlateDistribution => {
-  const distributor = new PlateDistributor(20, unit);
-  return distributor.getPlateDistribution(weight);
 };
 
 const getWeightText = (mapping: PlateMapping, unit: WeightUnit) => {
@@ -88,8 +84,20 @@ const setupSettingsButton = (props: WeightDetailsScreenProperties) => {
   });
 };
 
+const store = new WeightSettingsStore();
+
 const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
   setupSettingsButton(props);
+
+  const [weightSettings, setWeightSettings] = useState(store.defaultSettings);
+  useEffect(() => {
+    store.load().then((s) => setWeightSettings(s));
+  }, []);
+
+  const getPlates = (weight: number, unit: WeightUnit): PlateDistribution => {
+    const distributor = new PlateDistributor(weightSettings, unit);
+    return distributor.getPlateDistribution(weight);
+  };
 
   const [legendVisible, setLegendVisible] = useState(false);
 

@@ -48,7 +48,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
       ),
     ]),
     new SettingsSection(
-      'Plates',
+      'Available Plates',
       SettingsType.OPTIONS,
       plateMappings().map((m) => createPlateItem(m)),
     ),

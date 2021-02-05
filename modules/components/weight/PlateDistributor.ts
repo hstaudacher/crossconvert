@@ -1,5 +1,6 @@
 import {WeightUnit} from '../../conversion';
 import {PlateMapping, plateMappings} from '../settings/Plates';
+import {WeightSettings} from '../settings/WeightSettings';
 
 class PlateGroup {
   constructor(readonly mapping: PlateMapping, readonly amount: number) {}
@@ -24,12 +25,12 @@ class PlateDistribution {
 }
 
 class PlateDistributor {
-  constructor(readonly barWeight: number, readonly unit: WeightUnit) {}
+  constructor(readonly weightSettings: WeightSettings, readonly unit: WeightUnit) {}
 
   public getPlateDistribution = (weight: number): PlateDistribution => {
     const availablePlates = this.getAvailablePlates();
     const plates: number[] = [];
-    let weightToDistribute = weight - this.barWeight;
+    let weightToDistribute = weight - this.getBarWeight();
     let plate = availablePlates.shift();
     while (plate !== undefined && availablePlates.length >= 0 && weightToDistribute > 0) {
       if (weightToDistribute >= plate * 2) {
@@ -52,6 +53,13 @@ class PlateDistributor {
     return plateMappings()
       .map((m) => m.lbs)
       .sort((a, b) => b - a);
+  }
+
+  private getBarWeight() {
+    if (this.unit === WeightUnit.kg) {
+      return this.weightSettings.bar.kg;
+    }
+    return this.weightSettings.bar.lbs;
   }
 }
 

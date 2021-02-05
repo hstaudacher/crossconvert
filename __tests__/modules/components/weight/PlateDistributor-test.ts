@@ -1,3 +1,5 @@
+import {Bar} from '../../../../modules/components/settings/Bar';
+import {WeightSettings} from '../../../../modules/components/settings/WeightSettings';
 import {PlateDistributor} from '../../../../modules/components/weight/PlateDistributor';
 import {WeightUnit} from '../../../../modules/conversion';
 
@@ -29,7 +31,8 @@ const assertPlateDistribution = (
   barWeight: number,
   expectedPlates: number[],
 ): void => {
-  const distribution = new PlateDistributor(barWeight, unit).getPlateDistribution(weight);
+  const weightSettings = new WeightSettings(new Bar('foo', barWeight, barWeight));
+  const distribution = new PlateDistributor(weightSettings, unit).getPlateDistribution(weight);
 
   expect(unit).toEqual(distribution.unit);
   expect(distribution.plates).toEqual(expectedPlates);
