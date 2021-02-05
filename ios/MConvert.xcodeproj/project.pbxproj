@@ -46,7 +46,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MConvertTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MConvertTests.m; sourceTree = "<group>"; };
 		0F01C852AA6AF075E696F4D7 /* Pods-MConvert-MConvertTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MConvert-MConvertTests.debug.xcconfig"; path = "Target Support Files/Pods-MConvert-MConvertTests/Pods-MConvert-MConvertTests.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* M|Convert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "M|Convert.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* MConvert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MConvert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MConvert/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MConvert/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MConvert/Images.xcassets; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* M|Convert.app */,
+				13B07F961A680F5B00A75B9A /* MConvert.app */,
 				00E356EE1AD99517003FC87E /* MConvertTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* MConvert-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* MConvert-tvOSTests.xctest */,
@@ -255,7 +255,7 @@
 			);
 			name = MConvert;
 			productName = MConvert;
-			productReference = 13B07F961A680F5B00A75B9A /* M|Convert.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* MConvert.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* MConvert-tvOS */ = {
@@ -704,7 +704,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.toastingcode.MConvert;
-				PRODUCT_NAME = "MConvert";
+				PRODUCT_NAME = MConvert;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -727,7 +727,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.toastingcode.MConvert;
-				PRODUCT_NAME = "MConvert";
+				PRODUCT_NAME = MConvert;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

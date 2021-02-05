@@ -1,67 +1,39 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, SectionList, Switch, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {Icon, ListItem} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import {renderPlateIcon} from '../weight/PlateVisualization';
-import {Plate, PlateMapping, plateMappings} from './Plates';
+import {Bar, bars} from './Bar';
+import {PlateMapping, plateMappings} from './Plates';
 import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './SettingsListTypes';
+import {WeightSettings, WeightSettingsStore} from './WeightSettings';
 
 interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {}
 
 const PLATE_OPTIONS = [0, 2, 4, 6, 8, 10];
 
-// TODO: add icon for plates
-// TODO: persist state
-
-class PlateAvailability {
-  constructor(readonly mapping: PlateMapping, readonly availability: number) {}
-}
-
-class WeightSettings {
-  constructor(readonly barWeight: string, readonly availablePlates: PlateAvailability[] = []) {}
-
-  public availability(plate: Plate) {
-    const plateAvailability = this.availablePlates.find((a) => a.mapping.plate === plate);
-    return plateAvailability?.availability;
-  }
-
-  public updateBarWeight(newWeight: string) {
-    return new WeightSettings(newWeight, this.availablePlates);
-  }
-
-  public updateAvailability(plate: Plate, availability: number) {
-    const index = this.availablePlates.findIndex((a) => a.mapping.plate === plate);
-    const mapping = this.findMapping(plate);
-    this.availablePlates[index] = new PlateAvailability(mapping, availability);
-    return new WeightSettings(this.barWeight, this.availablePlates);
-  }
-
-  private findMapping(plate: Plate) {
-    const mapping = this.availablePlates.find((a) => a.mapping.plate === plate)?.mapping;
-    if (typeof mapping === 'undefined') {
-      throw new Error('could no find mapping for plate: ' + plate.toString());
-    }
-    return mapping;
-  }
-}
+const store = new WeightSettingsStore();
 
 const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenProperties) => {
-  const [settings, setSettings] = useState(
-    new WeightSettings(
-      '20kg',
-      plateMappings().map((m) => new PlateAvailability(m, 4)),
-    ),
-  );
+  const [settings, setSettings] = useState(store.defaultSettings);
+  useEffect(() => {
+    store.load().then((s) => setSettings(s as WeightSettings));
+  }, []);
+
+  const updateSettings = (newSettings: WeightSettings) => {
+    store.store(newSettings);
+    setSettings(newSettings);
+  };
 
   const createPlateItem = (mapping: PlateMapping) => {
     return new OptionsSettingsItem(
       mapping.kg + 'kg/' + mapping.lbs + 'lbs',
       PLATE_OPTIONS,
       () => settings.availability(mapping.plate),
-      (o: number) => setSettings(settings.updateAvailability(mapping.plate, o)),
-      () => renderPlateIcon(mapping.plate, {alignSelf: 'flex-end', width: 40}),
+      (o: number) => updateSettings(settings.updateAvailability(mapping.plate, o)),
+      () => renderPlateIcon(mapping.plate, styles.listIcon),
     );
   };
 
@@ -69,10 +41,10 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
     new SettingsSection('Bar', SettingsType.OPTIONS, [
       new OptionsSettingsItem(
         'Bar Weight',
-        ['20kg', '16kg', '12kg'],
-        () => settings.barWeight,
-        (o: string) => setSettings(settings.updateBarWeight(o)),
-        () => <Icon name="barbell" type="crossfit" style={{alignSelf: 'flex-end', width: 40}} />,
+        bars(),
+        () => settings.bar,
+        (o: Bar) => updateSettings(settings.updateBar(o)),
+        () => <Icon name="barbell" type="crossfit" style={styles.listIcon} />,
       ),
     ]),
     new SettingsSection(
@@ -114,7 +86,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
       case SettingsType.BOOLEAN:
         return <Switch value={true} />;
       case SettingsType.OPTIONS:
-        return <Text style={{fontSize: 16}}>{(item as OptionsSettingsItem).value()}</Text>;
+        return <Text style={{fontSize: 16}}>{(item as OptionsSettingsItem).value().toString()}</Text>;
     }
   };
   const renderItem = (item: SettingsItem, componentId: string) => {
@@ -158,6 +130,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     backgroundColor: 'tomato',
   },
+  listIcon: {alignSelf: 'flex-end', width: 40},
 });
 
 WeightPercentagesSettingsScreen.options = {

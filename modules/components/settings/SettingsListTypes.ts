@@ -16,7 +16,7 @@ class SettingsItem {
 class OptionsSettingsItem extends SettingsItem {
   constructor(
     readonly title: string,
-    readonly options: string[] | number[],
+    readonly options: any[],
     private readonly valueProvider: Function,
     readonly update: Function,
     readonly renderIcon: Function,

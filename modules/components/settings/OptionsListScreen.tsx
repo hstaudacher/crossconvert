@@ -6,20 +6,20 @@ import {OptionsSettingsItem} from './SettingsListTypes';
 
 interface OptionsListScreenProperties extends NavigationComponentProps {
   item: OptionsSettingsItem;
-  options: string[];
+  options: any[];
   selectionCallback: Function;
 }
 
-const selectItem = (option: string, props: OptionsListScreenProperties) => {
+const selectItem = (option: any, props: OptionsListScreenProperties) => {
   props.selectionCallback(props.item, option);
   Navigation.pop(props.componentId);
 };
 
-const renderItem = (option: string, props: OptionsListScreenProperties) => {
+const renderItem = (option: any, props: OptionsListScreenProperties) => {
   return (
     <ListItem key={option} bottomDivider onPress={() => selectItem(option, props)}>
       <ListItem.Content>
-        <ListItem.Title>{option}</ListItem.Title>
+        <ListItem.Title>{option.toString()}</ListItem.Title>
       </ListItem.Content>
     </ListItem>
   );
