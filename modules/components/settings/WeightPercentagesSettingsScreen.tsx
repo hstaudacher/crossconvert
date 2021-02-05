@@ -72,7 +72,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
         ['20kg', '16kg', '12kg'],
         () => settings.barWeight,
         (o: string) => setSettings(settings.updateBarWeight(o)),
-        () => <Icon name="barbell" type="crossfit" />,
+        () => <Icon name="barbell" type="crossfit" style={{alignSelf: 'flex-end', width: 40}} />,
       ),
     ]),
     new SettingsSection(

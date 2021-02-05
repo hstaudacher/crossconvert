@@ -1,14 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
 import {WeightUnit} from '../conversion';
-import React from 'react';
-import {Text, View, FlatList, StyleSheet} from 'react-native';
-import {ListItem} from 'react-native-elements';
+import React, {useState} from 'react';
+import {View, FlatList, StyleSheet} from 'react-native';
+import {ListItem, Overlay, Text} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager, WeightPercentage} from './weight/WeightPercentager';
 import Color from 'color';
 import {PlateDistributor, PlateDistribution} from './weight/PlateDistributor';
 import WeightPlatesComponent from './WeightPlatesComponent';
+import {renderPlateIcon} from './weight/PlateVisualization';
+import {PlateMapping} from './settings/Plates';
 
 interface WeightDetailsScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
@@ -39,38 +41,11 @@ const getPlates = (weight: number, unit: WeightUnit): PlateDistribution => {
   return distributor.getPlateDistribution(weight);
 };
 
-const renderItem = (percentage: WeightPercentage) => {
-  return (
-    <>
-      <ListItem bottomDivider>
-        <Text style={{fontSize: 30, color: computeFontColor(percentage.percentage)}}>{percentage.percentage}%</Text>
-        <ListItem.Content style={{alignItems: 'flex-end'}}>
-          <ListItem.Title style={{fontSize: 25, opacity: 0.9}}>
-            <Text>
-              {percentage.conversion.fromWeight}
-              {formatUnit(percentage.conversion.fromUnit)}
-            </Text>
-            <Text style={{fontSize: 20, opacity: 0.6}}> / </Text>
-            <Text style={{fontSize: 20, opacity: 0.6}}>
-              {percentage.conversion.toWeight}
-              {formatUnit(percentage.conversion.toUnit)}
-            </Text>
-          </ListItem.Title>
-          <ListItem.Subtitle style={{opacity: 0.9, marginTop: 4}}>
-            <View>
-              <WeightPlatesComponent
-                plateDistribution={getPlates(percentage.conversion.fromWeight, percentage.conversion.fromUnit)}
-              />
-            </View>
-          </ListItem.Subtitle>
-        </ListItem.Content>
-      </ListItem>
-    </>
-  );
-};
-
-const keyExtractor = (item: WeightPercentage, index: Number): string => {
-  return index.toString();
+const getWeightText = (mapping: PlateMapping, unit: WeightUnit) => {
+  if (unit === WeightUnit.kg) {
+    return mapping.kg + 'kg';
+  }
+  return mapping.lbs + 'lbs';
 };
 
 const setupSettingsButton = (props: WeightDetailsScreenProperties) => {
@@ -82,7 +57,6 @@ const setupSettingsButton = (props: WeightDetailsScreenProperties) => {
           topBar: {
             backButton: {
               title: 'Percentages',
-              color: 'tomato',
             },
           },
         },
@@ -116,13 +90,77 @@ const setupSettingsButton = (props: WeightDetailsScreenProperties) => {
 
 const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
   setupSettingsButton(props);
+
+  const [legendVisible, setLegendVisible] = useState(false);
+
+  const toggleLegend = (percentage: WeightPercentage) => {
+    setDistribution(getPlates(percentage.conversion.fromWeight, percentage.conversion.fromUnit));
+    setLegendVisible(!legendVisible);
+  };
+
+  const [distribution, setDistribution] = useState(new PlateDistribution([], WeightUnit.kg));
+
+  const renderItem = (percentage: WeightPercentage) => {
+    return (
+      <>
+        <ListItem bottomDivider onPress={() => toggleLegend(percentage)}>
+          <Text style={{fontSize: 30, color: computeFontColor(percentage.percentage)}}>{percentage.percentage}%</Text>
+          <ListItem.Content style={{alignItems: 'flex-end'}}>
+            <ListItem.Title style={{fontSize: 25, opacity: 0.9}}>
+              <Text>
+                {percentage.conversion.fromWeight}
+                {formatUnit(percentage.conversion.fromUnit)}
+              </Text>
+              <Text style={{fontSize: 20, opacity: 0.6}}> / </Text>
+              <Text style={{fontSize: 20, opacity: 0.6}}>
+                {percentage.conversion.toWeight}
+                {formatUnit(percentage.conversion.toUnit)}
+              </Text>
+            </ListItem.Title>
+            <ListItem.Subtitle style={{opacity: 0.9, marginTop: 4}}>
+              <View>
+                <WeightPlatesComponent
+                  plateDistribution={getPlates(percentage.conversion.fromWeight, percentage.conversion.fromUnit)}
+                />
+              </View>
+            </ListItem.Subtitle>
+            <Overlay
+              isVisible={legendVisible}
+              onBackdropPress={() => toggleLegend(percentage)}
+              overlayStyle={{borderRadius: 5}}>
+              <View style={{paddingTop: 10}}>
+                {distribution.getPlateGroups().map((group) => (
+                  <View
+                    style={{flexDirection: 'row', marginBottom: 10, marginHorizontal: 10}}
+                    key={group.mapping.plate.toString()}>
+                    {renderPlateIcon(group.mapping.plate, {alignSelf: 'flex-end', width: 40})}
+                    <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: 'tomato'}}>
+                      {group.amount}x{' '}
+                    </Text>
+                    <Text h4 style={{alignSelf: 'center'}}>
+                      {getWeightText(group.mapping, percentage.conversion.fromUnit)}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+            </Overlay>
+          </ListItem.Content>
+        </ListItem>
+      </>
+    );
+  };
+
   const percentager = new WeightPercentager(props.configuration);
   const percentages = percentager.getPercentages(120, 50);
 
   return (
     <>
       <View style={styles.view}>
-        <FlatList keyExtractor={keyExtractor} data={percentages} renderItem={(info) => renderItem(info.item)} />
+        <FlatList
+          keyExtractor={(e, i) => i.toString()}
+          data={percentages}
+          renderItem={(info) => renderItem(info.item)}
+        />
       </View>
     </>
   );
