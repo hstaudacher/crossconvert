@@ -91,8 +91,14 @@ const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
 
   const [weightSettings, setWeightSettings] = useState(store.defaultSettings);
   useEffect(() => {
-    store.load().then((s) => setWeightSettings(s));
-  }, []);
+    const subscription = Navigation.events().registerComponentDidAppearListener((event) => {
+      if (props.componentId === event.componentId) {
+        store.load().then((s) => setWeightSettings(s));
+      }
+    });
+
+    return () => subscription.remove();
+  });
 
   const getPlates = (weight: number, unit: WeightUnit): PlateDistribution => {
     const distributor = new PlateDistributor(weightSettings, unit);
