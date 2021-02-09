@@ -2,7 +2,7 @@
 import {WeightUnit} from '../conversion';
 import React, {useEffect, useState} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
-import {ListItem, Overlay, Text} from 'react-native-elements';
+import {Icon, ListItem, Overlay, Text} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager, WeightPercentage} from './weight/WeightPercentager';
@@ -109,6 +109,27 @@ const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
   const [distribution, setDistribution] = useState(new PlateDistribution([], WeightUnit.kg));
 
   const renderItem = (percentage: WeightPercentage) => {
+    const renderCantDistribute = () => {
+      if (!distribution.completelyDistributed) {
+        return (
+          <View style={{flexDirection: 'row', marginBottom: 10, marginHorizontal: 10}} key={'na'}>
+            <Icon
+              key={'na'}
+              name={'exclamation-triangle'}
+              type={'font-awesome'}
+              color={'tomato'}
+              size={25}
+              containerStyle={{alignSelf: 'flex-end', width: 40}}
+              reverse={false}
+            />
+            <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: 'tomato'}}>
+              Not enough plates
+            </Text>
+          </View>
+        );
+      }
+    };
+
     return (
       <>
         <ListItem bottomDivider onPress={() => toggleLegend(percentage)}>
@@ -137,6 +158,7 @@ const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
               onBackdropPress={() => toggleLegend(percentage)}
               overlayStyle={{borderRadius: 5}}>
               <View style={{paddingTop: 10}}>
+                {renderCantDistribute()}
                 {distribution.getPlateGroups().map((group) => (
                   <View
                     style={{flexDirection: 'row', marginBottom: 10, marginHorizontal: 10}}

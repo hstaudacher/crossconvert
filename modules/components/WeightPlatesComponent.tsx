@@ -2,7 +2,7 @@
 import React from 'react';
 import {PlateDistribution, PlateGroup} from './weight/PlateDistributor';
 import {View} from 'react-native';
-import {Badge} from 'react-native-elements';
+import {Badge, Icon, Text} from 'react-native-elements';
 import {renderPlateIcon} from './weight/PlateVisualization';
 
 interface WeightPlatesComponentProperties {
@@ -12,6 +12,30 @@ interface WeightPlatesComponentProperties {
 const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
   const plateGroups: PlateGroup[] = props.plateDistribution.getPlateGroups();
 
+  const renderCantDistribute = () => {
+    if (!props.plateDistribution.completelyDistributed) {
+      return (
+        <View
+          key={'na'}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            marginLeft: 3,
+          }}>
+          <Icon
+            key={'na'}
+            name={'exclamation-triangle'}
+            type={'font-awesome'}
+            color={'tomato'}
+            size={25}
+            containerStyle={{alignSelf: 'center', marginRight: 20}}
+            reverse={false}
+          />
+        </View>
+      );
+    }
+  };
+
   return (
     <>
       <View
@@ -20,6 +44,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
           justifyContent: 'flex-end',
           alignItems: 'stretch',
         }}>
+        {renderCantDistribute()}
         {plateGroups.map((group, index) => (
           <View
             key={index.toString()}

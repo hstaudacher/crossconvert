@@ -7,7 +7,7 @@ class PlateGroup {
 }
 
 class PlateDistribution {
-  constructor(readonly plates: number[], readonly unit: WeightUnit) {}
+  constructor(readonly plates: number[], readonly unit: WeightUnit, readonly completelyDistributed = true) {}
 
   public getPlateGroups = (): PlateGroup[] => {
     const plateGroups: PlateGroup[] = [];
@@ -37,22 +37,27 @@ class PlateDistributor {
         plates.push(plate);
         plates.push(plate);
         weightToDistribute = weightToDistribute - 2 * plate;
-      } else {
-        plate = availablePlates.shift();
       }
+      plate = availablePlates.shift();
+    }
+    if (weightToDistribute > 0) {
+      return new PlateDistribution(plates, this.unit, false);
     }
     return new PlateDistribution(plates, this.unit);
   };
 
   private getAvailablePlates(): number[] {
-    if (this.unit === WeightUnit.kg) {
-      return plateMappings()
-        .map((m) => m.kg)
-        .sort((a, b) => b - a);
-    }
-    return plateMappings()
-      .map((m) => m.lbs)
-      .sort((a, b) => b - a);
+    const plates: number[] = [];
+    this.weightSettings.availablePlates.map((a) => {
+      for (let i = 0; i < a.availability / 2; i++) {
+        if (this.unit === WeightUnit.kg) {
+          plates.push(a.mapping.kg);
+        } else {
+          plates.push(a.mapping.lbs);
+        }
+      }
+    });
+    return plates.sort((a, b) => b - a);
   }
 
   private getBarWeight() {
