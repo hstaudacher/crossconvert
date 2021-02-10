@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, SectionList, Switch, Text} from 'react-native';
+import {SectionList, Switch, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {Icon, ListItem} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
@@ -9,6 +9,7 @@ import {Bar, bars} from './Bar';
 import {PlateMapping, plateMappings} from './Plates';
 import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './SettingsListTypes';
 import {WeightSettings, WeightSettingsStore} from './WeightSettings';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {}
 

@@ -12,6 +12,7 @@ import WeightPlatesComponent from './WeightPlatesComponent';
 import {renderPlateIcon} from './weight/PlateVisualization';
 import {PlateMapping} from './settings/Plates';
 import {WeightSettingsStore} from './settings/WeightSettings';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface WeightDetailsScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
@@ -188,17 +189,17 @@ const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
 
   const percentager = new WeightPercentager(props.configuration);
   // TODO: make range configurable (save/load)
-  const percentages = percentager.getPercentages(120, 50);
+  const percentages = percentager.getPercentages([110, 100, 85]);
 
   return (
     <>
-      <View style={styles.view}>
+      <SafeAreaView style={styles.view}>
         <FlatList
           keyExtractor={(e, i) => i.toString()}
           data={percentages}
           renderItem={(info) => renderItem(info.item)}
         />
-      </View>
+      </SafeAreaView>
     </>
   );
 };
@@ -206,6 +207,7 @@ const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
 const styles = StyleSheet.create({
   view: {
     backgroundColor: '#f2f1f6',
+    flex: 1,
   },
 });
 

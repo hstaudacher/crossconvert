@@ -60,5 +60,13 @@ const getPercentages = (
   const option = new WeightOption('Weight', 'barbell-outline', 'ionicon', 'green', 10, 10);
   const config = new ConversionConfiguration(unit, value.toString(), option);
   const percentager = new WeightPercentager(config);
-  return percentager.getPercentages(startPercentage, endPercentage);
+  const percentagesToCalculate = calcualtePercentageRange(startPercentage, endPercentage);
+  return percentager.getPercentages(percentagesToCalculate);
 };
+function calcualtePercentageRange(startPercentage: number, endPercentage: number) {
+  const percentagesToCalculate = [];
+  for (let p = startPercentage; p >= endPercentage; p -= 5) {
+    percentagesToCalculate.push(p);
+  }
+  return percentagesToCalculate;
+}
