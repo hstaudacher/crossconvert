@@ -2,7 +2,7 @@
 import React from 'react';
 import {PlateDistribution, PlateGroup} from './weight/PlateDistributor';
 import {View} from 'react-native';
-import {Badge, Icon, Text} from 'react-native-elements';
+import {Badge, Icon} from 'react-native-elements';
 import {renderPlateIcon} from './weight/PlateVisualization';
 
 interface WeightPlatesComponentProperties {

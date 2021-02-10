@@ -187,6 +187,7 @@ const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
   };
 
   const percentager = new WeightPercentager(props.configuration);
+  // TODO: make range configurable (save/load)
   const percentages = percentager.getPercentages(120, 50);
 
   return (
