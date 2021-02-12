@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import {WeightUnit} from '../conversion';
-import React, {useEffect, useState} from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {View, StyleSheet, Dimensions, Animated, TouchableOpacity} from 'react-native';
 import {Icon, ListItem, Overlay, Text} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
@@ -13,6 +13,7 @@ import {renderPlateIcon} from './weight/PlateVisualization';
 import {PlateMapping} from './settings/Plates';
 import {WeightSettingsStore} from './settings/WeightSettings';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {SwipeListView} from 'react-native-swipe-list-view';
 
 interface WeightDetailsScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
@@ -187,17 +188,49 @@ const WeightPercentagesScreen = (props: WeightDetailsScreenProperties) => {
     );
   };
 
-  const percentager = new WeightPercentager(props.configuration);
-  // TODO: make range configurable (save/load)
-  const percentages = percentager.getPercentages([110, 100, 85]);
+  const [percentages, setPercentages] = useState([110, 100, 85]);
+
+  const weightPercentager = new WeightPercentager(props.configuration);
+  const weightPercentages = weightPercentager.getPercentages(percentages);
+
+  const closePercentageMenu = (row: any, rows: any) => {
+    if (rows[row.index]) {
+      rows[row.index].closeRow();
+    }
+  };
+
+  const deletePercentage = (row: any, rows: any) => {
+    closePercentageMenu(row, rows);
+    const newPercentages = [...percentages];
+    const indexToDelete = percentages.findIndex((p, index) => index === row.index);
+    newPercentages.splice(indexToDelete, 1);
+    setPercentages(newPercentages);
+  };
+
+  const renderHiddenItem = (row: any, rows: any) => (
+    <View style={styles.rowBack}>
+      <TouchableOpacity
+        style={[styles.backRightBtn, styles.backRightBtnRight]}
+        onPress={() => deletePercentage(row, rows)}>
+        <Text style={styles.backTextWhite}>Delete</Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <>
       <SafeAreaView style={styles.view}>
-        <FlatList
+        <SwipeListView
+          disableRightSwipe
           keyExtractor={(e, i) => i.toString()}
-          data={percentages}
+          data={weightPercentages}
           renderItem={(info) => renderItem(info.item)}
+          renderHiddenItem={renderHiddenItem}
+          leftOpenValue={75}
+          rightOpenValue={-75}
+          previewRowKey={'0'}
+          previewOpenValue={-40}
+          previewOpenDelay={3000}
         />
       </SafeAreaView>
     </>
@@ -208,6 +241,29 @@ const styles = StyleSheet.create({
   view: {
     backgroundColor: '#f2f1f6',
     flex: 1,
+  },
+  rowBack: {
+    alignItems: 'center',
+    backgroundColor: 'red',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 15,
+  },
+  backRightBtn: {
+    alignItems: 'center',
+    bottom: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    width: 75,
+  },
+  backRightBtnRight: {
+    backgroundColor: 'red',
+    right: 0,
+  },
+  backTextWhite: {
+    color: '#FFF',
   },
 });
 
