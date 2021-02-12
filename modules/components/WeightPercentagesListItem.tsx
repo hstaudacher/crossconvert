@@ -20,22 +20,6 @@ const formatUnit = (unit: WeightUnit): string => {
   return unit === WeightUnit.kg ? 'kg' : 'lbs';
 };
 
-const computeFontColor = (percentage: number): string => {
-  if (percentage > 100) {
-    return Color('#ff6347')
-      .lighten((percentage - 100) / 200)
-      .hex()
-      .toString();
-  }
-  if (percentage < 100) {
-    return Color('#ff6347')
-      .lighten((100 - percentage) / 200)
-      .hex()
-      .toString();
-  }
-  return '#ff4500';
-};
-
 const getWeightText = (mapping: PlateMapping, unit: WeightUnit) => {
   if (unit === WeightUnit.kg) {
     return mapping.kg + 'kg';
@@ -82,9 +66,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
   return (
     <>
       <ListItem bottomDivider onPress={() => toggleLegend(props.percentage)}>
-        <Text style={{fontSize: 30, color: computeFontColor(props.percentage.percentage)}}>
-          {props.percentage.percentage}%
-        </Text>
+        <Text style={{fontSize: 30, color: '#ff4500'}}>{props.percentage.percentage}%</Text>
         <ListItem.Content style={{alignItems: 'flex-end'}}>
           <ListItem.Title style={{fontSize: 25, opacity: 0.9}}>
             <Text>
