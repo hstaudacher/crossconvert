@@ -9,63 +9,24 @@ import {WeightSettingsStore} from './settings/WeightSettings';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import WeightPercentagesListItem from './WeightPercentagesListItem';
+import WeightPercentageScreenNavigation from './WeightPercentagesScreenNavigation';
 
 interface WeightPercentagesScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
 }
 
-const setupSettingsButton = (props: WeightPercentagesScreenProperties) => {
-  const onSettingsPress = () => {
-    Navigation.push(props.componentId, {
-      component: {
-        name: 'WeightPercentagesSettings',
-        options: {
-          topBar: {
-            backButton: {
-              title: 'Percentages',
-            },
-          },
-        },
-      },
-    });
-  };
-
-  Navigation.mergeOptions(props.componentId, {
-    topBar: {
-      title: {
-        text: 'Percentages',
-      },
-      rightButtons: [
-        {
-          id: 'weightPercentagesSettingsButton',
-          text: '',
-          component: {
-            name: 'Icon',
-            passProps: {
-              name: 'sliders',
-              type: 'font-awesome',
-              color: 'tomato',
-              onPress: onSettingsPress,
-            },
-          },
-        },
-      ],
-    },
-  });
-};
-
-const store = new WeightSettingsStore();
+const weightSettingsStore = new WeightSettingsStore();
 
 const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
-  setupSettingsButton(props);
+  new WeightPercentageScreenNavigation(props.componentId).setup();
 
-  const [weightSettings, setWeightSettings] = useState(store.defaultSettings);
+  const [weightSettings, setWeightSettings] = useState(weightSettingsStore.defaultSettings);
   const [percentages, setPercentages] = useState([110, 100, 85]); // TODO: persist
 
   useEffect(() => {
     const subscription = Navigation.events().registerComponentDidAppearListener((event) => {
       if (props.componentId === event.componentId) {
-        store.load().then((s) => setWeightSettings(s));
+        weightSettingsStore.load().then((s) => setWeightSettings(s));
       }
     });
     return () => subscription.remove();
