@@ -17,10 +17,10 @@ interface WeightPercentagesScreenProperties extends NavigationComponentProps {
 }
 
 const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
-  new WeightPercentageScreenNavigation(props.componentId).setup();
-
-  const [weightSettings] = useState(weightSettingsStore.getSettings());
+  const [weightSettings, setWeightSettings] = useState(weightSettingsStore.getSettings());
   const [percentageRange, setPercentageRange] = useState(store.getRange());
+
+  new WeightPercentageScreenNavigation(props.componentId).setup(weightSettings, setWeightSettings);
 
   const closePercentageMenu = (row: any, rows: any) => {
     if (rows[row.index]) {

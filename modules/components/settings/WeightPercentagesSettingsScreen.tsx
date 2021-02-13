@@ -8,18 +8,21 @@ import {renderPlateIcon} from '../weight/PlateVisualization';
 import {Bar, bars} from './Bar';
 import {PlateMapping, plateMappings} from './Plates';
 import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './SettingsListTypes';
-import {WeightSettings, store as weightSettingsStore} from '../store/WeightSettingsStore';
+import {WeightSettings} from '../store/WeightSettingsStore';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {}
+interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {
+  settings: WeightSettings;
+  onSettingsUpdate: Function;
+}
 
 const PLATE_OPTIONS = [0, 2, 4, 6, 8, 10];
 
 const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenProperties) => {
-  const [settings, setSettings] = useState(weightSettingsStore.getSettings());
+  const [settings, setSettings] = useState(props.settings);
 
   const updateSettings = (newSettings: WeightSettings) => {
-    weightSettingsStore.store(newSettings);
+    props.onSettingsUpdate(newSettings);
     setSettings(newSettings);
   };
 

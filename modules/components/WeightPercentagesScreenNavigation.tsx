@@ -1,9 +1,10 @@
 import {Navigation} from 'react-native-navigation';
+import {WeightSettings} from './store/WeightSettingsStore';
 
 class WeightPercentageScreenNavigation {
   constructor(readonly componentId: string) {}
 
-  public setup() {
+  public setup(settings: WeightSettings, onSettingsUpdate: Function) {
     const onSettingsPress = () => {
       Navigation.push(this.componentId, {
         component: {
@@ -14,6 +15,10 @@ class WeightPercentageScreenNavigation {
                 title: 'Percentages',
               },
             },
+          },
+          passProps: {
+            settings: settings,
+            onSettingsUpdate: onSettingsUpdate,
           },
         },
       });
