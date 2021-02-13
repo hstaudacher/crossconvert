@@ -5,7 +5,7 @@ import {Divider, Text} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager} from './weight/WeightPercentager';
-import {store as weightSettingsStore} from './store/WeightSettingsStore';
+import {store as weightSettingsStore, WeightSettings} from './store/WeightSettingsStore';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import WeightPercentagesListItem from './WeightPercentagesListItem';
 import WeightPercentageScreenNavigation from './WeightPercentagesScreenNavigation';
@@ -20,7 +20,12 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
   const [weightSettings, setWeightSettings] = useState(weightSettingsStore.getSettings());
   const [percentageRange, setPercentageRange] = useState(store.getRange());
 
-  new WeightPercentageScreenNavigation(props.componentId).setup(weightSettings, setWeightSettings);
+  const updateWeightSettings = (settings: WeightSettings) => {
+    setWeightSettings(settings);
+    weightSettingsStore.store(settings);
+  };
+
+  new WeightPercentageScreenNavigation(props.componentId).setup(weightSettings, updateWeightSettings);
 
   const closePercentageMenu = (row: any, rows: any) => {
     if (rows[row.index]) {
