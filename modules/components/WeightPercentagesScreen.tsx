@@ -82,7 +82,13 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
               disableRightSwipe
               keyExtractor={(e, i) => i.toString()}
               data={weightPercentages}
-              renderItem={(info) => <WeightPercentagesListItem percentage={info.item} settings={weightSettings} />}
+              renderItem={(info) => (
+                <WeightPercentagesListItem
+                  percentage={info.item}
+                  settings={weightSettings}
+                  weightAsDescription={false}
+                />
+              )}
               renderHiddenItem={renderHiddenItem}
               leftOpenValue={75}
               rightOpenValue={-75}

@@ -6,6 +6,9 @@ import {ListItem, Icon} from 'react-native-elements';
 import {fromOptions} from './options/FromOptions';
 import {ConversionResult, FromOption} from './options/FromOption';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
+import WeightPercentagesListItem from './WeightPercentagesListItem';
+import {WeightPercentager} from './weight/WeightPercentager';
+import {store} from './store/WeightSettingsStore';
 
 class ConvertedOption {
   conversionResults: Array<ConversionResult>;
@@ -36,29 +39,6 @@ const isWeightConversion = (convertedOption: ConvertedOption): boolean => {
   return convertedOption.configuration.unit === 'lb' || convertedOption.configuration.unit === 'kg';
 };
 
-const renderWeightPercentages = (convertedOption: ConvertedOption, componentId: string): Element | void => {
-  if (isWeightConversion(convertedOption)) {
-    return (
-      <ListItem
-        bottomDivider
-        containerStyle={styles.container}
-        onPress={() => onOptionPress(convertedOption, componentId)}>
-        <Icon
-          name="percent"
-          type="crossfit"
-          color="#33618f"
-          size={36}
-          iconProps={{name: 'percent', size: convertedOption.option.resultIconSize}}
-        />
-        <ListItem.Content>
-          <ListItem.Title style={{fontSize: 25, color: '#33618f', marginLeft: 8}}>Percentages</ListItem.Title>
-        </ListItem.Content>
-        <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
-      </ListItem>
-    );
-  }
-};
-
 const onOptionPress = (convertedOption: ConvertedOption, componentId: string) => {
   if (isWeightConversion(convertedOption)) {
     Navigation.push(componentId, {
@@ -80,7 +60,33 @@ const onOptionPress = (convertedOption: ConvertedOption, componentId: string) =>
   }
 };
 
-const renderItem = (convertedOption: ConvertedOption, componentId: string) => {
+const renderWeightItem = (convertedOption: ConvertedOption, componentId: string) => {
+  const percentager = new WeightPercentager(convertedOption.configuration);
+  const percentage = percentager.getPercentages([100])[0];
+  return (
+    <>
+      <WeightPercentagesListItem percentage={percentage} settings={store.getSettings()} weightAsDescription={true} />
+      <ListItem
+        bottomDivider
+        containerStyle={styles.container}
+        onPress={() => onOptionPress(convertedOption, componentId)}>
+        <Icon
+          name="percent"
+          type="crossfit"
+          color="#33618f"
+          size={36}
+          iconProps={{name: 'percent', size: convertedOption.option.resultIconSize}}
+        />
+        <ListItem.Content>
+          <ListItem.Title style={{fontSize: 25, color: '#33618f', marginLeft: 8}}>Percentages</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
+      </ListItem>
+    </>
+  );
+};
+
+const renderConvertedItem = (convertedOption: ConvertedOption) => {
   return (
     <>
       <ListItem bottomDivider containerStyle={styles.container}>
@@ -106,9 +112,15 @@ const renderItem = (convertedOption: ConvertedOption, componentId: string) => {
           </ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>
-      {renderWeightPercentages(convertedOption, componentId)}
     </>
   );
+};
+
+const renderItem = (convertedOption: ConvertedOption, componentId: string) => {
+  if (isWeightConversion(convertedOption)) {
+    return renderWeightItem(convertedOption, componentId);
+  }
+  return renderConvertedItem(convertedOption);
 };
 
 const keyExtractor = (item: ConvertedOption, index: Number): string => {

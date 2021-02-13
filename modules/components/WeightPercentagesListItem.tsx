@@ -13,6 +13,7 @@ import WeightPlatesComponent from './WeightPlatesComponent';
 interface WeightPercentageListItemProperties {
   percentage: WeightPercentage;
   settings: WeightSettings;
+  weightAsDescription: boolean;
 }
 
 const formatUnit = (unit: WeightUnit): string => {
@@ -62,22 +63,51 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
     }
   };
 
+  const renderText = () => {
+    if (props.weightAsDescription) {
+      return (
+        <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 4}}>
+          <Icon
+            name={'barbell'}
+            type={'crossfit'}
+            color={'#c3272e'}
+            size={36}
+            iconProps={{name: 'barbell', size: 40}}
+          />
+          <Text style={{fontSize: 25, color: '#c3272e', marginLeft: 23}}>
+            {props.percentage.conversion.toWeight}
+            {formatUnit(props.percentage.conversion.toUnit)}
+          </Text>
+        </View>
+      );
+    }
+    return <Text style={{fontSize: 25, color: '#ff4500'}}>{props.percentage.percentage}%</Text>;
+  };
+
+  const renderTitle = () => {
+    if (!props.weightAsDescription) {
+      return (
+        <ListItem.Title style={{fontSize: 25, opacity: 0.9}}>
+          <Text>
+            {props.percentage.conversion.fromWeight}
+            {formatUnit(props.percentage.conversion.fromUnit)}
+          </Text>
+          <Text style={{fontSize: 20, opacity: 0.6}}> / </Text>
+          <Text style={{fontSize: 20, opacity: 0.6}}>
+            {props.percentage.conversion.toWeight}
+            {formatUnit(props.percentage.conversion.toUnit)}
+          </Text>
+        </ListItem.Title>
+      );
+    }
+  };
+
   return (
     <>
       <ListItem bottomDivider onPress={() => toggleLegend(props.percentage)}>
-        <Text style={{fontSize: 30, color: '#ff4500'}}>{props.percentage.percentage}%</Text>
+        {renderText()}
         <ListItem.Content style={{alignItems: 'flex-end'}}>
-          <ListItem.Title style={{fontSize: 25, opacity: 0.9}}>
-            <Text>
-              {props.percentage.conversion.fromWeight}
-              {formatUnit(props.percentage.conversion.fromUnit)}
-            </Text>
-            <Text style={{fontSize: 20, opacity: 0.6}}> / </Text>
-            <Text style={{fontSize: 20, opacity: 0.6}}>
-              {props.percentage.conversion.toWeight}
-              {formatUnit(props.percentage.conversion.toUnit)}
-            </Text>
-          </ListItem.Title>
+          {renderTitle()}
           <ListItem.Subtitle style={{opacity: 0.9, marginTop: 4}}>
             <View>
               <WeightPlatesComponent
