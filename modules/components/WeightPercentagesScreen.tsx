@@ -5,35 +5,22 @@ import {Divider, Text} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager} from './weight/WeightPercentager';
-import {WeightSettingsStore} from './settings/WeightSettings';
+import {store as weightSettingsStore} from './store/WeightSettingsStore';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import WeightPercentagesListItem from './WeightPercentagesListItem';
 import WeightPercentageScreenNavigation from './WeightPercentagesScreenNavigation';
 import WeightPercentagesAddView from './WeightPercentagesAddView';
-import {WeightPercentageRange, WeightPercentageRangeStore} from './WeightPercentageRange';
+import {WeightPercentageRange, store} from './store/WeightPercentageRangeStore';
 
 interface WeightPercentagesScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
 }
 
-const weightSettingsStore = new WeightSettingsStore();
-const weightPercentageRangeStore = new WeightPercentageRangeStore();
-
 const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
   new WeightPercentageScreenNavigation(props.componentId).setup();
 
-  const [weightSettings, setWeightSettings] = useState(weightSettingsStore.defaultSettings);
-  const [percentageRange, setPercentageRange] = useState(weightPercentageRangeStore.defaultRange);
-
-  useEffect(() => {
-    const subscription = Navigation.events().registerComponentDidAppearListener((event) => {
-      if (props.componentId === event.componentId) {
-        weightSettingsStore.load().then((s) => setWeightSettings(s));
-        weightPercentageRangeStore.load().then((p) => setPercentageRange(p));
-      }
-    });
-    return () => subscription.remove();
-  });
+  const [weightSettings] = useState(weightSettingsStore.getSettings());
+  const [percentageRange, setPercentageRange] = useState(store.getRange());
 
   const closePercentageMenu = (row: any, rows: any) => {
     if (rows[row.index]) {
@@ -47,7 +34,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
     const indexToDelete = newRange.findIndex((p, index) => index === row.index);
     newRange.splice(indexToDelete, 1);
     const range = new WeightPercentageRange(newRange);
-    weightPercentageRangeStore.store(range);
+    store.store(range);
     setPercentageRange(range);
   };
 
@@ -82,7 +69,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
       newPercentages.push(newPercentage);
     }
     const range = new WeightPercentageRange(newPercentages.sort((a, b) => b - a));
-    weightPercentageRangeStore.store(range);
+    store.store(range);
     setPercentageRange(range);
   };
 

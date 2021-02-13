@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Bar, bars} from './Bar';
-import {Plate, PlateMapping, plateMappings} from './Plates';
+import {Bar, bars} from '../settings/Bar';
+import {Plate, PlateMapping, plateMappings} from '../settings/Plates';
 
 class PlateAvailability {
   constructor(readonly mapping: PlateMapping, readonly availability: number) {}
@@ -35,13 +35,24 @@ class WeightSettings {
 }
 
 class WeightSettingsStore {
-  public readonly defaultSettings = new WeightSettings(
+  private readonly defaultSettings = new WeightSettings(
     bars()[0],
     plateMappings().map((m) => new PlateAvailability(m, 4)),
   );
 
+  private settings = this.defaultSettings;
+
+  public initialize() {
+    this.load().then((s) => (this.settings = s));
+  }
+
+  public getSettings() {
+    return this.settings;
+  }
+
   public store = async (settings: WeightSettings) => {
     try {
+      this.settings = settings;
       const jsonValue = JSON.stringify(settings);
       await AsyncStorage.setItem('@mconvert.weightSettings', jsonValue);
     } catch (e) {
@@ -49,7 +60,7 @@ class WeightSettingsStore {
     }
   };
 
-  public load = async <WeightSettings>() => {
+  private load = async <WeightSettings>() => {
     try {
       const jsonValue = await AsyncStorage.getItem('@mconvert.weightSettings');
       const settings = jsonValue != null ? JSON.parse(jsonValue) : this.defaultSettings;
@@ -61,4 +72,6 @@ class WeightSettingsStore {
   };
 }
 
-export {WeightSettings, PlateAvailability, WeightSettingsStore};
+const store = new WeightSettingsStore();
+
+export {WeightSettings, PlateAvailability, store};

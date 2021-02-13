@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {SectionList, Switch, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {Icon, ListItem} from 'react-native-elements';
@@ -8,23 +8,18 @@ import {renderPlateIcon} from '../weight/PlateVisualization';
 import {Bar, bars} from './Bar';
 import {PlateMapping, plateMappings} from './Plates';
 import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './SettingsListTypes';
-import {WeightSettings, WeightSettingsStore} from './WeightSettings';
+import {WeightSettings, store as weightSettingsStore} from '../store/WeightSettingsStore';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {}
 
 const PLATE_OPTIONS = [0, 2, 4, 6, 8, 10];
 
-const store = new WeightSettingsStore();
-
 const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenProperties) => {
-  const [settings, setSettings] = useState(store.defaultSettings);
-  useEffect(() => {
-    store.load().then((s) => setSettings(s as WeightSettings));
-  }, []);
+  const [settings, setSettings] = useState(weightSettingsStore.getSettings());
 
   const updateSettings = (newSettings: WeightSettings) => {
-    store.store(newSettings);
+    weightSettingsStore.store(newSettings);
     setSettings(newSettings);
   };
 
