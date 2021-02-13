@@ -5,8 +5,7 @@ import OptionsListScreen from './modules/components/settings/OptionsListScreen';
 import {registerCustomIconType, Icon} from 'react-native-elements';
 import CrossFitIcons from './fonts/CrossFitIcons';
 import {Navigation} from 'react-native-navigation';
-import {store} from './modules/components/store/WeightPercentageRangeStore';
-import {store as settingsStore} from './modules/components/store/WeightSettingsStore';
+import DataStore from './modules/components/store/DataStore';
 
 registerCustomIconType('crossfit', CrossFitIcons);
 
@@ -43,8 +42,7 @@ const start = () => {
       },
     },
   });
-  store.initialize();
-  settingsStore.initialize();
+  new DataStore().initialize();
 };
 
 export {start};
