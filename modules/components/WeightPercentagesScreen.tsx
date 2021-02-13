@@ -5,12 +5,12 @@ import {Divider, Text} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager} from './weight/WeightPercentager';
-import {store as weightSettingsStore, WeightSettings} from './store/WeightSettingsStore';
+import {WeightSettings, store as weightSettingsStore} from './store/WeightSettingsStore';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import WeightPercentagesListItem from './WeightPercentagesListItem';
 import WeightPercentageScreenNavigation from './WeightPercentagesScreenNavigation';
 import WeightPercentagesAddView from './WeightPercentagesAddView';
-import {WeightPercentageRange, store} from './store/WeightPercentageRangeStore';
+import {WeightPercentageRange, store as rangeStore} from './store/WeightPercentageRangeStore';
 
 interface WeightPercentagesScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
@@ -18,7 +18,7 @@ interface WeightPercentagesScreenProperties extends NavigationComponentProps {
 
 const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
   const [weightSettings, setWeightSettings] = useState(weightSettingsStore.getSettings());
-  const [percentageRange, setPercentageRange] = useState(store.getRange());
+  const [percentageRange, setPercentageRange] = useState(rangeStore.getRange());
 
   const updateWeightSettings = (settings: WeightSettings) => {
     setWeightSettings(settings);
@@ -39,7 +39,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
     const indexToDelete = newRange.findIndex((p, index) => index === row.index);
     newRange.splice(indexToDelete, 1);
     const range = new WeightPercentageRange(newRange);
-    store.store(range);
+    rangeStore.store(range);
     setPercentageRange(range);
   };
 
@@ -74,7 +74,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
       newPercentages.push(newPercentage);
     }
     const range = new WeightPercentageRange(newPercentages.sort((a, b) => b - a));
-    store.store(range);
+    rangeStore.store(range);
     setPercentageRange(range);
   };
 
