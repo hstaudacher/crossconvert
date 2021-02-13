@@ -1,6 +1,6 @@
 import {Plate, PlateMapping, plateMappings} from '../../../../modules/components/settings/Plates';
 import {Bar} from '../../../../modules/components/settings/Bar';
-import {PlateAvailability, WeightSettings} from '../../../../modules/components/settings/WeightSettings';
+import {PlateAvailability, WeightSettings} from '../../../../modules/components/store/WeightSettingsStore';
 import {PlateDistributor} from '../../../../modules/components/weight/PlateDistributor';
 import {WeightUnit} from '../../../../modules/conversion';
 
@@ -23,7 +23,7 @@ describe('distributes kg plates', () => {
 
   test('distributes lower weight as bar weight', () => assertPlateDistribution(10, WeightUnit.kg, 20, []));
 
-  test('distributes 100 lbs plates', () => assertPlateDistribution(100, WeightUnit.lbs, 45, [25, 25, 2.5, 2.5]));
+  test('distributes 100 lb plates', () => assertPlateDistribution(100, WeightUnit.lb, 45, [25, 25, 2.5, 2.5]));
 
   test('distributes weight with limited plates, 20s and 10s', () => {
     assertDistributionWithLimitedAvailability(

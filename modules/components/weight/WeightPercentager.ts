@@ -16,8 +16,8 @@ class WeightPercentager {
   private calculatePercentage = (percentage: number): WeightPercentage => {
     const value = numeral(this.configuration.value).value();
     const fromWeight = (value / 100) * percentage;
-    const fromUnit = this.configuration.unit === 'kg' ? WeightUnit.kg : WeightUnit.lbs;
-    const toUnit = fromUnit === WeightUnit.kg ? WeightUnit.lbs : WeightUnit.kg;
+    const fromUnit = this.configuration.unit === 'kg' ? WeightUnit.kg : WeightUnit.lb;
+    const toUnit = fromUnit === WeightUnit.kg ? WeightUnit.lb : WeightUnit.kg;
     const converter = new WeightConverter(fromUnit, fromWeight);
     const conversion = converter.convertTo(toUnit);
     return new WeightPercentage(percentage, this.formatConversion(conversion));

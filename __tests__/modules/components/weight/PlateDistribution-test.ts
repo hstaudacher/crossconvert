@@ -44,35 +44,35 @@ describe('plate distribution uses color coded plates', () => {
       new PlateGroup(mapping(Plate.FRACTIONAL_GREEN), 2),
     ]));
 
-  test('distributes 2 red lbs', () =>
-    assertPlateDistribution([55, 55], WeightUnit.lbs, [new PlateGroup(mapping(Plate.RED), 2)]));
+  test('distributes 2 red lb', () =>
+    assertPlateDistribution([55, 55], WeightUnit.lb, [new PlateGroup(mapping(Plate.RED), 2)]));
 
-  test('distributes 2 blue lbs', () =>
-    assertPlateDistribution([45, 45], WeightUnit.lbs, [new PlateGroup(mapping(Plate.BLUE), 2)]));
+  test('distributes 2 blue lb', () =>
+    assertPlateDistribution([45, 45], WeightUnit.lb, [new PlateGroup(mapping(Plate.BLUE), 2)]));
 
-  test('distributes 2 yellow lbs', () =>
-    assertPlateDistribution([35, 35], WeightUnit.lbs, [new PlateGroup(mapping(Plate.YELLOW), 2)]));
+  test('distributes 2 yellow lb', () =>
+    assertPlateDistribution([35, 35], WeightUnit.lb, [new PlateGroup(mapping(Plate.YELLOW), 2)]));
 
-  test('distributes 2 green lbs', () =>
-    assertPlateDistribution([25, 25], WeightUnit.lbs, [new PlateGroup(mapping(Plate.GREEN), 2)]));
+  test('distributes 2 green lb', () =>
+    assertPlateDistribution([25, 25], WeightUnit.lb, [new PlateGroup(mapping(Plate.GREEN), 2)]));
 
-  test('distributes 2 white lbs', () =>
-    assertPlateDistribution([10, 10], WeightUnit.lbs, [new PlateGroup(mapping(Plate.WHITE), 2)]));
+  test('distributes 2 white lb', () =>
+    assertPlateDistribution([10, 10], WeightUnit.lb, [new PlateGroup(mapping(Plate.WHITE), 2)]));
 
-  test('distributes 2 fractional blue lbs', () =>
-    assertPlateDistribution([5, 5], WeightUnit.lbs, [new PlateGroup(mapping(Plate.FRACTIONAL_BLUE), 2)]));
+  test('distributes 2 fractional blue lb', () =>
+    assertPlateDistribution([5, 5], WeightUnit.lb, [new PlateGroup(mapping(Plate.FRACTIONAL_BLUE), 2)]));
 
-  test('distributes 2 fractional green lbs', () =>
-    assertPlateDistribution([2.5, 2.5], WeightUnit.lbs, [new PlateGroup(mapping(Plate.FRACTIONAL_GREEN), 2)]));
+  test('distributes 2 fractional green lb', () =>
+    assertPlateDistribution([2.5, 2.5], WeightUnit.lb, [new PlateGroup(mapping(Plate.FRACTIONAL_GREEN), 2)]));
 
-  test('distributes 2 fractional red lbs', () =>
-    assertPlateDistribution([1, 1], WeightUnit.lbs, [new PlateGroup(mapping(Plate.FRACTIONAL_RED), 2)]));
+  test('distributes 2 fractional red lb', () =>
+    assertPlateDistribution([1, 1], WeightUnit.lb, [new PlateGroup(mapping(Plate.FRACTIONAL_RED), 2)]));
 
-  test('distributes 2 fractional yellow lbs', () =>
-    assertPlateDistribution([0.5, 0.5], WeightUnit.lbs, [new PlateGroup(mapping(Plate.FRACTIONAL_YELLOW), 2)]));
+  test('distributes 2 fractional yellow lb', () =>
+    assertPlateDistribution([0.5, 0.5], WeightUnit.lb, [new PlateGroup(mapping(Plate.FRACTIONAL_YELLOW), 2)]));
 
-  test('distributes 2 blues and 2 fractional green lbs', () =>
-    assertPlateDistribution([45, 45, 2.5, 2.5], WeightUnit.lbs, [
+  test('distributes 2 blues and 2 fractional green lb', () =>
+    assertPlateDistribution([45, 45, 2.5, 2.5], WeightUnit.lb, [
       new PlateGroup(mapping(Plate.BLUE), 2),
       new PlateGroup(mapping(Plate.FRACTIONAL_GREEN), 2),
     ]));

@@ -11,7 +11,7 @@ describe('filters from options', () => {
 
   test('filters options based on ft', () => assertFromContains('ft', ['Distance']));
 
-  test('filters options based on lbs', () => assertFromContains('lbs', ['Weight']));
+  test('filters options based on lb', () => assertFromContains('lb', ['Weight']));
 
   test('filters options based on kg', () => assertFromContains('kg', ['Weight']));
 });

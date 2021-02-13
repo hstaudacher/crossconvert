@@ -1,5 +1,5 @@
 class Bar {
-  constructor(readonly name: string, readonly kg: number, readonly lbs: number) {}
+  constructor(readonly name: string, readonly kg: number, readonly lb: number) {}
 
   public toString() {
     return this.name;
@@ -8,10 +8,10 @@ class Bar {
 
 const bars = () => {
   return [
-    new Bar('20kg/45lbs', 20, 45),
-    new Bar('15kg/33lbs', 15, 33),
-    new Bar('16kg/35lbs', 16, 35),
-    new Bar('12kg/25lbs', 12, 25),
+    new Bar('20kg/45lb', 20, 45),
+    new Bar('15kg/33lb', 15, 33),
+    new Bar('16kg/35lb', 16, 35),
+    new Bar('12kg/25lb', 12, 25),
   ];
 };
 

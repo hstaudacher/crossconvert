@@ -28,7 +28,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
 
   const createPlateItem = (mapping: PlateMapping) => {
     return new OptionsSettingsItem(
-      mapping.kg + 'kg/' + mapping.lbs + 'lbs',
+      mapping.kg + 'kg/' + mapping.lb + 'lb',
       PLATE_OPTIONS,
       () => settings.availability(mapping.plate),
       (o: number) => updateSettings(settings.updateAvailability(mapping.plate, o)),

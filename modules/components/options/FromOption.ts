@@ -15,7 +15,7 @@ export abstract class FromOption {
   private formatNumber = (value: number, unit: string): string => {
     if (value < 1 && value > 0 && unit !== 'cal') {
       return numeral(value).format('0,0.00');
-    } else if (unit === 'cal' || unit === 'lbs' || unit === 'kg') {
+    } else if (unit === 'cal' || unit === 'lb' || unit === 'kg') {
       return numeral(value).format();
     } else if (unit === 'm') {
       return numeral(this.roundToNearestTen(value)).format();

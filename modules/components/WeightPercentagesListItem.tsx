@@ -1,11 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
-import Color from 'color';
 import {WeightUnit} from '../conversion';
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Icon, ListItem, Overlay, Text} from 'react-native-elements';
 import {PlateMapping} from './settings/Plates';
-import {WeightSettings} from './settings/WeightSettings';
+import {WeightSettings} from './store/WeightSettingsStore';
 import {PlateDistribution, PlateDistributor} from './weight/PlateDistributor';
 import {renderPlateIcon} from './weight/PlateVisualization';
 import {WeightPercentage} from './weight/WeightPercentager';
@@ -17,14 +16,14 @@ interface WeightPercentageListItemProperties {
 }
 
 const formatUnit = (unit: WeightUnit): string => {
-  return unit === WeightUnit.kg ? 'kg' : 'lbs';
+  return unit === WeightUnit.kg ? 'kg' : 'lb';
 };
 
 const getWeightText = (mapping: PlateMapping, unit: WeightUnit) => {
   if (unit === WeightUnit.kg) {
     return mapping.kg + 'kg';
   }
-  return mapping.lbs + 'lbs';
+  return mapping.lb + 'lb';
 };
 
 const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) => {

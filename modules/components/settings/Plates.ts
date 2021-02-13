@@ -12,7 +12,7 @@ enum Plate {
 }
 
 class PlateMapping {
-  constructor(readonly plate: Plate, readonly kg: number, readonly lbs: number) {}
+  constructor(readonly plate: Plate, readonly kg: number, readonly lb: number) {}
 }
 
 const plateMappings = () => {

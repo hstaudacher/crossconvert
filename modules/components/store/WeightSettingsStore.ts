@@ -64,7 +64,7 @@ class WeightSettingsStore {
     try {
       const jsonValue = await AsyncStorage.getItem('@mconvert.weightSettings');
       const settings = jsonValue != null ? JSON.parse(jsonValue) : this.defaultSettings;
-      const bar = new Bar(settings.bar.name, settings.bar.kg, settings.bar.lbs);
+      const bar = new Bar(settings.bar.name, settings.bar.kg, settings.bar.lb);
       return new WeightSettings(bar, settings.availablePlates);
     } catch (e) {
       throw e;

@@ -1,6 +1,6 @@
 import {WeightUnit} from '../../conversion';
 import {PlateMapping, plateMappings} from '../settings/Plates';
-import {WeightSettings} from '../settings/WeightSettings';
+import {WeightSettings} from '../store/WeightSettingsStore';
 
 class PlateGroup {
   constructor(readonly mapping: PlateMapping, readonly amount: number) {}
@@ -13,7 +13,7 @@ class PlateDistribution {
     const plateGroups: PlateGroup[] = [];
     plateMappings().forEach((mapping) => {
       const amount = this.plates.filter((p) => {
-        const weight = this.unit === WeightUnit.kg ? mapping.kg : mapping.lbs;
+        const weight = this.unit === WeightUnit.kg ? mapping.kg : mapping.lb;
         return p === weight;
       }).length;
       if (amount > 0) {
@@ -53,7 +53,7 @@ class PlateDistributor {
         if (this.unit === WeightUnit.kg) {
           plates.push(a.mapping.kg);
         } else {
-          plates.push(a.mapping.lbs);
+          plates.push(a.mapping.lb);
         }
       }
     });
@@ -64,7 +64,7 @@ class PlateDistributor {
     if (this.unit === WeightUnit.kg) {
       return this.weightSettings.bar.kg;
     }
-    return this.weightSettings.bar.lbs;
+    return this.weightSettings.bar.lb;
   }
 }
 

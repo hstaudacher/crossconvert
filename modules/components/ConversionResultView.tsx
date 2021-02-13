@@ -33,7 +33,7 @@ const shouldRender = (convertedOption: ConvertedOption): boolean => {
 };
 
 const isWeightConversion = (convertedOption: ConvertedOption): boolean => {
-  return convertedOption.configuration.unit === 'lbs' || convertedOption.configuration.unit === 'kg';
+  return convertedOption.configuration.unit === 'lb' || convertedOption.configuration.unit === 'kg';
 };
 
 const renderWeightPercentages = (convertedOption: ConvertedOption, componentId: string): Element | void => {
