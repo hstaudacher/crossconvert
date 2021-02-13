@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, TouchableOpacity, Pressable, Keyboard, KeyboardAvoidingView} from 'react-native';
 import {Divider, Text} from 'react-native-elements';
-import {Navigation, NavigationComponentProps} from 'react-native-navigation';
+import {NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager} from './weight/WeightPercentager';
 import {WeightSettings, store as weightSettingsStore} from './store/WeightSettingsStore';
@@ -11,6 +11,7 @@ import WeightPercentagesListItem from './WeightPercentagesListItem';
 import WeightPercentageScreenNavigation from './WeightPercentagesScreenNavigation';
 import WeightPercentagesAddView from './WeightPercentagesAddView';
 import {WeightPercentageRange, store as rangeStore} from './store/WeightPercentageRangeStore';
+import verticalOffset from './VerticalOffset';
 
 interface WeightPercentagesScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
@@ -19,6 +20,8 @@ interface WeightPercentagesScreenProperties extends NavigationComponentProps {
 const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
   const [weightSettings, setWeightSettings] = useState(weightSettingsStore.getSettings());
   const [percentageRange, setPercentageRange] = useState(rangeStore.getRange());
+  const [offset, changeVerticalOffset] = React.useState(verticalOffset.getOffset());
+  verticalOffset.addSubscriber(changeVerticalOffset);
 
   const updateWeightSettings = (settings: WeightSettings) => {
     setWeightSettings(settings);
@@ -53,21 +56,6 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
     </View>
   );
 
-  const [verticalOffset, changeVerticalOffset] = React.useState(80);
-
-  // TODO: extract to new file (also in MainScreen)
-  useEffect(() => {
-    let isMounted = true;
-    Navigation.constants().then((constants) => {
-      if (isMounted) {
-        changeVerticalOffset(constants.topBarHeight + constants.statusBarHeight);
-      }
-    });
-    return () => {
-      isMounted = false;
-    };
-  });
-
   const addPercentage = (newPercentage: number) => {
     const newPercentages = [...percentageRange.range];
     if (newPercentages.indexOf(newPercentage) === -1) {
@@ -87,7 +75,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
         <KeyboardAvoidingView
           style={{flex: 1}}
           behavior="position"
-          keyboardVerticalOffset={verticalOffset}
+          keyboardVerticalOffset={offset}
           contentContainerStyle={{flex: 1}}>
           <View style={styles.view}>
             <SwipeListView
