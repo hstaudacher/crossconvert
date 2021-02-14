@@ -10,7 +10,6 @@ class VerticalOffset {
   public initialize() {
     Navigation.constants().then((constants) => {
       this.offset = constants.topBarHeight + constants.statusBarHeight;
-      console.log('CALL SUBS');
       this.subscribers.forEach((s) => s(this.offset));
     });
   }

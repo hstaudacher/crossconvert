@@ -13,7 +13,7 @@ import WeightPlatesComponent from './WeightPlatesComponent';
 interface WeightPercentageListItemProperties {
   percentage: WeightPercentage;
   settings: WeightSettings;
-  weightAsDescription: boolean;
+  displayInConversion: boolean;
 }
 
 const formatUnit = (unit: WeightUnit): string => {
@@ -64,7 +64,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
   };
 
   const renderText = () => {
-    if (props.weightAsDescription) {
+    if (props.displayInConversion) {
       return (
         <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 4}}>
           <Icon
@@ -85,7 +85,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
   };
 
   const renderTitle = () => {
-    if (!props.weightAsDescription) {
+    if (!props.displayInConversion) {
       return (
         <ListItem.Title style={{fontSize: 25, opacity: 0.9}}>
           <Text>
@@ -102,6 +102,13 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
     }
   };
 
+  const getMaxPlateGroups = () => {
+    if (props.displayInConversion) {
+      return 3;
+    }
+    return undefined;
+  };
+
   return (
     <>
       <ListItem bottomDivider onPress={() => toggleLegend(props.percentage)}>
@@ -115,6 +122,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
                   props.percentage.conversion.fromWeight,
                   props.percentage.conversion.fromUnit,
                 )}
+                maxPlateGroups={getMaxPlateGroups()}
               />
             </View>
           </ListItem.Subtitle>

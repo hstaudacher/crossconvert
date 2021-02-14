@@ -86,7 +86,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
                 <WeightPercentagesListItem
                   percentage={info.item}
                   settings={weightSettings}
-                  weightAsDescription={false}
+                  displayInConversion={false}
                 />
               )}
               renderHiddenItem={renderHiddenItem}

@@ -7,6 +7,7 @@ import {renderPlateIcon} from './weight/PlateVisualization';
 
 interface WeightPlatesComponentProperties {
   plateDistribution: PlateDistribution;
+  maxPlateGroups?: number;
 }
 
 const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
@@ -36,6 +37,26 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
     }
   };
 
+  const maxPlateGroups = () => {
+    if (props.maxPlateGroups !== undefined) {
+      return props.maxPlateGroups;
+    }
+    if (props.plateDistribution.completelyDistributed) {
+      return 5;
+    }
+    return 4;
+  };
+
+  const renderDots = () => {
+    if (plateGroups.length >= maxPlateGroups()) {
+      return (
+        <View style={{alignSelf: 'flex-end', marginLeft: 10}}>
+          <Icon type="ionicon" name="ellipsis-horizontal-outline" color="lightslategrey" />
+        </View>
+      );
+    }
+  };
+
   return (
     <>
       <View
@@ -45,7 +66,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
           alignItems: 'stretch',
         }}>
         {renderCantDistribute()}
-        {plateGroups.map((group, index) => (
+        {plateGroups.slice(0, maxPlateGroups()).map((group, index) => (
           <View
             key={index.toString()}
             style={{
@@ -61,6 +82,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
             />
           </View>
         ))}
+        {renderDots()}
       </View>
     </>
   );

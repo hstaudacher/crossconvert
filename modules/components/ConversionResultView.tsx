@@ -66,7 +66,7 @@ const renderWeightItem = (convertedOption: ConvertedOption, componentId: string)
   percentage = new WeightPercentage(percentage.percentage, percentage.conversion.onlyTo());
   return (
     <>
-      <WeightPercentagesListItem percentage={percentage} settings={store.getSettings()} weightAsDescription={true} />
+      <WeightPercentagesListItem percentage={percentage} settings={store.getSettings()} displayInConversion={true} />
       <ListItem
         bottomDivider
         containerStyle={styles.container}
