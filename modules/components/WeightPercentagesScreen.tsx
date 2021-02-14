@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {View, StyleSheet, TouchableOpacity, Pressable, Keyboard, KeyboardAvoidingView} from 'react-native';
-import {Divider, Text} from 'react-native-elements';
+import {Divider, Icon} from 'react-native-elements';
 import {NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager} from './weight/WeightPercentager';
@@ -51,7 +51,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
       <TouchableOpacity
         style={[styles.backRightBtn, styles.backRightBtnRight]}
         onPress={() => deletePercentage(row, rows)}>
-        <Text style={styles.backTextWhite}>Delete</Text>
+        <Icon type="font-awesome" name="trash-o" color="white" size={28} />
       </TouchableOpacity>
     </View>
   );
@@ -126,9 +126,6 @@ const styles = StyleSheet.create({
   backRightBtnRight: {
     backgroundColor: 'red',
     right: 0,
-  },
-  backTextWhite: {
-    color: '#FFF',
   },
 });
 
