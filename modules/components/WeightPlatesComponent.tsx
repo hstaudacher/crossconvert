@@ -4,6 +4,7 @@ import {PlateDistribution, PlateGroup} from './weight/PlateDistributor';
 import {View} from 'react-native';
 import {Badge, Icon} from 'react-native-elements';
 import {renderPlateIcon} from './weight/PlateVisualization';
+import DefaultStyle from './DefaultStyle';
 
 interface WeightPlatesComponentProperties {
   plateDistribution: PlateDistribution;
@@ -27,7 +28,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
             key={'na'}
             name={'exclamation-triangle'}
             type={'font-awesome'}
-            color={'tomato'}
+            color={DefaultStyle.baseColor}
             size={25}
             containerStyle={{alignSelf: 'center', marginRight: 20}}
             reverse={false}

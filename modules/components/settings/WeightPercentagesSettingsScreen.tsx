@@ -10,6 +10,7 @@ import {PlateMapping, plateMappings} from './Plates';
 import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from './SettingsListTypes';
 import {WeightSettings} from '../store/WeightSettingsStore';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import DefaultStyle from '../DefaultStyle';
 
 interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {
   settings: WeightSettings;
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#fff',
-    backgroundColor: 'tomato',
+    backgroundColor: DefaultStyle.baseColor,
   },
   listIcon: {alignSelf: 'flex-end', width: 40},
 });

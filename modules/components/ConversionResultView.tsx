@@ -9,6 +9,7 @@ import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import WeightPercentagesListItem from './WeightPercentagesListItem';
 import {WeightPercentage, WeightPercentager} from './weight/WeightPercentager';
 import {store} from './store/WeightSettingsStore';
+import DefaultStyle from './DefaultStyle';
 
 class ConvertedOption {
   conversionResults: Array<ConversionResult>;
@@ -48,7 +49,7 @@ const onOptionPress = (convertedOption: ConvertedOption, componentId: string) =>
           topBar: {
             backButton: {
               title: 'Conversion',
-              color: 'tomato',
+              color: DefaultStyle.baseColor,
             },
           },
         },

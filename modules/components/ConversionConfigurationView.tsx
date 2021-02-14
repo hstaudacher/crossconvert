@@ -8,6 +8,7 @@ import {FromSelection} from './FromSelection';
 import {UnitSelection} from './UnitSelection';
 import {fromOptions} from './options/FromOptions';
 import {FromOption} from './options/FromOption';
+import DefaultStyle from './DefaultStyle';
 
 export interface ConversionConfigurationViewProperties {
   configuration: ConversionConfiguration;
@@ -79,10 +80,16 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
             rightIcon={
               <TouchableHighlight onPress={toggleUnitSelectionOverlay}>
                 <View style={{flexDirection: 'row', marginTop: 5}}>
-                  <Text style={{color: 'tomato', marginBottom: 0, height: 40}} h3>
+                  <Text style={{color: DefaultStyle.baseColor, marginBottom: 0, height: 40}} h3>
                     {props.configuration.unit}
                   </Text>
-                  <Icon type="ionicon" name="chevron-down-outline" color="tomato" size={20} style={{paddingTop: 8}} />
+                  <Icon
+                    type="ionicon"
+                    name="chevron-down-outline"
+                    color={DefaultStyle.baseColor}
+                    size={20}
+                    style={{paddingTop: 8}}
+                  />
                 </View>
               </TouchableHighlight>
             }

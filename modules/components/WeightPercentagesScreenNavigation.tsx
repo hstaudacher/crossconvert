@@ -1,4 +1,5 @@
 import {Navigation} from 'react-native-navigation';
+import DefaultStyle from './DefaultStyle';
 import {WeightSettings} from './store/WeightSettingsStore';
 
 class WeightPercentageScreenNavigation {
@@ -38,7 +39,7 @@ class WeightPercentageScreenNavigation {
               passProps: {
                 name: 'sliders',
                 type: 'font-awesome',
-                color: 'tomato',
+                color: DefaultStyle.baseColor,
                 onPress: onSettingsPress,
               },
             },

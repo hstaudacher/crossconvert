@@ -9,6 +9,7 @@ import {PlateDistribution, PlateDistributor} from './weight/PlateDistributor';
 import {renderPlateIcon} from './weight/PlateVisualization';
 import {WeightPercentage} from './weight/WeightPercentager';
 import WeightPlatesComponent from './WeightPlatesComponent';
+import DefaultStyle from './DefaultStyle';
 
 interface WeightPercentageListItemProperties {
   percentage: WeightPercentage;
@@ -50,12 +51,12 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
             key={'na'}
             name={'exclamation-triangle'}
             type={'font-awesome'}
-            color={'tomato'}
+            color={DefaultStyle.baseColor}
             size={25}
             containerStyle={{alignSelf: 'flex-end', width: 40}}
             reverse={false}
           />
-          <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: 'tomato'}}>
+          <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: DefaultStyle.baseColor}}>
             Not enough plates
           </Text>
         </View>
@@ -137,7 +138,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
                   style={{flexDirection: 'row', marginBottom: 10, marginHorizontal: 10}}
                   key={group.mapping.plate.toString()}>
                   {renderPlateIcon(group.mapping.plate, {alignSelf: 'flex-end', width: 40})}
-                  <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: 'tomato'}}>
+                  <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: DefaultStyle.baseColor}}>
                     {group.amount}x{' '}
                   </Text>
                   <Text h4 style={{alignSelf: 'center'}}>
