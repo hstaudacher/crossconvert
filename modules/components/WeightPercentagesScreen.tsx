@@ -92,9 +92,6 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
               renderHiddenItem={renderHiddenItem}
               leftOpenValue={75}
               rightOpenValue={-75}
-              previewRowKey={'0'}
-              previewOpenValue={-40}
-              previewOpenDelay={3000}
             />
           </View>
           <Divider />
