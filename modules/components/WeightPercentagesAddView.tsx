@@ -34,7 +34,7 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
         }}>
         <View style={{flex: 6}}>
           <Input
-            placeholder={''}
+            placeholder={'%'}
             keyboardType="numeric"
             onChangeText={updatePercentage}
             value={percentage}
