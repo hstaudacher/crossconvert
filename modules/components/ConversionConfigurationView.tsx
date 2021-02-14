@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, TouchableHighlight, Keyboard} from 'react-native';
+import {View, Keyboard, TouchableOpacity} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
 
 import ConversionConfiguration from './ConversionConfiguration';
@@ -78,7 +78,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
           <Input
             placeholder={props.configuration.value}
             rightIcon={
-              <TouchableHighlight onPress={toggleUnitSelectionOverlay}>
+              <TouchableOpacity onPress={toggleUnitSelectionOverlay}>
                 <View style={{flexDirection: 'row', marginTop: 5}}>
                   <Text style={{color: DefaultStyle.baseColor, marginBottom: 0, height: 40}} h3>
                     {props.configuration.unit}
@@ -91,7 +91,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
                     style={{paddingTop: 8}}
                   />
                 </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
             }
             rightIconContainerStyle={{height: 20}}
             keyboardType="numeric"
