@@ -7,4 +7,8 @@ export default class WeightConversion {
     readonly toUnit: WeightUnit,
     readonly toWeight: number,
   ) {}
+
+  public onlyTo() {
+    return new WeightConversion(this.toUnit, this.toWeight, this.toUnit, this.toWeight);
+  }
 }

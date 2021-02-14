@@ -7,7 +7,7 @@ import {fromOptions} from './options/FromOptions';
 import {ConversionResult, FromOption} from './options/FromOption';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import WeightPercentagesListItem from './WeightPercentagesListItem';
-import {WeightPercentager} from './weight/WeightPercentager';
+import {WeightPercentage, WeightPercentager} from './weight/WeightPercentager';
 import {store} from './store/WeightSettingsStore';
 
 class ConvertedOption {
@@ -62,7 +62,8 @@ const onOptionPress = (convertedOption: ConvertedOption, componentId: string) =>
 
 const renderWeightItem = (convertedOption: ConvertedOption, componentId: string) => {
   const percentager = new WeightPercentager(convertedOption.configuration);
-  const percentage = percentager.getPercentages([100])[0];
+  let percentage = percentager.getPercentages([100])[0];
+  percentage = new WeightPercentage(percentage.percentage, percentage.conversion.onlyTo());
   return (
     <>
       <WeightPercentagesListItem percentage={percentage} settings={store.getSettings()} weightAsDescription={true} />
