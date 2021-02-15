@@ -63,7 +63,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
             reverse={false}
           />
           <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: DefaultStyle.baseColor}}>
-            Not enough plates
+            not enough plates
           </Text>
         </View>
       );
