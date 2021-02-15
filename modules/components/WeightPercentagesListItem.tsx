@@ -64,6 +64,29 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
     }
   };
 
+  const renderBar = () => {
+    let barText = props.settings.bar.kg + 'kg';
+    if (props.percentage.conversion.fromUnit === WeightUnit.lb) {
+      barText = props.settings.bar.lb + 'lb';
+    }
+    return (
+      <View style={{flexDirection: 'row', marginBottom: 10, marginHorizontal: 10}} key={'bar'}>
+        <Icon
+          key={'bar'}
+          name={'barbell'}
+          type={'crossfit'}
+          color="#c3272e"
+          size={35}
+          containerStyle={{alignSelf: 'flex-end', width: 40}}
+          reverse={false}
+        />
+        <Text h4 style={{alignSelf: 'center', marginLeft: 8}}>
+          {barText}
+        </Text>
+      </View>
+    );
+  };
+
   const renderText = () => {
     if (props.displayInConversion) {
       return (
@@ -133,6 +156,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
             overlayStyle={{borderRadius: 5}}>
             <View style={{paddingTop: 10}}>
               {renderCantDistribute()}
+              {renderBar()}
               {distribution.getPlateGroups().map((group) => (
                 <View
                   style={{flexDirection: 'row', marginBottom: 10, marginHorizontal: 10}}
