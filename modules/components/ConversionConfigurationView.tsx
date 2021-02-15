@@ -79,7 +79,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
         }}>
         <View style={{flex: 6}}>
           <Input
-            placeholder={props.configuration.value}
+            placeholder="0"
             rightIcon={
               <TouchableOpacity onPress={toggleUnitSelectionOverlay}>
                 <View style={{flexDirection: 'row', marginTop: 5}}>
