@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Keyboard, TouchableOpacity} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
 
@@ -18,6 +18,7 @@ export interface ConversionConfigurationViewProperties {
 const ConversionConfigurationView = (props: ConversionConfigurationViewProperties) => {
   const [unitSelectionVisible, setUnitSelectionVisible] = React.useState(false);
   const [fromSelectionVisible, setFromSelectionVisible] = React.useState(false);
+  const [value, setValue] = useState('');
 
   const onFromOptionClick = (option: FromOption): void => {
     props.configuration.from = option;
@@ -53,8 +54,10 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     setUnitSelectionVisible(!unitSelectionVisible);
   };
 
-  const changeValue = (value: string): void => {
-    props.configuration.value = value.replace(',', '.');
+  const changeValue = (newValue: string): void => {
+    const toConvert = newValue.replace(/[^0-9.,]/g, '').replace(',', '.');
+    props.configuration.value = toConvert;
+    setValue(toConvert);
     fireConfigurationChange();
   };
 
@@ -96,6 +99,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
             rightIconContainerStyle={{height: 20}}
             keyboardType="numeric"
             onChangeText={changeValue}
+            value={value}
             inputStyle={{fontSize: 28}}
           />
         </View>
