@@ -81,7 +81,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
           key={'bar'}
           name={'barbell'}
           type={'crossfit'}
-          color="#c3272e"
+          color={DefaultStyle.barColor}
           size={35}
           containerStyle={{alignSelf: 'flex-end', width: 40}}
           reverse={false}
@@ -100,11 +100,11 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
           <Icon
             name={'barbell'}
             type={'crossfit'}
-            color={'#c3272e'}
+            color={DefaultStyle.barColor}
             size={36}
             iconProps={{name: 'barbell', size: 40}}
           />
-          <Text style={{fontSize: 25, color: '#c3272e', marginLeft: 23}}>
+          <Text style={{fontSize: 25, color: DefaultStyle.barColor, marginLeft: 23}}>
             {props.percentage.conversion.toWeight}
             {formatUnit(props.percentage.conversion.toUnit)}
           </Text>

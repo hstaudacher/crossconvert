@@ -44,7 +44,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
         bars(),
         () => settings.bar,
         (o: Bar) => updateSettings(settings.updateBar(o)),
-        () => <Icon name="barbell" type="crossfit" style={styles.listIcon} />,
+        () => <Icon name="barbell" type="crossfit" color={DefaultStyle.barColor} style={styles.listIcon} />,
       ),
     ]),
     new SettingsSection(
