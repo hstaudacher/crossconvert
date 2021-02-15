@@ -6,7 +6,6 @@ import {registerCustomIconType, Icon} from 'react-native-elements';
 import CrossFitIcons from './fonts/CrossFitIcons';
 import {Navigation} from 'react-native-navigation';
 import DataStore from './modules/components/store/DataStore';
-import verticalOffset from './modules/components/VerticalOffset';
 import DefaultStyle from './modules/components/DefaultStyle';
 
 registerCustomIconType('crossfit', CrossFitIcons);
@@ -45,7 +44,6 @@ const start = () => {
     },
   });
   new DataStore().initialize();
-  verticalOffset.initialize();
 };
 
 export {start};

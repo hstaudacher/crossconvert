@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {KeyboardAvoidingView, Pressable, Keyboard} from 'react-native';
 import ConversionConfigurationView from './ConversionConfigurationView';
 import ConversionConfiguration from './ConversionConfiguration';
@@ -7,8 +7,7 @@ import ConversionResultView from './ConversionResultView';
 import {units} from './UnitSelection';
 import {fromOptions} from './options/FromOptions';
 import {Divider} from 'react-native-elements';
-import {NavigationComponentProps, NavigationFunctionComponent} from 'react-native-navigation';
-import verticalOffset from './VerticalOffset';
+import {Navigation, NavigationComponentProps, NavigationFunctionComponent} from 'react-native-navigation';
 
 const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps) => {
   const defaultUnit = units[0].title;
@@ -16,8 +15,19 @@ const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps
     new ConversionConfiguration(defaultUnit, '0', fromOptions(defaultUnit)[0]),
   );
 
-  const [offset, changeVerticalOffset] = React.useState(verticalOffset.getOffset());
-  verticalOffset.addSubscriber(changeVerticalOffset);
+  const [verticalOffset, changeVerticalOffset] = React.useState(80);
+
+  useEffect(() => {
+    let isMounted = true;
+    Navigation.constants().then((constants) => {
+      if (isMounted) {
+        changeVerticalOffset(constants.topBarHeight + constants.statusBarHeight);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  });
 
   return (
     <>
@@ -25,7 +35,7 @@ const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps
         <KeyboardAvoidingView
           style={{flex: 1}}
           behavior="position"
-          keyboardVerticalOffset={offset}
+          keyboardVerticalOffset={verticalOffset}
           contentContainerStyle={{flex: 1}}>
           <ConversionResultView configuration={configuration} componentId={props.componentId} />
           <Divider />
