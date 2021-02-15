@@ -35,7 +35,13 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
 
   const toggleLegend = (percentage: WeightPercentage) => {
     setDistribution(getPlates(percentage.conversion.fromWeight, percentage.conversion.fromUnit));
-    setLegendVisible(!legendVisible);
+    let barWeight = props.settings.bar.kg;
+    if (percentage.conversion.fromUnit === WeightUnit.lb) {
+      barWeight = props.settings.bar.lb;
+    }
+    if (barWeight < percentage.conversion.fromWeight) {
+      setLegendVisible(!legendVisible);
+    }
   };
 
   const getPlates = (weight: number, unit: WeightUnit): PlateDistribution => {
