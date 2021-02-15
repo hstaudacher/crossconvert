@@ -15,6 +15,7 @@ import verticalOffset from './VerticalOffset';
 
 interface WeightPercentagesScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
+  onSettingsUpdate: Function;
 }
 
 const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
@@ -25,6 +26,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
 
   const updateWeightSettings = (settings: WeightSettings) => {
     setWeightSettings(settings);
+    props.onSettingsUpdate(settings);
     weightSettingsStore.store(settings);
   };
 

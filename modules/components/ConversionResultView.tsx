@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, FlatList, ListRenderItemInfo} from 'react-native';
 import ConversionConfiguration from './ConversionConfiguration';
 import {ListItem, Icon} from 'react-native-elements';
@@ -26,110 +26,110 @@ interface ConversionResultViewProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
 }
 
-const renderSlash = (index: number): Element | void => {
-  if (index > 0) {
-    return <Text> / </Text>;
-  }
-};
+const ConversionResultView = (props: ConversionResultViewProperties) => {
+  const [weigthSettings, setWeightSettings] = useState(store.getSettings());
 
-const shouldRender = (convertedOption: ConvertedOption): boolean => {
-  return !convertedOption.isEmpty();
-};
+  const renderWeightItem = (convertedOption: ConvertedOption) => {
+    const percentager = new WeightPercentager(convertedOption.configuration);
+    let percentage = percentager.getPercentages([100])[0];
+    percentage = new WeightPercentage(percentage.percentage, percentage.conversion.onlyTo());
+    return (
+      <>
+        <WeightPercentagesListItem percentage={percentage} settings={weigthSettings} displayInConversion={true} />
+        <ListItem bottomDivider containerStyle={styles.container} onPress={() => onOptionPress(convertedOption)}>
+          <Icon
+            name="percent"
+            type="crossfit"
+            color="#33618f"
+            size={36}
+            iconProps={{name: 'percent', size: convertedOption.option.resultIconSize}}
+          />
+          <ListItem.Content>
+            <ListItem.Title style={{fontSize: 25, color: '#33618f', marginLeft: 8}}>Percentages</ListItem.Title>
+          </ListItem.Content>
+          <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
+        </ListItem>
+      </>
+    );
+  };
 
-const isWeightConversion = (convertedOption: ConvertedOption): boolean => {
-  return convertedOption.configuration.unit === 'lb' || convertedOption.configuration.unit === 'kg';
-};
-
-const onOptionPress = (convertedOption: ConvertedOption, componentId: string) => {
-  if (isWeightConversion(convertedOption)) {
-    Navigation.push(componentId, {
-      component: {
-        name: 'WeightPercentages',
-        options: {
-          topBar: {
-            backButton: {
-              title: 'Conversion',
-              color: DefaultStyle.baseColor,
+  const onOptionPress = (convertedOption: ConvertedOption) => {
+    if (isWeightConversion(convertedOption)) {
+      Navigation.push(props.componentId, {
+        component: {
+          name: 'WeightPercentages',
+          options: {
+            topBar: {
+              backButton: {
+                title: 'Conversion',
+                color: DefaultStyle.baseColor,
+              },
             },
           },
+          passProps: {
+            configuration: convertedOption.configuration,
+            onSettingsUpdate: setWeightSettings,
+          },
         },
-        passProps: {
-          configuration: convertedOption.configuration,
-        },
-      },
-    });
-  }
-};
+      });
+    }
+  };
 
-const renderWeightItem = (convertedOption: ConvertedOption, componentId: string) => {
-  const percentager = new WeightPercentager(convertedOption.configuration);
-  let percentage = percentager.getPercentages([100])[0];
-  percentage = new WeightPercentage(percentage.percentage, percentage.conversion.onlyTo());
-  return (
-    <>
-      <WeightPercentagesListItem percentage={percentage} settings={store.getSettings()} displayInConversion={true} />
-      <ListItem
-        bottomDivider
-        containerStyle={styles.container}
-        onPress={() => onOptionPress(convertedOption, componentId)}>
-        <Icon
-          name="percent"
-          type="crossfit"
-          color="#33618f"
-          size={36}
-          iconProps={{name: 'percent', size: convertedOption.option.resultIconSize}}
-        />
-        <ListItem.Content>
-          <ListItem.Title style={{fontSize: 25, color: '#33618f', marginLeft: 8}}>Percentages</ListItem.Title>
-        </ListItem.Content>
-        <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
-      </ListItem>
-    </>
-  );
-};
+  const renderConvertedItem = (convertedOption: ConvertedOption) => {
+    return (
+      <>
+        <ListItem bottomDivider containerStyle={styles.container}>
+          <Icon
+            name={convertedOption.option.icon}
+            type={convertedOption.option.type}
+            color={convertedOption.option.color}
+            size={36}
+            iconProps={{name: convertedOption.option.icon, size: convertedOption.option.resultIconSize}}
+          />
+          <ListItem.Content>
+            <ListItem.Title style={{fontSize: 25, color: convertedOption.option.color, marginLeft: 6}}>
+              {convertedOption.option.title}
+            </ListItem.Title>
+            <ListItem.Subtitle style={styles.subTitle}>
+              {convertedOption.conversionResults.map((singelResult, j) => (
+                <Text key={j}>
+                  {renderSlash(j)}
+                  {singelResult.value}
+                  <Text style={styles.unitText}>{singelResult.unit}</Text>
+                </Text>
+              ))}
+            </ListItem.Subtitle>
+          </ListItem.Content>
+        </ListItem>
+      </>
+    );
+  };
 
-const renderConvertedItem = (convertedOption: ConvertedOption) => {
-  return (
-    <>
-      <ListItem bottomDivider containerStyle={styles.container}>
-        <Icon
-          name={convertedOption.option.icon}
-          type={convertedOption.option.type}
-          color={convertedOption.option.color}
-          size={36}
-          iconProps={{name: convertedOption.option.icon, size: convertedOption.option.resultIconSize}}
-        />
-        <ListItem.Content>
-          <ListItem.Title style={{fontSize: 25, color: convertedOption.option.color, marginLeft: 6}}>
-            {convertedOption.option.title}
-          </ListItem.Title>
-          <ListItem.Subtitle style={styles.subTitle}>
-            {convertedOption.conversionResults.map((singelResult, j) => (
-              <Text key={j}>
-                {renderSlash(j)}
-                {singelResult.value}
-                <Text style={styles.unitText}>{singelResult.unit}</Text>
-              </Text>
-            ))}
-          </ListItem.Subtitle>
-        </ListItem.Content>
-      </ListItem>
-    </>
-  );
-};
+  const renderItem = (convertedOption: ConvertedOption) => {
+    if (isWeightConversion(convertedOption)) {
+      return renderWeightItem(convertedOption);
+    }
+    return renderConvertedItem(convertedOption);
+  };
 
-const renderItem = (convertedOption: ConvertedOption, componentId: string) => {
-  if (isWeightConversion(convertedOption)) {
-    return renderWeightItem(convertedOption, componentId);
-  }
-  return renderConvertedItem(convertedOption);
-};
+  const renderSlash = (index: number): Element | void => {
+    if (index > 0) {
+      return <Text> / </Text>;
+    }
+  };
 
-const keyExtractor = (item: ConvertedOption, index: Number): string => {
-  return index.toString();
-};
+  const shouldRender = (convertedOption: ConvertedOption): boolean => {
+    return !convertedOption.isEmpty();
+  };
 
-const ConversionResultView = (props: ConversionResultViewProperties) => {
+  const isWeightConversion = (convertedOption: ConvertedOption): boolean => {
+    return convertedOption.configuration.unit === 'lb' || convertedOption.configuration.unit === 'kg';
+  };
+
+  const keyExtractor = (item: ConvertedOption, index: Number): string => {
+    return index.toString();
+  };
+
   return (
     <>
       <View style={styles.view}>
@@ -139,7 +139,7 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
             .map((option) => new ConvertedOption(option, props.configuration))
             .filter((option) => shouldRender(option))}
           renderItem={(info: ListRenderItemInfo<ConvertedOption>) => {
-            return renderItem(info.item, props.componentId);
+            return renderItem(info.item);
           }}
         />
       </View>
