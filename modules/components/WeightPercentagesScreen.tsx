@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, TouchableOpacity, Pressable, Keyboard, KeyboardAvoidingView} from 'react-native';
 import {Divider, Icon} from 'react-native-elements';
+import Analytics from 'appcenter-analytics';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager} from './weight/WeightPercentager';
@@ -40,6 +41,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
     setWeightSettings(settings);
     props.onSettingsUpdate(settings);
     weightSettingsStore.store(settings);
+    Analytics.trackEvent('weight-settings-update');
   };
 
   new WeightPercentageScreenNavigation(props.componentId).setup(weightSettings, updateWeightSettings);
@@ -58,6 +60,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
     const range = new WeightPercentageRange(newRange);
     rangeStore.store(range);
     setPercentageRange(range);
+    Analytics.trackEvent('weight-percentage-delete');
   };
 
   const renderHiddenItem = (row: any, rows: any) => (
@@ -78,6 +81,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
     const range = new WeightPercentageRange(newPercentages.sort((a, b) => b - a));
     rangeStore.store(range);
     setPercentageRange(range);
+    Analytics.trackEvent('weight-percentage-add');
   };
 
   const weightPercentager = new WeightPercentager(props.configuration);

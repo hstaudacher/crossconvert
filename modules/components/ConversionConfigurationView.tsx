@@ -1,7 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {View, Keyboard, TouchableOpacity} from 'react-native';
+import {View, Keyboard, TouchableOpacity, StyleSheet} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
+import Analytics from 'appcenter-analytics';
 
 import ConversionConfiguration from './ConversionConfiguration';
 import {FromSelection} from './FromSelection';
@@ -62,21 +63,13 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
   };
 
   const fireConfigurationChange = (): void => {
+    Analytics.trackEvent('conversion-configuation-change');
     props.changeConfiguration(props.configuration.copy());
   };
 
   return (
     <>
-      <View
-        style={{
-          backgroundColor: 'white',
-          flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-end',
-          marginBottom: 15,
-          marginLeft: 12,
-        }}>
+      <View style={styles.container}>
         <View style={{flex: 6}}>
           <Input
             placeholder="0"
@@ -122,11 +115,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
         isVisible={fromSelectionVisible}
         onBackdropPress={toggleFromSelectionOverlay}
         animationType="slide"
-        overlayStyle={{
-          width: '100%',
-          position: 'absolute',
-          bottom: 0,
-        }}
+        overlayStyle={styles.overlayStyle}
         backdropStyle={{opacity: 0}}>
         <FromSelection handleClick={onFromOptionClick} unit={props.configuration.unit} filter={fromOptions} />
       </Overlay>
@@ -135,16 +124,29 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
         isVisible={unitSelectionVisible}
         onBackdropPress={toggleUnitSelectionOverlay}
         animationType="slide"
-        overlayStyle={{
-          width: '100%',
-          position: 'absolute',
-          bottom: 0,
-        }}
+        overlayStyle={styles.overlayStyle}
         backdropStyle={{opacity: 0}}>
         <UnitSelection handleClick={updateUnit} />
       </Overlay>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+    marginBottom: 15,
+    marginLeft: 12,
+  },
+  overlayStyle: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+  },
+});
 
 export default ConversionConfigurationView;
