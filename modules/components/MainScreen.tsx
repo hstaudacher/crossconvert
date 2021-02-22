@@ -1,12 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect} from 'react';
-import {KeyboardAvoidingView, Pressable, Keyboard} from 'react-native';
+import {KeyboardAvoidingView, Pressable, Keyboard, View} from 'react-native';
 import ConversionConfigurationView from './ConversionConfigurationView';
 import ConversionConfiguration from './ConversionConfiguration';
 import ConversionResultView from './ConversionResultView';
 import {units} from './UnitSelection';
 import {fromOptions} from './options/FromOptions';
-import {Divider} from 'react-native-elements';
 import {Navigation, NavigationComponentProps, NavigationFunctionComponent} from 'react-native-navigation';
 
 const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps) => {
@@ -32,18 +31,19 @@ const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps
   return (
     <>
       <Pressable style={{flex: 1}} onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView
-          style={{flex: 1}}
-          behavior="position"
-          keyboardVerticalOffset={verticalOffset}
-          contentContainerStyle={{flex: 1}}>
+        <View style={{flex: 1}}>
           <ConversionResultView configuration={configuration} componentId={props.componentId} />
-          <Divider />
-          <ConversionConfigurationView
-            configuration={configuration}
-            changeConfiguration={(c) => changeConfiguration(c)}
-          />
-        </KeyboardAvoidingView>
+          <KeyboardAvoidingView
+            style={{flex: 1}}
+            behavior="position"
+            keyboardVerticalOffset={verticalOffset - 20}
+            contentContainerStyle={{flex: 1}}>
+            <ConversionConfigurationView
+              configuration={configuration}
+              changeConfiguration={(c) => changeConfiguration(c)}
+            />
+          </KeyboardAvoidingView>
+        </View>
       </Pressable>
     </>
   );

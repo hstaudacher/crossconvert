@@ -70,7 +70,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
   return (
     <>
       <View style={styles.container}>
-        <View style={{flex: 6}}>
+        <View style={styles.innerContainer}>
           <Input
             placeholder="0"
             rightIcon={
@@ -139,8 +139,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
-    marginBottom: 15,
-    marginLeft: 12,
+    marginTop: -10,
+    paddingBottom: 15,
+    paddingLeft: 12,
+    borderTopColor: '#e1e8ee',
+    borderTopWidth: 1,
+  },
+  innerContainer: {
+    flex: 6,
   },
   overlayStyle: {
     width: '100%',
