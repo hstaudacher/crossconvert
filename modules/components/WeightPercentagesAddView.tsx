@@ -11,13 +11,17 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
   const [percentage, setPercentage] = useState('');
 
   const updatePercentage = (newValue: string) => {
-    setPercentage(newValue.replace(/[^0-9]/g, ''));
+    if (newValue.length > 0) {
+      setPercentage(newValue.replace(/[^0-9]/g, ''));
+    }
   };
 
   const addPercentage = () => {
-    Keyboard.dismiss();
-    props.addPercentageCallback(percentage);
-    updatePercentage('');
+    if (percentage.length > 0) {
+      Keyboard.dismiss();
+      props.addPercentageCallback(percentage);
+      updatePercentage('');
+    }
   };
 
   return (
@@ -29,8 +33,11 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
           flexDirection: 'row',
           justifyContent: 'flex-start',
           alignItems: 'flex-end',
-          marginBottom: 15,
-          marginLeft: 12,
+          paddingBottom: 15,
+          paddingLeft: 12,
+          marginTop: -10,
+          borderTopColor: '#e1e8ee',
+          borderTopWidth: 1,
         }}>
         <View style={{flex: 6}}>
           <Input

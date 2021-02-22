@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, TouchableOpacity, Pressable, Keyboard, KeyboardAvoidingView} from 'react-native';
-import {Divider, Icon} from 'react-native-elements';
+import {Icon} from 'react-native-elements';
 import Analytics from 'appcenter-analytics';
-import {Navigation, NavigationComponentProps} from 'react-native-navigation';
+import {NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager} from './weight/WeightPercentager';
 import {WeightSettings, store as weightSettingsStore} from './store/WeightSettingsStore';
@@ -21,21 +21,6 @@ interface WeightPercentagesScreenProperties extends NavigationComponentProps {
 const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
   const [weightSettings, setWeightSettings] = useState(weightSettingsStore.getSettings());
   const [percentageRange, setPercentageRange] = useState(rangeStore.getRange());
-
-  const [verticalOffset, changeVerticalOffset] = React.useState(80);
-
-  // TODO: extract to new file (also in MainScreen)
-  useEffect(() => {
-    let isMounted = true;
-    Navigation.constants().then((constants) => {
-      if (isMounted) {
-        changeVerticalOffset(constants.topBarHeight + constants.statusBarHeight);
-      }
-    });
-    return () => {
-      isMounted = false;
-    };
-  });
 
   const updateWeightSettings = (settings: WeightSettings) => {
     setWeightSettings(settings);
@@ -90,11 +75,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
   return (
     <>
       <Pressable style={{flex: 1}} onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView
-          style={{flex: 1}}
-          behavior="position"
-          keyboardVerticalOffset={verticalOffset}
-          contentContainerStyle={{flex: 1}}>
+        <View style={{flex: 1}}>
           <View style={styles.view}>
             <SwipeListView
               disableRightSwipe
@@ -112,9 +93,14 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
               rightOpenValue={-75}
             />
           </View>
-          <Divider />
-          <WeightPercentagesAddView addPercentageCallback={addPercentage} />
-        </KeyboardAvoidingView>
+          <KeyboardAvoidingView
+            style={{flex: 1}}
+            behavior="position"
+            keyboardVerticalOffset={70}
+            contentContainerStyle={{flex: 1}}>
+            <WeightPercentagesAddView addPercentageCallback={addPercentage} />
+          </KeyboardAvoidingView>
+        </View>
       </Pressable>
     </>
   );
