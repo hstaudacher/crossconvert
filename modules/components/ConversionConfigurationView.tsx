@@ -56,10 +56,12 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
   };
 
   const changeValue = (newValue: string): void => {
-    const toConvert = newValue.replace(/[^0-9.,]/g, '').replace(',', '.');
-    props.configuration.value = toConvert;
-    setValue(toConvert);
-    fireConfigurationChange();
+    if (newValue.length < 5) {
+      const toConvert = newValue.replace(/[^0-9.,]/g, '').replace(',', '.');
+      props.configuration.value = toConvert;
+      setValue(toConvert);
+      fireConfigurationChange();
+    }
   };
 
   const fireConfigurationChange = (): void => {

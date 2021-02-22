@@ -11,7 +11,7 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
   const [percentage, setPercentage] = useState('');
 
   const updatePercentage = (newValue: string) => {
-    if (newValue.length > 0) {
+    if (newValue.length > 0 && newValue.length < 5) {
       setPercentage(newValue.replace(/[^0-9]/g, ''));
     }
   };
