@@ -84,6 +84,16 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     },
   });
 
+  const overlayStyle = StyleSheet.create({
+    overlayStyle: {
+      borderTopColor: props.configuration.from.color,
+      borderTopWidth: 1,
+      width: '100%',
+      position: 'absolute',
+      bottom: 0,
+    },
+  });
+
   return (
     <>
       <View style={containerStyle.containerStyle}>
@@ -132,7 +142,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
         isVisible={fromSelectionVisible}
         onBackdropPress={toggleFromSelectionOverlay}
         animationType="slide"
-        overlayStyle={styles.overlayStyle}
+        overlayStyle={overlayStyle.overlayStyle}
         backdropStyle={{opacity: 0}}>
         <FromSelection handleClick={onFromOptionClick} unit={props.configuration.unit} filter={fromOptions} />
       </Overlay>
@@ -141,7 +151,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
         isVisible={unitSelectionVisible}
         onBackdropPress={toggleUnitSelectionOverlay}
         animationType="slide"
-        overlayStyle={styles.overlayStyle}
+        overlayStyle={overlayStyle.overlayStyle}
         backdropStyle={{opacity: 0}}>
         <UnitSelection handleClick={updateUnit} />
       </Overlay>
@@ -152,11 +162,6 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
 const styles = StyleSheet.create({
   innerContainer: {
     flex: 6,
-  },
-  overlayStyle: {
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
   },
 });
 
