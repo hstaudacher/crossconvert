@@ -11,7 +11,7 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
   const [percentage, setPercentage] = useState('');
 
   const updatePercentage = (newValue: string) => {
-    if (newValue.length > 0 && newValue.length < 5) {
+    if (newValue.length < 5) {
       setPercentage(newValue.replace(/[^0-9]/g, ''));
     }
   };
@@ -36,7 +36,7 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
           paddingBottom: 15,
           paddingLeft: 12,
           marginTop: -10,
-          borderTopColor: '#e1e8ee',
+          borderTopColor: '#36aa40',
           borderTopWidth: 1,
         }}>
         <View style={{flex: 6}}>
@@ -56,7 +56,7 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
             name={'add-outline'}
             onPress={addPercentage}
             reverse={true}
-            color={'green'}
+            color={'#36aa40'}
             size={25}
             iconProps={{name: 'add-outline', size: 41}}
           />

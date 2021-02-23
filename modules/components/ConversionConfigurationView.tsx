@@ -69,9 +69,24 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     props.changeConfiguration(props.configuration.copy());
   };
 
+  const containerStyle = StyleSheet.create({
+    containerStyle: {
+      backgroundColor: 'white',
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-end',
+      marginTop: -10,
+      paddingBottom: 15,
+      paddingLeft: 12,
+      borderTopColor: props.configuration.from.color,
+      borderTopWidth: 1,
+    },
+  });
+
   return (
     <>
-      <View style={styles.container}>
+      <View style={containerStyle.containerStyle}>
         <View style={styles.innerContainer}>
           <Input
             placeholder="0"
@@ -135,18 +150,6 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-end',
-    marginTop: -10,
-    paddingBottom: 15,
-    paddingLeft: 12,
-    borderTopColor: '#e1e8ee',
-    borderTopWidth: 1,
-  },
   innerContainer: {
     flex: 6,
   },
