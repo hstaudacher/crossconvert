@@ -11,6 +11,7 @@ import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from '
 import {WeightSettings} from '../store/WeightSettingsStore';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import DefaultStyle from '../DefaultStyle';
+import Analytics from 'appcenter-analytics';
 
 interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {
   settings: WeightSettings;
@@ -25,6 +26,11 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
   const updateSettings = (newSettings: WeightSettings) => {
     props.onSettingsUpdate(newSettings);
     setSettings(newSettings);
+  };
+
+  const updateBar = (newSettings: WeightSettings) => {
+    Analytics.trackEvent('weight-settings-update-bar-to-' + newSettings.bar.name.replace('/', '-'));
+    updateSettings(newSettings);
   };
 
   const createPlateItem = (mapping: PlateMapping) => {
@@ -43,7 +49,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
         'Bar Weight',
         bars(),
         () => settings.bar,
-        (o: Bar) => updateSettings(settings.updateBar(o)),
+        (o: Bar) => updateBar(settings.updateBar(o)),
         () => <Icon name="barbell" type="crossfit" color={DefaultStyle.barColor} style={styles.listIcon} />,
       ),
     ]),

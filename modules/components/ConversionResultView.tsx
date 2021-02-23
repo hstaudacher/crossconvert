@@ -10,6 +10,7 @@ import WeightPercentagesListItem from './WeightPercentagesListItem';
 import {WeightPercentage, WeightPercentager} from './weight/WeightPercentager';
 import {store} from './store/WeightSettingsStore';
 import DefaultStyle from './DefaultStyle';
+import Analytics from 'appcenter-analytics';
 
 class ConvertedOption {
   conversionResults: Array<ConversionResult>;
@@ -72,6 +73,7 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
           },
         },
       });
+      Analytics.trackEvent('view-percentages');
     }
   };
 

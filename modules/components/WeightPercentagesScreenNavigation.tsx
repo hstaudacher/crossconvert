@@ -1,6 +1,7 @@
 import {Navigation} from 'react-native-navigation';
 import DefaultStyle from './DefaultStyle';
 import {WeightSettings} from './store/WeightSettingsStore';
+import Analytics from 'appcenter-analytics';
 
 class WeightPercentageScreenNavigation {
   constructor(readonly componentId: string) {}
@@ -23,6 +24,7 @@ class WeightPercentageScreenNavigation {
           },
         },
       });
+      Analytics.trackEvent('view-weight-settings');
     };
 
     Navigation.mergeOptions(this.componentId, {

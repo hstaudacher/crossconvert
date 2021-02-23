@@ -25,6 +25,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     props.configuration.from = option;
     fireConfigurationChange();
     toggleFromSelectionOverlay();
+    Analytics.trackEvent('update-from-' + props.configuration.from.title.replace(' ', '').toLowerCase());
   };
 
   const toggleFromSelectionOverlay = (): void => {
@@ -39,6 +40,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     props.configuration.unit = newUnit;
     fireConfigurationChange();
     toggleUnitSelectionOverlay();
+    Analytics.trackEvent('update-unit-' + props.configuration.unit.replace(' ', '').toLowerCase());
   };
 
   const ensureFromOptionExists = (newUnit: string): void => {
@@ -65,7 +67,6 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
   };
 
   const fireConfigurationChange = (): void => {
-    Analytics.trackEvent('conversion-configuation-change');
     props.changeConfiguration(props.configuration.copy());
   };
 
