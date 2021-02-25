@@ -7,9 +7,9 @@ import {WeightUnit} from '../../../../modules/conversion';
 describe('distributes kg plates', () => {
   test('distributes 50 kg plates', () => assertPlateDistribution(50, WeightUnit.kg, 20, [15, 15]));
 
-  test('distributes 100 kg plates', () => assertPlateDistribution(100, WeightUnit.kg, 20, [25, 25, 15, 15]));
+  test('distributes 100 kg plates', () => assertPlateDistribution(100, WeightUnit.kg, 20, [20, 20, 20, 20]));
 
-  test('distributes 120 kg plates', () => assertPlateDistribution(120, WeightUnit.kg, 20, [25, 25, 25, 25]));
+  test('distributes 120 kg plates', () => assertPlateDistribution(120, WeightUnit.kg, 20, [20, 20, 20, 20, 10, 10]));
 
   test('distributes 30 kg plates', () => assertPlateDistribution(30, WeightUnit.kg, 20, [5, 5]));
 
@@ -17,7 +17,7 @@ describe('distributes kg plates', () => {
 
   test('distributes 20 kg bar weight', () => assertPlateDistribution(20, WeightUnit.kg, 20, []));
 
-  test('distributes 23 kg plates', () => assertPlateDistribution(23, WeightUnit.kg, 20, [1.5, 1.5]));
+  test('distributes 23 kg plates', () => assertPlateDistribution(23, WeightUnit.kg, 20, [1, 1, 0.5, 0.5]));
 
   test('distributes 20 kg plates with different bar', () => assertPlateDistribution(20, WeightUnit.kg, 16, [2, 2]));
 
@@ -29,6 +29,7 @@ describe('distributes kg plates', () => {
     assertDistributionWithLimitedAvailability(
       [createAvailability(20, 45, 2), createAvailability(10, 25, 4)],
       100, //
+      WeightUnit.kg,
       [20, 20, 10, 10, 10, 10],
     );
   });
@@ -37,6 +38,7 @@ describe('distributes kg plates', () => {
     assertDistributionWithLimitedAvailability(
       [createAvailability(25, 45, 2), createAvailability(20, 45, 2), createAvailability(10, 25, 4)],
       110, //
+      WeightUnit.kg,
       [25, 25, 20, 20],
     );
   });
@@ -45,14 +47,75 @@ describe('distributes kg plates', () => {
     assertDistributionWithLimitedAvailability(
       [createAvailability(25, 45, 2), createAvailability(20, 45, 2)],
       101, //
+      WeightUnit.kg,
       [25, 25],
       false,
+    );
+  });
+
+  test('distributes 139lb fully ', () => {
+    assertDistributionWithLimitedAvailability(
+      [
+        createAvailability(20, 45, 2),
+        createAvailability(2, 5, 2),
+        createAvailability(2.5, 1, 4),
+        createAvailability(1.5, 0.5, 2),
+        createAvailability(1, 2.5, 2),
+        createAvailability(0.5, 1.25, 2),
+      ],
+      139,
+      WeightUnit.lb,
+      [45, 45, 1, 1, 1, 1],
+      true,
+    );
+  });
+
+  test('distributes 153lb fully ', () => {
+    assertDistributionWithLimitedAvailability(
+      [
+        createAvailability(25, 55, 2),
+        createAvailability(20, 45, 2),
+        createAvailability(15, 35, 2),
+        createAvailability(10, 25, 2),
+        createAvailability(5, 10, 2),
+        createAvailability(2, 5, 4),
+        createAvailability(2.5, 1, 4),
+        createAvailability(1.5, 0.5, 4),
+        createAvailability(1, 2.5, 4),
+        createAvailability(0.5, 1.25, 4),
+      ],
+      153,
+
+      WeightUnit.lb,
+      [45, 45, 5, 5, 2.5, 2.5, 1, 1, 0.5, 0.5],
+      true,
+    );
+  });
+
+  test('distributes 97lb fully ', () => {
+    assertDistributionWithLimitedAvailability(
+      [
+        createAvailability(25, 55, 2),
+        createAvailability(20, 45, 2),
+        createAvailability(15, 35, 2),
+        createAvailability(10, 25, 2),
+        createAvailability(5, 10, 2),
+        createAvailability(2, 5, 4),
+        createAvailability(2.5, 1, 4),
+        createAvailability(1.5, 0.5, 4),
+        createAvailability(1, 2.5, 4),
+        createAvailability(0.5, 1.25, 4),
+      ],
+      97,
+      WeightUnit.lb,
+      [25, 25, 1, 1],
+      true,
     );
   });
 });
 
 const createAvailability = (kg: number, lb: number, availability: number) => {
-  return new PlateAvailability(new PlateMapping(Plate.BLUE, kg, lb), availability);
+  return new PlateAvailability(new PlateMapping(Plate.BLUE, kg, lb, 0), availability);
 };
 
 const assertPlateDistribution = (
@@ -74,12 +137,13 @@ const assertPlateDistribution = (
 const assertDistributionWithLimitedAvailability = (
   availability: PlateAvailability[],
   weight: number,
+  unit: WeightUnit,
   expectedPlates: number[],
   completelyDistributed = true,
 ) => {
   const bar = new Bar('foo', 20, 45);
   const settings = new WeightSettings(bar, availability);
-  const distributor = new PlateDistributor(settings, WeightUnit.kg);
+  const distributor = new PlateDistributor(settings, unit);
 
   const distribution = distributor.getPlateDistribution(weight);
 
