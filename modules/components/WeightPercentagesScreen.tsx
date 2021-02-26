@@ -133,12 +133,4 @@ const styles = StyleSheet.create({
   },
 });
 
-WeightPercentagesScreen.options = {
-  topBar: {
-    title: {
-      text: 'Percentages',
-    },
-  },
-};
-
 export default WeightPercentagesScreen;

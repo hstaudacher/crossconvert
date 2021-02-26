@@ -29,9 +29,6 @@ class WeightPercentageScreenNavigation {
 
     Navigation.mergeOptions(this.componentId, {
       topBar: {
-        title: {
-          text: 'Percentages',
-        },
         rightButtons: [
           {
             id: 'weightPercentagesSettingsButton',

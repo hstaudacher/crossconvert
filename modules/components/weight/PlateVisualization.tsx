@@ -53,4 +53,4 @@ const renderPlateIcon = (plate: Plate, style: StyleProp<ViewStyle>): Element => 
   );
 };
 
-export {renderPlateIcon};
+export {renderPlateIcon, getPlateColor};

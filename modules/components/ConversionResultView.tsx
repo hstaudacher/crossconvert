@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, FlatList, ListRenderItemInfo} from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 import ConversionConfiguration from './ConversionConfiguration';
 import {ListItem, Icon} from 'react-native-elements';
 import {fromOptions} from './options/FromOptions';
@@ -11,6 +11,8 @@ import {WeightPercentage, WeightPercentager} from './weight/WeightPercentager';
 import {store} from './store/WeightSettingsStore';
 import DefaultStyle from './DefaultStyle';
 import Analytics from 'appcenter-analytics';
+import {Plate} from './settings/Plates';
+import {getPlateColor} from './weight/PlateVisualization';
 
 class ConvertedOption {
   conversionResults: Array<ConversionResult>;
@@ -38,15 +40,37 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
       <>
         <WeightPercentagesListItem percentage={percentage} settings={weigthSettings} displayInConversion={true} />
         <ListItem bottomDivider containerStyle={styles.container} onPress={() => onOptionPress(convertedOption)}>
-          <Icon
-            name="percent"
-            type="crossfit"
-            color="#33618f"
-            size={36}
-            iconProps={{name: 'percent', size: convertedOption.option.resultIconSize}}
-          />
+          <View style={{flexDirection: 'row', width: 40, height: 40}}>
+            <Icon
+              name="plate"
+              type="crossfit"
+              color={getPlateColor(Plate.GREEN)}
+              size={32}
+              containerStyle={{position: 'absolute', left: 8, top: 0}}
+              iconProps={{name: 'plate', size: 32}}
+            />
+            <Icon
+              name="plate"
+              type="crossfit"
+              color={getPlateColor(Plate.BLUE)}
+              size={32}
+              containerStyle={{position: 'absolute', left: 5, top: 3}}
+              iconProps={{name: 'plate', size: 32}}
+            />
+            <Icon
+              name="plate"
+              type="crossfit"
+              color={getPlateColor(Plate.YELLOW)}
+              size={32}
+              containerStyle={{position: 'absolute', left: 2, top: 6}}
+              iconProps={{name: 'plate', size: 32}}
+            />
+          </View>
           <ListItem.Content>
-            <ListItem.Title style={{fontSize: 25, color: '#33618f', marginLeft: 8}}>Percentages</ListItem.Title>
+            <ListItem.Title style={{fontSize: 25, color: '#33618f', marginLeft: 8}}>
+              % of {convertedOption.configuration.value}
+              {convertedOption.configuration.unit}
+            </ListItem.Title>
           </ListItem.Content>
           <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
         </ListItem>
@@ -61,8 +85,11 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
           name: 'WeightPercentages',
           options: {
             topBar: {
+              title: {
+                text: convertedOption.configuration.value + convertedOption.configuration.unit,
+              },
               backButton: {
-                title: 'Conversion',
+                title: 'Back',
                 color: DefaultStyle.baseColor,
               },
             },
@@ -140,9 +167,7 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
           data={fromOptions('all')
             .map((option) => new ConvertedOption(option, props.configuration))
             .filter((option) => shouldRender(option))}
-          renderItem={(info: ListRenderItemInfo<ConvertedOption>) => {
-            return renderItem(info.item);
-          }}
+          renderItem={(info) => renderItem(info.item)}
         />
       </View>
     </>
