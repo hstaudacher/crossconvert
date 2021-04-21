@@ -25,7 +25,7 @@ const references: Array<ExerciseReference> = [
     new ExerciseReferenceValue(1000, Unit.Meter),
     new ExerciseReferenceValue(80, Unit.Calories),
   ]),
-  new ExerciseReference(Exercise.Burpee, [new ExerciseReferenceValue(80, Unit.Reps)]),
+  new ExerciseReference(Exercise.Burpee, [new ExerciseReferenceValue(60, Unit.Reps)]),
 ];
 
 // mayhem references
