@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "MConvert.app"
-               BlueprintName = "MConvert"
-               ReferencedContainer = "container:MConvert.xcodeproj">
+               BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+               BuildableName = "CrossConvert-tvOS.app"
+               BlueprintName = "CrossConvert-tvOS"
+               ReferencedContainer = "container:CrossConvert.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "MConvertTests.xctest"
-               BlueprintName = "MConvertTests"
-               ReferencedContainer = "container:MConvert.xcodeproj">
+               BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
+               BuildableName = "CrossConvert-tvOSTests.xctest"
+               BlueprintName = "CrossConvert-tvOSTests"
+               ReferencedContainer = "container:CrossConvert.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -54,10 +54,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MConvert.app"
-            BlueprintName = "MConvert"
-            ReferencedContainer = "container:MConvert.xcodeproj">
+            BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+            BuildableName = "CrossConvert-tvOS.app"
+            BlueprintName = "CrossConvert-tvOS"
+            ReferencedContainer = "container:CrossConvert.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,10 +71,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "MConvert.app"
-            BlueprintName = "MConvert"
-            ReferencedContainer = "container:MConvert.xcodeproj">
+            BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
+            BuildableName = "CrossConvert-tvOS.app"
+            BlueprintName = "CrossConvert-tvOS"
+            ReferencedContainer = "container:CrossConvert.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
@@ -83,7 +83,6 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      customArchiveName = "MConvert"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

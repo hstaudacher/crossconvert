@@ -1,4 +1,4 @@
-package com.mconvert;
+package com.crossconvert;
 
 import com.reactnativenavigation.NavigationActivity;
 

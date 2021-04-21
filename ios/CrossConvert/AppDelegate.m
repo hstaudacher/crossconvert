@@ -49,7 +49,7 @@ static void InitializeFlipper(UIApplication *application) {
                                             launchOptions:launchOptions];
   
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                   moduleName:@"MConvert"
+                                                   moduleName:@"CrossConvert"
                                             initialProperties:nil];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f

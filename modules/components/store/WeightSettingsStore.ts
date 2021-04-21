@@ -54,7 +54,7 @@ class WeightSettingsStore {
     try {
       this.settings = settings;
       const jsonValue = JSON.stringify(settings);
-      await AsyncStorage.setItem('@mconvert.weightSettings', jsonValue);
+      await AsyncStorage.setItem('@crossconvert.weightSettings', jsonValue);
     } catch (e) {
       throw e;
     }
@@ -62,7 +62,7 @@ class WeightSettingsStore {
 
   private load = async <WeightSettings>() => {
     try {
-      const jsonValue = await AsyncStorage.getItem('@mconvert.weightSettings');
+      const jsonValue = await AsyncStorage.getItem('@crossconvert.weightSettings');
       const settings = jsonValue != null ? JSON.parse(jsonValue) : this.defaultSettings;
       const bar = new Bar(settings.bar.name, settings.bar.kg, settings.bar.lb);
       return new WeightSettings(bar, settings.availablePlates);

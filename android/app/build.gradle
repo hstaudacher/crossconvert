@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.mconvert"
+        applicationId "com.crossconvert"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
