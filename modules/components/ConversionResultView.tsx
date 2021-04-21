@@ -148,6 +148,9 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
   };
 
   const shouldRender = (convertedOption: ConvertedOption): boolean => {
+    if (props.configuration.from.title !== 'Distance') {
+      return !convertedOption.isEmpty() && convertedOption.option.title !== 'Distance';
+    }
     return !convertedOption.isEmpty();
   };
 
