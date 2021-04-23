@@ -1,5 +1,5 @@
 class DefaultStyle {
-  public readonly baseColor = 'tomato';
+  public readonly baseColor = '#33618f';
 
   public readonly barColor = '#c3272e';
 }

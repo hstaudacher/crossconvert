@@ -111,7 +111,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
         </View>
       );
     }
-    return <Text style={{fontSize: 25, color: '#ff4500'}}>{props.percentage.percentage}%</Text>;
+    return <Text style={{fontSize: 25, color: DefaultStyle.baseColor}}>{props.percentage.percentage}%</Text>;
   };
 
   const renderTitle = () => {

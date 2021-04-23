@@ -21,6 +21,7 @@
 		BE538B8D256EFDFA001F8A94 /* mayhem-logo-black.png in Resources */ = {isa = PBXBuildFile; fileRef = BE538B8C256EFDFA001F8A94 /* mayhem-logo-black.png */; };
 		BE54C65225670B0C008F75B5 /* CrossFit.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE54C65125670B0C008F75B5 /* CrossFit.ttf */; };
 		BE868C4D24F681C300600B11 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE868C4C24F681C300600B11 /* AppCenter-Config.plist */; };
+		BE89DBD626330E4E00C8ACA8 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = BE89DBD526330E4E00C8ACA8 /* splash.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		BE538B8C256EFDFA001F8A94 /* mayhem-logo-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mayhem-logo-black.png"; sourceTree = "<group>"; };
 		BE54C65125670B0C008F75B5 /* CrossFit.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CrossFit.ttf; sourceTree = "<group>"; };
 		BE868C4C24F681C300600B11 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "CrossConvert/AppCenter-Config.plist"; sourceTree = "<group>"; };
+		BE89DBD526330E4E00C8ACA8 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		D5B2C53165757B8DB1E88994 /* Pods-CrossConvert-CrossConvertTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossConvert-CrossConvertTests.debug.xcconfig"; path = "Target Support Files/Pods-CrossConvert-CrossConvertTests/Pods-CrossConvert-CrossConvertTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -201,6 +203,7 @@
 		BE538B6D256EF7CF001F8A94 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BE89DBD526330E4E00C8ACA8 /* splash.png */,
 				BE538B8C256EFDFA001F8A94 /* mayhem-logo-black.png */,
 			);
 			path = Resources;
@@ -363,6 +366,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				BE54C65225670B0C008F75B5 /* CrossFit.ttf in Resources */,
 				BE868C4D24F681C300600B11 /* AppCenter-Config.plist in Resources */,
+				BE89DBD626330E4E00C8ACA8 /* splash.png in Resources */,
 				BE538B8D256EFDFA001F8A94 /* mayhem-logo-black.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
