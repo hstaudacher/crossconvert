@@ -76,9 +76,9 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
       flex: 1,
       flexDirection: 'row',
       justifyContent: 'flex-start',
-      alignItems: 'flex-end',
+      alignItems: 'flex-start',
       marginTop: -10,
-      paddingBottom: 15,
+      paddingTop: 10,
       paddingLeft: 12,
       borderTopColor: props.configuration.from.color,
       borderTopWidth: 1,
@@ -163,6 +163,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
 const styles = StyleSheet.create({
   innerContainer: {
     flex: 6,
+    marginTop: 10,
   },
 });
 

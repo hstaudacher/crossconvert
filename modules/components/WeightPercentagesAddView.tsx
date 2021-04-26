@@ -32,14 +32,14 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
           flex: 1,
           flexDirection: 'row',
           justifyContent: 'flex-start',
-          alignItems: 'flex-end',
-          paddingBottom: 15,
+          alignItems: 'flex-start',
+          paddingTop: 10,
           paddingLeft: 12,
           marginTop: -10,
           borderTopColor: '#36aa40',
           borderTopWidth: 1,
         }}>
-        <View style={{flex: 6}}>
+        <View style={{flex: 6, marginTop: 10}}>
           <Input
             placeholder={'%'}
             keyboardType="numeric"
