@@ -115,18 +115,20 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
             size={36}
             iconProps={{name: convertedOption.option.icon, size: convertedOption.option.resultIconSize}}
           />
-          <ListItem.Content>
-            <ListItem.Title style={{fontSize: 25, color: convertedOption.option.color, marginLeft: 6}}>
+          <ListItem.Content style={styles.content}>
+            <ListItem.Title style={[styles.title, {color: convertedOption.option.color}]}>
               {convertedOption.option.title}
             </ListItem.Title>
             <ListItem.Subtitle style={styles.subTitle}>
-              {convertedOption.conversionResults.map((singelResult, j) => (
-                <Text key={j}>
-                  {renderSlash(j)}
-                  {singelResult.value}
-                  <Text style={styles.unitText}>{singelResult.unit}</Text>
-                </Text>
-              ))}
+              <Text style={styles.textWrapper}>
+                {convertedOption.conversionResults.map((singelResult, j) => (
+                  <Text key={j} style={{fontSize: 25}} numberOfLines={2}>
+                    {renderSlash(j)}
+                    {singelResult.value}
+                    <Text style={styles.unitText}>{singelResult.unit}</Text>
+                  </Text>
+                ))}
+              </Text>
             </ListItem.Subtitle>
           </ListItem.Content>
         </ListItem>
@@ -186,14 +188,26 @@ const styles = StyleSheet.create({
     paddingTop: 18,
     paddingBottom: 18,
   },
+  title: {
+    fontSize: 25,
+    marginLeft: 6,
+  },
+  content: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   unitText: {
     color: '#86858a',
   },
   subTitle: {
     fontSize: 25,
     color: '#020202',
-    position: 'absolute',
-    right: 4,
+    paddingLeft: 10,
+    flex: 1,
+  },
+  textWrapper: {
+    textAlign: 'right',
+    marginLeft: 10,
   },
 });
 
