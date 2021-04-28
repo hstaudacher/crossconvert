@@ -11,7 +11,6 @@ import {OptionsSettingsItem, SettingsItem, SettingsSection, SettingsType} from '
 import {WeightSettings} from '../store/WeightSettingsStore';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import DefaultStyle from '../DefaultStyle';
-import Analytics from 'appcenter-analytics';
 
 interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {
   settings: WeightSettings;
@@ -29,7 +28,6 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
   };
 
   const updateBar = (newSettings: WeightSettings) => {
-    Analytics.trackEvent('weight-settings-update-bar-to-' + newSettings.bar.name.replace('/', '-'));
     updateSettings(newSettings);
   };
 

@@ -225,12 +225,10 @@
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CrossConvertTests" */;
 			buildPhases = (
 				99B57772D4E3BBB71ECEB08D /* [CP] Check Pods Manifest.lock */,
-				856A8189736D2897CADA98B3 /* [CP] Prepare Artifacts */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				4DF74E02309D0674CD39F2F6 /* [CP] Copy Pods Resources */,
-				3C80E5A0B4F792D27612141C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -248,13 +246,11 @@
 			buildPhases = (
 				0420A8CB575674623975BAD1 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
-				363D00B7B356E2440685674A /* [CP] Prepare Artifacts */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				7673B7292A47C1F4F6B8C9E4 /* [CP] Copy Pods Resources */,
-				88787B7118010ADF8F49ED0F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -317,6 +313,7 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = A9EL7VCXMF;
 						LastSwiftMigration = 1120;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -439,43 +436,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		363D00B7B356E2440685674A /* [CP] Prepare Artifacts */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CrossConvert/Pods-CrossConvert-artifacts.sh",
-				"${PODS_ROOT}/AppCenter/AppCenter-SDK-Apple/AppCenterAnalytics.xcframework",
-				"${PODS_ROOT}/AppCenter/AppCenter-SDK-Apple/AppCenter.xcframework",
-				"${PODS_ROOT}/AppCenter/AppCenter-SDK-Apple/AppCenterCrashes.xcframework",
-			);
-			name = "[CP] Prepare Artifacts";
-			outputPaths = (
-				"${BUILT_PRODUCTS_DIR}/cocoapods-artifacts-${CONFIGURATION}.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrossConvert/Pods-CrossConvert-artifacts.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3C80E5A0B4F792D27612141C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CrossConvert-CrossConvertTests/Pods-CrossConvert-CrossConvertTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/cocoapods-artifacts-${CONFIGURATION}.txt",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrossConvert-CrossConvertTests/Pods-CrossConvert-CrossConvertTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4DF74E02309D0674CD39F2F6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -574,43 +534,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrossConvert/Pods-CrossConvert-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		856A8189736D2897CADA98B3 /* [CP] Prepare Artifacts */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CrossConvert-CrossConvertTests/Pods-CrossConvert-CrossConvertTests-artifacts.sh",
-				"${PODS_ROOT}/AppCenter/AppCenter-SDK-Apple/AppCenterAnalytics.xcframework",
-				"${PODS_ROOT}/AppCenter/AppCenter-SDK-Apple/AppCenter.xcframework",
-				"${PODS_ROOT}/AppCenter/AppCenter-SDK-Apple/AppCenterCrashes.xcframework",
-			);
-			name = "[CP] Prepare Artifacts";
-			outputPaths = (
-				"${BUILT_PRODUCTS_DIR}/cocoapods-artifacts-${CONFIGURATION}.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrossConvert-CrossConvertTests/Pods-CrossConvert-CrossConvertTests-artifacts.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		88787B7118010ADF8F49ED0F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CrossConvert/Pods-CrossConvert-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/cocoapods-artifacts-${CONFIGURATION}.txt",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CrossConvert/Pods-CrossConvert-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		99B57772D4E3BBB71ECEB08D /* [CP] Check Pods Manifest.lock */ = {
@@ -775,7 +698,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A9EL7VCXMF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CrossConvert/Info.plist;
@@ -787,6 +712,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.toastingcode.CrossConvert;
 				PRODUCT_NAME = CrossConvert;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -799,7 +725,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = A9EL7VCXMF;
 				INFOPLIST_FILE = CrossConvert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -810,6 +738,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.toastingcode.CrossConvert;
 				PRODUCT_NAME = CrossConvert;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

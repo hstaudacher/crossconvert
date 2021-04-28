@@ -2,7 +2,6 @@
 import React, {useState} from 'react';
 import {View, Keyboard, TouchableOpacity, StyleSheet} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
-import Analytics from 'appcenter-analytics';
 
 import ConversionConfiguration from './ConversionConfiguration';
 import {FromSelection} from './FromSelection';
@@ -25,7 +24,6 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     props.configuration.from = option;
     fireConfigurationChange();
     toggleFromSelectionOverlay();
-    Analytics.trackEvent('update-from-' + props.configuration.from.title.replace(' ', '').toLowerCase());
   };
 
   const toggleFromSelectionOverlay = (): void => {
@@ -40,7 +38,6 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     props.configuration.unit = newUnit;
     fireConfigurationChange();
     toggleUnitSelectionOverlay();
-    Analytics.trackEvent('update-unit-' + props.configuration.unit.replace(' ', '').toLowerCase());
   };
 
   const ensureFromOptionExists = (newUnit: string): void => {
