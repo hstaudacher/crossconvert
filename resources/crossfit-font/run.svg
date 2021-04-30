@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="552" height="552" viewBox="0 0 552 552">
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="411" cy="87" r="52" fill="#000"/>
+    <rect width="50" height="146" x="270.619" y="335.016" fill="#000" transform="rotate(9 295.619 408.016)"/>
+    <rect width="52" height="131" x="241.825" y="244.447" fill="#000" transform="rotate(-44 267.825 309.947)"/>
+    <rect width="50" height="167" x="356.64" y="104.162" fill="#000" transform="rotate(-47 381.64 187.662)"/>
+    <rect width="42" height="133" x="437.485" y="136.191" fill="#000" transform="rotate(45 458.485 202.69)"/>
+    <rect width="50" height="110" x="257.448" y="82.57" fill="#000" transform="rotate(90 282.448 137.57)"/>
+    <rect width="42" height="133" x="173.169" y="107.562" fill="#000" transform="rotate(46 194.17 174.062)"/>
+    <rect width="49" height="138" x="76.629" y="274.261" fill="#000" transform="rotate(90 101.129 343.261)"/>
+    <rect width="50" height="294" x="226.087" y="96.453" fill="#000" transform="rotate(43 251.087 243.453)"/>
+  </g>
+</svg>
