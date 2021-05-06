@@ -168,9 +168,9 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
         <FlatList
           keyExtractor={keyExtractor}
           data={fromOptions('all')
-            .map((option) => new ConvertedOption(option, props.configuration))
-            .filter((option) => shouldRender(option))}
-          renderItem={(info) => renderItem(info.item)}
+            .map(option => new ConvertedOption(option, props.configuration))
+            .filter(option => shouldRender(option))}
+          renderItem={info => renderItem(info.item)}
         />
       </View>
     </>
@@ -201,7 +201,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: '#020202',
     paddingLeft: 10,
-    flex: 1,
   },
   textWrapper: {
     textAlign: 'right',
