@@ -133,7 +133,10 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
             rightIcon={
               <TouchableOpacity onPress={toggleUnitSelectionOverlay}>
                 <View style={{flexDirection: 'row', marginTop: 5}}>
-                  <Text style={{color: DefaultStyle.baseColor, marginBottom: 0, height: 40}} h3>
+                  <Text
+                    style={{color: DefaultStyle.baseColor, marginBottom: 0, height: 40}}
+                    h3
+                    h3Style={{fontWeight: 'normal'}}>
                     {props.configuration.unit}
                   </Text>
                   <Icon
