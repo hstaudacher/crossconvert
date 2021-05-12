@@ -124,6 +124,13 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     },
   });
 
+  const computeInputStyle = () => {
+    if (Platform.OS === 'ios') {
+      return {fontSize: 28};
+    }
+    return {fontSize: 28, paddingBottom: 3};
+  };
+
   return (
     <>
       <View style={containerStyle}>
@@ -153,7 +160,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
             keyboardType="numeric"
             onChangeText={changeValue}
             value={value}
-            inputStyle={{fontSize: 28}}
+            inputStyle={computeInputStyle()}
           />
         </View>
 

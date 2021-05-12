@@ -71,6 +71,13 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
     }
   };
 
+  const computeInputStyle = () => {
+    if (Platform.OS === 'ios') {
+      return {fontSize: 28};
+    }
+    return {fontSize: 28, paddingBottom: 3};
+  };
+
   return (
     <>
       <View style={containerStyle}>
@@ -80,7 +87,7 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
             keyboardType="numeric"
             onChangeText={updatePercentage}
             value={percentage}
-            inputStyle={{fontSize: 28}}
+            inputStyle={computeInputStyle()}
           />
         </View>
 
