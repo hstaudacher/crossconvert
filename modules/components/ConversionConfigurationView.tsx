@@ -38,7 +38,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
       flexDirection: 'row',
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
-      marginTop: -10,
+      marginTop: Platform.OS === 'ios' ? -10 : 0,
       paddingTop: 10,
       paddingLeft: 12,
       borderTopColor: props.configuration.from.color,
@@ -48,7 +48,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
 
   const containerStyleAndroid = StyleSheet.create({
     containerStyle: {
-      marginTop: -40,
+      marginTop: -30,
     },
   });
 

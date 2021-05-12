@@ -30,7 +30,7 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
       alignItems: 'flex-start',
       paddingTop: 10,
       paddingLeft: 12,
-      marginTop: -10,
+      marginTop: Platform.OS === 'ios' ? -10 : 0,
       borderTopColor: '#36aa40',
       borderTopWidth: 1,
     },
@@ -38,7 +38,7 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
 
   const containerStyleAndroid = StyleSheet.create({
     containerStyle: {
-      marginTop: -40,
+      marginTop: -30,
     },
   });
 
