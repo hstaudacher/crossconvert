@@ -32,7 +32,7 @@ export const fromOptions = (unit: string): Array<FromOption> => {
 };
 
 const reduceOptions = (mustBeContained: Array<string>): Array<FromOption> => {
-  return options.filter((i) => {
-    return mustBeContained.find((title) => title === i.title) !== undefined;
+  return options.filter(i => {
+    return mustBeContained.find(title => title === i.title) !== undefined;
   });
 };
