@@ -7,6 +7,7 @@ import CrossFitIcons from './fonts/CrossFitIcons';
 import {Navigation} from 'react-native-navigation';
 import DataStore from './modules/components/store/DataStore';
 import DefaultStyle from './modules/components/DefaultStyle';
+import {Platform} from 'react-native';
 
 registerCustomIconType('crossfit', CrossFitIcons);
 
@@ -39,6 +40,7 @@ const start = () => {
         color: DefaultStyle.baseColor,
       },
       backButton: {
+        visible: Platform.OS === 'ios',
         color: DefaultStyle.baseColor,
       },
     },

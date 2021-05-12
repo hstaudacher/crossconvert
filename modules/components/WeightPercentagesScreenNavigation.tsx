@@ -1,3 +1,4 @@
+import {Platform} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import DefaultStyle from './DefaultStyle';
 import {WeightSettings} from './store/WeightSettingsStore';
@@ -14,6 +15,7 @@ class WeightPercentageScreenNavigation {
             topBar: {
               backButton: {
                 title: 'Percentages',
+                visible: Platform.OS === 'ios',
               },
             },
           },
@@ -31,8 +33,10 @@ class WeightPercentageScreenNavigation {
           {
             id: 'weightPercentagesSettingsButton',
             text: '',
+            showAsAction: 'always',
             component: {
               name: 'Icon',
+              width: 50,
               passProps: {
                 name: 'sliders',
                 type: 'font-awesome',

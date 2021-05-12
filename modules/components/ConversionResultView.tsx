@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Platform} from 'react-native';
 import ConversionConfiguration from './ConversionConfiguration';
 import {ListItem, Icon} from 'react-native-elements';
 import {fromOptions} from './options/FromOptions';
@@ -90,6 +90,7 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
               backButton: {
                 title: 'Back',
                 color: DefaultStyle.baseColor,
+                visible: Platform.OS === 'ios',
               },
             },
           },

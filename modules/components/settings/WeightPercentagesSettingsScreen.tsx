@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {SectionList, Switch, Text} from 'react-native';
+import {Platform, SectionList, Switch, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {Icon, ListItem} from 'react-native-elements';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
@@ -54,7 +54,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
     new SettingsSection(
       'Available Plates',
       SettingsType.OPTIONS,
-      plateMappings().map((m) => createPlateItem(m)),
+      plateMappings().map(m => createPlateItem(m)),
     ),
   ];
 
@@ -71,6 +71,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
             topBar: {
               backButton: {
                 title: 'Settings',
+                visible: Platform.OS === 'ios',
               },
               title: {text: item.title},
             },
@@ -111,7 +112,7 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
         <SectionList
           sections={SECTIONS}
           keyExtractor={(item, index) => item.title + index}
-          renderItem={(i) => renderItem(i.item, props.componentId)}
+          renderItem={i => renderItem(i.item, props.componentId)}
           renderSectionHeader={({section: {title}}) => <Text style={styles.header}>{title}</Text>}
         />
       </SafeAreaView>
