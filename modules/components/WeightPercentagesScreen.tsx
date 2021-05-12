@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {View, StyleSheet, TouchableOpacity, Pressable, Keyboard, KeyboardAvoidingView} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Pressable, Keyboard, KeyboardAvoidingView, Platform} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
@@ -77,7 +77,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
               disableRightSwipe
               keyExtractor={(e, i) => i.toString()}
               data={weightPercentages}
-              renderItem={(info) => (
+              renderItem={info => (
                 <WeightPercentagesListItem
                   percentage={info.item}
                   settings={weightSettings}
@@ -91,7 +91,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
           </View>
           <KeyboardAvoidingView
             style={{flex: 1}}
-            behavior="position"
+            behavior={Platform.OS === 'ios' ? 'position' : undefined}
             keyboardVerticalOffset={70}
             contentContainerStyle={{flex: 1}}>
             <WeightPercentagesAddView addPercentageCallback={addPercentage} />

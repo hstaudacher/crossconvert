@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
-import {View, Keyboard} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Keyboard, StyleSheet, Platform, StyleProp} from 'react-native';
 import {Input, Icon} from 'react-native-elements';
 
 export interface WeightPercentagesAddViewProperties {
@@ -9,6 +9,53 @@ export interface WeightPercentagesAddViewProperties {
 
 const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => {
   const [percentage, setPercentage] = useState('');
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+
+    // cleanup function
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+    };
+  });
+
+  const containerStyleAllOs = StyleSheet.create({
+    containerStyle: {
+      backgroundColor: 'white',
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      paddingTop: 10,
+      paddingLeft: 12,
+      marginTop: -10,
+      borderTopColor: '#36aa40',
+      borderTopWidth: 1,
+    },
+  });
+
+  const containerStyleAndroid = StyleSheet.create({
+    containerStyle: {
+      marginTop: -40,
+    },
+  });
+
+  const [containerStyle, setContainerStyle] = useState(containerStyleAllOs.containerStyle);
+
+  const keyboardDidShow = () => {
+    if (Platform.OS !== 'ios') {
+      const composedStyle: StyleProp<any> = StyleSheet.compose(
+        containerStyleAllOs.containerStyle,
+        containerStyleAndroid.containerStyle,
+      );
+      setContainerStyle(composedStyle);
+    }
+  };
+  const keyboardDidHide = () => {
+    setContainerStyle(containerStyleAllOs.containerStyle);
+  };
 
   const updatePercentage = (newValue: string) => {
     if (newValue.length < 5) {
@@ -26,20 +73,8 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
 
   return (
     <>
-      <View
-        style={{
-          backgroundColor: 'white',
-          flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-start',
-          paddingTop: 10,
-          paddingLeft: 12,
-          marginTop: -10,
-          borderTopColor: '#36aa40',
-          borderTopWidth: 1,
-        }}>
-        <View style={{flex: 6, marginTop: 10}}>
+      <View style={containerStyle}>
+        <View style={styles.innerContainer}>
           <Input
             placeholder={'%'}
             keyboardType="numeric"
@@ -65,5 +100,12 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  innerContainer: {
+    flex: 6,
+    marginTop: Platform.OS === 'ios' ? 10 : 0,
+  },
+});
 
 export default WeightPercentagesAddView;

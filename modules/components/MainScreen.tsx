@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {KeyboardAvoidingView, Pressable, Keyboard, View} from 'react-native';
+import {KeyboardAvoidingView, Pressable, Keyboard, View, Platform} from 'react-native';
 import ConversionConfigurationView from './ConversionConfigurationView';
 import ConversionConfiguration from './ConversionConfiguration';
 import ConversionResultView from './ConversionResultView';
@@ -21,7 +21,7 @@ const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps
           <ConversionResultView configuration={configuration} componentId={props.componentId} />
           <KeyboardAvoidingView
             style={{flex: 1}}
-            behavior="position"
+            behavior={Platform.OS === 'ios' ? 'position' : undefined}
             keyboardVerticalOffset={70}
             contentContainerStyle={{flex: 1}}>
             <ConversionConfigurationView

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
-import {View, Keyboard, TouchableOpacity, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Keyboard, TouchableOpacity, StyleSheet, Platform, StyleProp} from 'react-native';
 import {Input, Text, Overlay, Icon} from 'react-native-elements';
 
 import ConversionConfiguration from './ConversionConfiguration';
@@ -19,6 +19,53 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
   const [unitSelectionVisible, setUnitSelectionVisible] = React.useState(false);
   const [fromSelectionVisible, setFromSelectionVisible] = React.useState(false);
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+
+    // cleanup function
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+    };
+  });
+
+  const containerStyleAllOs = StyleSheet.create({
+    containerStyle: {
+      backgroundColor: 'white',
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      marginTop: -10,
+      paddingTop: 10,
+      paddingLeft: 12,
+      borderTopColor: props.configuration.from.color,
+      borderTopWidth: 1,
+    },
+  });
+
+  const containerStyleAndroid = StyleSheet.create({
+    containerStyle: {
+      marginTop: -40,
+    },
+  });
+
+  const [containerStyle, setContainerStyle] = useState(containerStyleAllOs.containerStyle);
+
+  const keyboardDidShow = () => {
+    if (Platform.OS !== 'ios') {
+      const composedStyle: StyleProp<any> = StyleSheet.compose(
+        containerStyleAllOs.containerStyle,
+        containerStyleAndroid.containerStyle,
+      );
+      setContainerStyle(composedStyle);
+    }
+  };
+  const keyboardDidHide = () => {
+    setContainerStyle(containerStyleAllOs.containerStyle);
+  };
 
   const onFromOptionClick = (option: FromOption): void => {
     props.configuration.from = option;
@@ -67,21 +114,6 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     props.changeConfiguration(props.configuration.copy());
   };
 
-  const containerStyle = StyleSheet.create({
-    containerStyle: {
-      backgroundColor: 'white',
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      marginTop: -10,
-      paddingTop: 10,
-      paddingLeft: 12,
-      borderTopColor: props.configuration.from.color,
-      borderTopWidth: 1,
-    },
-  });
-
   const overlayStyle = StyleSheet.create({
     overlayStyle: {
       borderTopColor: props.configuration.from.color,
@@ -94,7 +126,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
 
   return (
     <>
-      <View style={containerStyle.containerStyle}>
+      <View style={containerStyle}>
         <View style={styles.innerContainer}>
           <Input
             placeholder="0"
@@ -160,7 +192,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
 const styles = StyleSheet.create({
   innerContainer: {
     flex: 6,
-    marginTop: 10,
+    marginTop: Platform.OS === 'ios' ? 10 : 0,
   },
 });
 
