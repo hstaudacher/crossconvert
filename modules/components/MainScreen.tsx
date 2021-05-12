@@ -26,7 +26,7 @@ const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps
             contentContainerStyle={{flex: 1}}>
             <ConversionConfigurationView
               configuration={configuration}
-              changeConfiguration={(c) => changeConfiguration(c)}
+              changeConfiguration={(c: ConversionConfiguration) => changeConfiguration(c)}
             />
           </KeyboardAvoidingView>
         </View>
