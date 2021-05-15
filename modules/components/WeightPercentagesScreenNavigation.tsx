@@ -15,7 +15,6 @@ class WeightPercentageScreenNavigation {
             topBar: {
               backButton: {
                 title: 'Percentages',
-                visible: Platform.OS === 'ios',
               },
             },
           },

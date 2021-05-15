@@ -7,7 +7,7 @@ import CrossFitIcons from './fonts/CrossFitIcons';
 import {Navigation} from 'react-native-navigation';
 import DataStore from './modules/components/store/DataStore';
 import DefaultStyle from './modules/components/DefaultStyle';
-import {Platform} from 'react-native';
+import {Platform, StatusBar} from 'react-native';
 
 registerCustomIconType('crossfit', CrossFitIcons);
 
@@ -36,11 +36,11 @@ const start = () => {
   });
   Navigation.setDefaultOptions({
     topBar: {
+      height: 50,
       title: {
         color: DefaultStyle.baseColor,
       },
       backButton: {
-        visible: Platform.OS === 'ios',
         color: DefaultStyle.baseColor,
       },
     },

@@ -90,7 +90,6 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
               backButton: {
                 title: 'Back',
                 color: DefaultStyle.baseColor,
-                visible: Platform.OS === 'ios',
               },
             },
           },

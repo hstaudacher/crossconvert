@@ -71,7 +71,6 @@ const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenP
             topBar: {
               backButton: {
                 title: 'Settings',
-                visible: Platform.OS === 'ios',
               },
               title: {text: item.title},
             },
