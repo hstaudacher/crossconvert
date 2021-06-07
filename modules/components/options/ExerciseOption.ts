@@ -19,7 +19,12 @@ export default class ExerciseOption extends FromOption {
   doConversion(configuration: ConversionConfiguration): Array<ConversionResult> {
     if (configuration.from instanceof ExerciseOption) {
       const fromExercise = configuration.from as ExerciseOption;
-      if (configuration.unit === 'cal' || configuration.unit === 'm' || configuration.unit === 'mi') {
+      if (
+        configuration.unit === 'cal' ||
+        configuration.unit === 'm' ||
+        configuration.unit === 'mi' ||
+        configuration.unit === 'rep'
+      ) {
         const converter = this.createConverter(configuration, fromExercise);
         return this.doConvert(converter);
       }
@@ -47,6 +52,8 @@ export default class ExerciseOption extends FromOption {
   private getUnit = (unit: string): Unit => {
     if (unit === 'cal') {
       return Unit.Calories;
+    } else if (unit === 'rep') {
+      return Unit.Reps;
     }
     return Unit.Meter;
   };

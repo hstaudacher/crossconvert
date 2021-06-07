@@ -42,7 +42,7 @@ export abstract class FromOption {
 
   convert = (configuration: ConversionConfiguration): Array<ConversionResult> => {
     const results = this.doConversion(configuration);
-    return results.map((r) => new ConversionResult(this.format(r.value as number, r.unit), r.unit));
+    return results.map(r => new ConversionResult(this.format(r.value as number, r.unit), r.unit));
   };
 
   protected abstract doConversion(configuration: ConversionConfiguration): Array<ConversionResult>;

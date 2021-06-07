@@ -26,6 +26,7 @@ const references: Array<ExerciseReference> = [
     new ExerciseReferenceValue(80, Unit.Calories),
   ]),
   new ExerciseReference(Exercise.Burpee, [new ExerciseReferenceValue(60, Unit.Reps)]),
+  new ExerciseReference(Exercise.DoubleUnder, [new ExerciseReferenceValue(300, Unit.Reps)]),
 ];
 
 // mayhem references
@@ -63,25 +64,25 @@ class ExerciseConverter {
 
   private convertValue(fromReferenceValue: ExerciseReferenceValue, toReferenceValue: ExerciseReferenceValue): number {
     const multiplier = this.value / fromReferenceValue.value;
-    return toReferenceValue.value * multiplier;
+    return Math.round(toReferenceValue.value * multiplier);
   }
 
   private computeReferenceValue(reference: ExerciseReference, unit: Unit): ExerciseReferenceValue {
-    const value = reference.values.find((d) => d.unit === unit);
+    const value = reference.values.find(d => d.unit === unit);
     if (value === undefined) {
-      const units: Array<Unit> = reference.values.map((v) => v.unit)!;
+      const units: Array<Unit> = reference.values.map(v => v.unit)!;
       throw new Error(reference.exercise + ' does not know unit ' + unit + '. Known units are: ' + units.join(','));
     }
     return value;
   }
 
   private getReference(exercise: Exercise): ExerciseReference {
-    return references.find((b) => b.exercise === exercise)!;
+    return references.find(b => b.exercise === exercise)!;
   }
 
   getSupportedUnits = (exercise: Exercise): Array<Unit> => {
     const reference = this.getReference(exercise);
-    return reference.values.map((v) => v.unit);
+    return reference.values.map(v => v.unit);
   };
 }
 

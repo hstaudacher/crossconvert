@@ -21,6 +21,9 @@ describe('converts to run', () => {
 
   test('converts ski meter to run', () =>
     assertConvertion(Exercise.Ski, 250, Unit.Meter, Exercise.Run, 200, Unit.Meter));
+
+  test('converts double under to run', () =>
+    assertConvertion(Exercise.DoubleUnder, 100, Unit.Reps, Exercise.Run, 267, Unit.Meter));
 });
 
 describe('converts to row', () => {
@@ -43,6 +46,12 @@ describe('converts to row', () => {
 
   test('converts ski to row meter', () =>
     assertConvertion(Exercise.Ski, 20, Unit.Calories, Exercise.Row, 250, Unit.Meter));
+
+  test('converts double under to row cals', () =>
+    assertConvertion(Exercise.DoubleUnder, 100, Unit.Reps, Exercise.Row, 27, Unit.Calories));
+
+  test('converts double under to row meter', () =>
+    assertConvertion(Exercise.DoubleUnder, 100, Unit.Reps, Exercise.Row, 333, Unit.Meter));
 });
 
 describe('converts to bike', () => {
@@ -67,8 +76,10 @@ describe('converts to bike', () => {
   test('converts ski cals to bike', () =>
     assertConvertion(Exercise.Ski, 400, Unit.Calories, Exercise.Bike, 10000, Unit.Meter));
 
-  test('converts run to air bike', () =>
-    assertConvertion(Exercise.Run, 800, Unit.Meter, Exercise.Airbike, 60, Unit.Calories));
+  test('converts run to bike', () => assertConvertion(Exercise.Run, 800, Unit.Meter, Exercise.Bike, 80, Unit.Calories));
+
+  test('converts double unders to bike', () =>
+    assertConvertion(Exercise.DoubleUnder, 100, Unit.Reps, Exercise.Bike, 27, Unit.Calories));
 });
 
 describe('converts to air bike', () => {
@@ -89,6 +100,9 @@ describe('converts to air bike', () => {
 
   test('converts bike cals to air bike', () =>
     assertConvertion(Exercise.Bike, 20, Unit.Calories, Exercise.Airbike, 15, Unit.Calories));
+
+  test('converts double unders to air bike', () =>
+    assertConvertion(Exercise.DoubleUnder, 100, Unit.Reps, Exercise.Airbike, 20, Unit.Calories));
 });
 
 describe('converts to burpee', () => {
@@ -109,6 +123,32 @@ describe('converts to burpee', () => {
 
   test('converts bike cals to burpees', () =>
     assertConvertion(Exercise.Bike, 20, Unit.Calories, Exercise.Burpee, 15, Unit.Reps));
+
+  test('converts double unders to burpees', () =>
+    assertConvertion(Exercise.DoubleUnder, 100, Unit.Reps, Exercise.Burpee, 20, Unit.Reps));
+});
+
+describe('converts to double unders', () => {
+  test('converts row meter to double unders', () =>
+    assertConvertion(Exercise.Row, 250, Unit.Meter, Exercise.DoubleUnder, 75, Unit.Reps));
+
+  test('converts row cals to double unders', () =>
+    assertConvertion(Exercise.Row, 20, Unit.Calories, Exercise.DoubleUnder, 75, Unit.Reps));
+
+  test('converts bike meters to double unders', () =>
+    assertConvertion(Exercise.Bike, 500, Unit.Meter, Exercise.DoubleUnder, 75, Unit.Reps));
+
+  test('converts bike cal to double unders', () =>
+    assertConvertion(Exercise.Bike, 20, Unit.Calories, Exercise.DoubleUnder, 75, Unit.Reps));
+
+  test('converts airbike to double unders', () =>
+    assertConvertion(Exercise.Airbike, 15, Unit.Calories, Exercise.DoubleUnder, 75, Unit.Reps));
+
+  test('converts ski cals to double unders', () =>
+    assertConvertion(Exercise.Ski, 20, Unit.Calories, Exercise.DoubleUnder, 75, Unit.Reps));
+
+  test('converts ski meter to double unders', () =>
+    assertConvertion(Exercise.Ski, 250, Unit.Meter, Exercise.DoubleUnder, 75, Unit.Reps));
 });
 
 test('uses existing unit if requested does not exist', () => {

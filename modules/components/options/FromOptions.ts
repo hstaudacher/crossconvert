@@ -12,6 +12,7 @@ const options: Array<FromOption> = [
   new ExerciseOption('Air Bike', 'airbike', 'crossfit', '#af2e33', 35, 40, Exercise.Airbike),
   new ExerciseOption('Run', 'run', 'crossfit', 'coral', 32, 40, Exercise.Run),
   new ExerciseOption('Burpee', 'burpee', 'crossfit', 'darkmagenta', 35, 40, Exercise.Burpee),
+  new ExerciseOption('Double Under', 'run', 'crossfit', 'darkcyan', 35, 40, Exercise.DoubleUnder),
   new WeightOption('Weight', 'barbell', 'crossfit', DefaultStyle.barColor, 45, 40),
   new DistanceOption('Distance', 'distance', 'crossfit', '#c3272e', 35, 40),
 ];
@@ -25,6 +26,8 @@ export const fromOptions = (unit: string): Array<FromOption> => {
     return reduceOptions(['Weight']);
   } else if (unit === 'ft' || unit === 'in') {
     return reduceOptions(['Distance']);
+  } else if (unit === 'rep') {
+    return reduceOptions(['Burpee', 'Double Under']);
   } else if (unit === 'all') {
     return options;
   }

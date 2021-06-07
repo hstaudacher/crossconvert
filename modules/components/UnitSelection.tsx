@@ -14,6 +14,7 @@ class UnitEntry {
 export const units: Array<UnitEntry> = [
   new UnitEntry('cal', 'Calories'),
   new UnitEntry('m', 'Meters'),
+  new UnitEntry('rep', 'Repetitions'),
   new UnitEntry('mi', 'Miles'),
   new UnitEntry('in', 'Inch'),
   new UnitEntry('ft', 'Feet'),

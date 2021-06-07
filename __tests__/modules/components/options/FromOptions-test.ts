@@ -14,10 +14,12 @@ describe('filters from options', () => {
   test('filters options based on lb', () => assertFromContains('lb', ['Weight']));
 
   test('filters options based on kg', () => assertFromContains('kg', ['Weight']));
+
+  test('filters options based on reps', () => assertFromContains('rep', ['Burpee', 'Double Under']));
 });
 
 const assertFromContains = (unit: string, expected: Array<string>): void => {
-  const options: Array<string> = fromOptions(unit).map((i) => i.title);
+  const options: Array<string> = fromOptions(unit).map(i => i.title);
 
   expect(options).toEqual(expect.arrayContaining(expected));
 };
