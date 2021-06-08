@@ -7,7 +7,6 @@ import CrossFitIcons from './fonts/CrossFitIcons';
 import {Navigation} from 'react-native-navigation';
 import DataStore from './modules/components/store/DataStore';
 import DefaultStyle from './modules/components/DefaultStyle';
-import {Platform, StatusBar} from 'react-native';
 
 registerCustomIconType('crossfit', CrossFitIcons);
 
