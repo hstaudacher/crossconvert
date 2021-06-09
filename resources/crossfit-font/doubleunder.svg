@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="657px" height="657px" viewBox="0 0 657 657" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="#000000" cx="328.807462" cy="149.467216" r="54.5"></circle>
+        <g id="left-arm" transform="translate(355.269061, 211.960329)" fill="#000000">
+            <polygon id="Rectangle" transform="translate(55.306014, 64.818979) rotate(-36.000000) translate(-55.306014, -64.818979) " points="33.8060142 1.07587911 74.6952144 0.318979061 76.8060142 128.562079 35.9168139 129.318979"></polygon>
+            <path d="M152.094286,26.7672092 L173.835384,54.4389209 L110.039448,104.039209 L59.8144476,104.039209 L57.1194476,100.610099 L152.094286,26.7672092 Z" id="Combined-Shape"></path>
+        </g>
+        <g id="left-arm-copy" transform="translate(215.186752, 276.779308) scale(-1, 1) translate(-215.186752, -276.779308) translate(128.269061, 211.960329)" fill="#000000">
+            <polygon id="Rectangle" transform="translate(55.306014, 64.818979) rotate(-36.000000) translate(-55.306014, -64.818979) " points="33.8060142 1.07587911 74.6952144 0.318979061 76.8060142 128.562079 35.9168139 129.318979"></polygon>
+            <path d="M152.094286,26.7672092 L173.835384,54.4389209 L110.039448,104.039209 L59.8144476,104.039209 L57.1194476,100.610099 L152.094286,26.7672092 Z" id="Combined-Shape"></path>
+        </g>
+        <rect id="Rectangle" fill="#000000" x="271" y="445" width="51" height="194"></rect>
+        <rect id="Rectangle" fill="#000000" x="335" y="445" width="51" height="194"></rect>
+        <rect id="Rectangle" fill="#000000" x="269" y="213" width="119" height="232"></rect>
+        <path d="M328.5,28 C421.796063,28 500.059147,126.817629 521.307708,259.998731 L519.036561,259.997167 C497.276196,128.388582 420.220053,31.1044809 328.5,31.1044809 C236.779947,31.1044809 159.723804,128.388582 137.963439,259.997167 L135.692292,259.998731 C156.940853,126.817629 235.203937,28 328.5,28 Z" id="Combined-Shape" fill="#000000" opacity="0.78889974"></path>
+    </g>
+</svg>
