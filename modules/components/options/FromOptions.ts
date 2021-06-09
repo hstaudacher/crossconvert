@@ -12,7 +12,7 @@ const options: Array<FromOption> = [
   new ExerciseOption('Air Bike', 'airbike', 'crossfit', '#af2e33', 35, 40, Exercise.Airbike),
   new ExerciseOption('Run', 'run', 'crossfit', 'coral', 32, 40, Exercise.Run),
   new ExerciseOption('Burpee', 'burpee', 'crossfit', 'darkmagenta', 35, 40, Exercise.Burpee),
-  new ExerciseOption('Double Under', 'run', 'crossfit', 'darkcyan', 35, 40, Exercise.DoubleUnder),
+  new ExerciseOption('Double Under', 'doubleunder', 'crossfit', 'darkcyan', 35, 40, Exercise.DoubleUnder),
   new WeightOption('Weight', 'barbell', 'crossfit', DefaultStyle.barColor, 45, 40),
   new DistanceOption('Distance', 'distance', 'crossfit', '#c3272e', 35, 40),
 ];
