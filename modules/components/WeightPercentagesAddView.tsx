@@ -65,7 +65,6 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
 
   const addPercentage = () => {
     if (percentage.length > 0) {
-      Keyboard.dismiss();
       props.addPercentageCallback(percentage);
       updatePercentage('');
     }
