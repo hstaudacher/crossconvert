@@ -1605,10 +1605,10 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-native@*", "@types/react-native@^0.63.1":
-  "integrity" "sha512-IkQax0q5z5P4ttScELhrfrXtnFuADs/SP9kNwx2rfEuVjwF5xqhGjcY/YkiH2mSx+9QjI5S4zhxXOi3+kcnOkw=="
-  "resolved" "https://registry.npmjs.org/@types/react-native/-/react-native-0.63.4.tgz"
-  "version" "0.63.4"
+"@types/react-native@*", "@types/react-native@^0.65.0":
+  "integrity" "sha512-GgM6d47SQM9a6iOWKsdseFtTsKZGvmbr0FEaJMdCVy2SJmgtUq5JVpr3+aqHdrJQrg93e08VxPAWmz0qUtIPOg=="
+  "resolved" "https://registry.npmjs.org/@types/react-native/-/react-native-0.65.0.tgz"
+  "version" "0.65.0"
   dependencies:
     "@types/react" "*"
 

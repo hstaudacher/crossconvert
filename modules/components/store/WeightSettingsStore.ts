@@ -10,7 +10,7 @@ class WeightSettings {
   constructor(readonly bar: Bar, readonly availablePlates: PlateAvailability[] = []) {}
 
   public availability(plate: Plate) {
-    const plateAvailability = this.availablePlates.find((a) => a.mapping.plate === plate);
+    const plateAvailability = this.availablePlates.find(a => a.mapping.plate === plate);
     return plateAvailability?.availability;
   }
 
@@ -19,14 +19,14 @@ class WeightSettings {
   }
 
   public updateAvailability(plate: Plate, availability: number) {
-    const index = this.availablePlates.findIndex((a) => a.mapping.plate === plate);
+    const index = this.availablePlates.findIndex(a => a.mapping.plate === plate);
     const mapping = this.findMapping(plate);
     this.availablePlates[index] = new PlateAvailability(mapping, availability);
     return new WeightSettings(this.bar, this.availablePlates);
   }
 
   private findMapping(plate: Plate) {
-    const mapping = this.availablePlates.find((a) => a.mapping.plate === plate)?.mapping;
+    const mapping = this.availablePlates.find(a => a.mapping.plate === plate)?.mapping;
     if (typeof mapping === 'undefined') {
       throw new Error('could no find mapping for plate: ' + plate.toString());
     }
@@ -37,18 +37,24 @@ class WeightSettings {
 class WeightSettingsStore {
   private readonly defaultSettings = new WeightSettings(
     bars()[0],
-    plateMappings().map((m) => new PlateAvailability(m, 4)),
+    plateMappings().map(m => new PlateAvailability(m, 4)),
   );
 
   private settings = this.defaultSettings;
 
+  private listeners: Array<Function> = [];
+
   public initialize() {
-    this.load().then((s) => (this.settings = s));
+    this.load().then(s => (this.settings = s));
   }
 
   public getSettings() {
     return this.settings;
   }
+
+  public addSettingsListener = (listener: Function) => {
+    this.listeners.push(listener);
+  };
 
   public store = async (settings: WeightSettings) => {
     try {
@@ -58,6 +64,7 @@ class WeightSettingsStore {
     } catch (e) {
       throw e;
     }
+    this.listeners.forEach(f => f(settings));
   };
 
   private load = async <WeightSettings>() => {

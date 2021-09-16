@@ -6,7 +6,8 @@ import ConversionConfiguration from './ConversionConfiguration';
 import ConversionResultView from './ConversionResultView';
 import {units} from './UnitSelection';
 import {fromOptions} from './options/FromOptions';
-import {NavigationComponentProps, NavigationFunctionComponent} from 'react-native-navigation';
+import {Navigation, NavigationComponentProps, NavigationFunctionComponent} from 'react-native-navigation';
+import DefaultStyle from './DefaultStyle';
 
 const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps) => {
   const defaultUnit = units[0].title;
@@ -35,15 +36,47 @@ const MainScreen: NavigationFunctionComponent = (props: NavigationComponentProps
   );
 };
 
-MainScreen.options = {
-  topBar: {
-    title: {
-      text: '3,2,1...GO',
+MainScreen.options = (props: NavigationComponentProps) => {
+  return {
+    topBar: {
+      title: {
+        text: '3,2,1...GO',
+      },
+      backButton: {
+        visible: false,
+      },
+      rightButtons: [
+        {
+          id: 'weightPercentagesSettingsButton',
+          text: '',
+          showAsAction: 'always',
+          component: {
+            name: 'Icon',
+            width: 50,
+            passProps: {
+              name: 'sliders',
+              type: 'font-awesome',
+              color: DefaultStyle.baseColor,
+              onPress: () => {
+                Navigation.push(props.componentId, {
+                  component: {
+                    name: 'WeightPercentagesSettings',
+                    options: {
+                      topBar: {
+                        backButton: {
+                          title: 'Percentages',
+                        },
+                      },
+                    },
+                  },
+                });
+              },
+            },
+          },
+        },
+      ],
     },
-    backButton: {
-      visible: false,
-    },
-  },
+  };
 };
 
 export default MainScreen;

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, FlatList, Platform} from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 import ConversionConfiguration from './ConversionConfiguration';
 import {ListItem, Icon} from 'react-native-elements';
 import {fromOptions} from './options/FromOptions';
@@ -8,7 +8,7 @@ import {ConversionResult, FromOption} from './options/FromOption';
 import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import WeightPercentagesListItem from './WeightPercentagesListItem';
 import {WeightPercentage, WeightPercentager} from './weight/WeightPercentager';
-import {store} from './store/WeightSettingsStore';
+import {store, WeightSettings} from './store/WeightSettingsStore';
 import DefaultStyle from './DefaultStyle';
 import {Plate} from './settings/Plates';
 import {getPlateColor} from './weight/PlateVisualization';
@@ -30,6 +30,7 @@ interface ConversionResultViewProperties extends NavigationComponentProps {
 
 const ConversionResultView = (props: ConversionResultViewProperties) => {
   const [weigthSettings, setWeightSettings] = useState(store.getSettings());
+  store.addSettingsListener((s: WeightSettings) => setWeightSettings(s));
 
   const renderWeightItem = (convertedOption: ConvertedOption) => {
     const percentager = new WeightPercentager(convertedOption.configuration);
