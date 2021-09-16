@@ -11,13 +11,13 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
   const [percentage, setPercentage] = useState('');
 
   useEffect(() => {
-    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+    const didShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    const didHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
 
     // cleanup function
     return () => {
-      Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
-      Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+      didShowListener.remove();
+      didHideListener.remove();
     };
   });
 
