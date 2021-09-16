@@ -9,9 +9,15 @@ class WeightPercentageRangeStore {
 
   private range = this.defaultRange;
 
+  private listeners: Array<Function> = [];
+
   public initialize() {
     this.load().then(r => (this.range = r));
   }
+
+  public addPercentageListener = (listener: Function) => {
+    this.listeners.push(listener);
+  };
 
   public getRange() {
     return this.range;
@@ -25,6 +31,7 @@ class WeightPercentageRangeStore {
     } catch (e) {
       throw e;
     }
+    this.listeners.forEach(f => f(range));
   };
 
   private load = async <WeightPercentagesRange>() => {

@@ -10,15 +10,17 @@ import {SwipeListView} from 'react-native-swipe-list-view';
 import WeightPercentagesListItem from './WeightPercentagesListItem';
 import WeightPercentagesAddView from './WeightPercentagesAddView';
 import {WeightPercentageRange, store as rangeStore} from './store/WeightPercentageRangeStore';
+import DefaultStyle from './DefaultStyle';
 
 interface WeightPercentagesScreenProperties extends NavigationComponentProps {
   configuration: ConversionConfiguration;
-  onSettingsUpdate: Function;
 }
 
 const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
   const [weightSettings] = useState(weightSettingsStore.getSettings());
   const [percentageRange, setPercentageRange] = useState(rangeStore.getRange());
+
+  rangeStore.addPercentageListener((r: WeightPercentageRange) => setPercentageRange(r));
 
   const closePercentageMenu = (row: any, rows: any) => {
     if (rows[row.index]) {
@@ -91,6 +93,31 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
       </Pressable>
     </>
   );
+};
+
+WeightPercentagesScreen.options = () => {
+  return {
+    topBar: {
+      rightButtons: [
+        {
+          id: 'clearButton',
+          text: '',
+          showAsAction: 'always',
+          component: {
+            name: 'Icon',
+            width: 50,
+            passProps: {
+              name: 'trash-o',
+              type: 'font-awesome',
+              color: DefaultStyle.barColor,
+              // TODO: add confirmation dialog
+              onPress: () => rangeStore.store(new WeightPercentageRange([])),
+            },
+          },
+        },
+      ],
+    },
+  };
 };
 
 const styles = StyleSheet.create({
