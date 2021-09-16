@@ -47,7 +47,7 @@ MainScreen.options = (props: NavigationComponentProps) => {
       },
       rightButtons: [
         {
-          id: 'weightPercentagesSettingsButton',
+          id: 'settingsButton',
           text: '',
           showAsAction: 'always',
           component: {
@@ -60,11 +60,11 @@ MainScreen.options = (props: NavigationComponentProps) => {
               onPress: () => {
                 Navigation.push(props.componentId, {
                   component: {
-                    name: 'WeightPercentagesSettings',
+                    name: 'Settings',
                     options: {
                       topBar: {
                         backButton: {
-                          title: 'Percentages',
+                          title: 'Back',
                         },
                       },
                     },

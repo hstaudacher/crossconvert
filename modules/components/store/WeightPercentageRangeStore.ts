@@ -10,7 +10,7 @@ class WeightPercentageRangeStore {
   private range = this.defaultRange;
 
   public initialize() {
-    this.load().then((r) => (this.range = r));
+    this.load().then(r => (this.range = r));
   }
 
   public getRange() {

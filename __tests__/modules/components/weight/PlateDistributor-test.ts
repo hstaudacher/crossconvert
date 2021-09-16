@@ -126,7 +126,7 @@ const assertPlateDistribution = (
 ): void => {
   const weightSettings = new WeightSettings(
     new Bar('foo', barWeight, barWeight),
-    plateMappings().map((m) => new PlateAvailability(m, 4)),
+    plateMappings().map(m => new PlateAvailability(m, 4)),
   );
   const distribution = new PlateDistributor(weightSettings, unit).getPlateDistribution(weight);
 

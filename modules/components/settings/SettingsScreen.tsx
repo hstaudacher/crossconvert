@@ -13,13 +13,13 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import DefaultStyle from '../DefaultStyle';
 import {store as weightSettingsStore} from '../store/WeightSettingsStore';
 
-interface WeightPercentagesSettingsScreenProperties extends NavigationComponentProps {
+interface SettingsScreenProperties extends NavigationComponentProps {
   settings: WeightSettings;
 }
 
 const PLATE_OPTIONS = [0, 2, 4, 6, 8, 10];
 
-const WeightPercentagesSettingsScreen = (props: WeightPercentagesSettingsScreenProperties) => {
+const SettingsScreen = (props: SettingsScreenProperties) => {
   const [settings, setSettings] = useState(weightSettingsStore.getSettings());
 
   const updateSettings = (newSettings: WeightSettings) => {
@@ -137,12 +137,12 @@ const styles = StyleSheet.create({
   listIcon: {alignSelf: 'flex-end', width: 40},
 });
 
-WeightPercentagesSettingsScreen.options = {
+SettingsScreen.options = {
   topBar: {
     title: {
-      text: 'Weight Settings',
+      text: 'Settings',
     },
   },
 };
 
-export default WeightPercentagesSettingsScreen;
+export default SettingsScreen;

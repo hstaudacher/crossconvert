@@ -79,7 +79,7 @@ describe('plate distribution uses color coded plates', () => {
 });
 
 const mapping = (plate: Plate): PlateMapping => {
-  const mappingEntry = plateMappings().find((m) => m.plate === plate);
+  const mappingEntry = plateMappings().find(m => m.plate === plate);
   if (typeof mappingEntry === 'undefined') {
     throw new Error();
   }
