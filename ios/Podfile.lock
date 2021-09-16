@@ -348,7 +348,7 @@ PODS:
     - React-Core
   - RNCMaskedView (0.1.10):
     - React
-  - RNLocalize (2.0.1):
+  - RNLocalize (2.1.4):
     - React-Core
   - RNVectorIcons (8.1.0):
     - React-Core
@@ -549,7 +549,7 @@ SPEC CHECKSUMS:
   ReactNativeNavigation: d6f27d4ba71887a161534a13e8ef3873b26c68b5
   RNCAsyncStorage: 0701cb7395f06d744184641241888a0eec0e2f2a
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
-  RNLocalize: dcf0fdb332b37b0d24178e876a7ce4dbbc9c838d
+  RNLocalize: 7f1e5792b65a839af55a9552d05b3558b66d017e
   RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
