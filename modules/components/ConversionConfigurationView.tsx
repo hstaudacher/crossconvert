@@ -31,20 +31,22 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     };
   });
 
-  const containerStyleAllOs = StyleSheet.create({
-    containerStyle: {
-      backgroundColor: 'white',
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      marginTop: Platform.OS === 'ios' ? -10 : 0,
-      paddingTop: 10,
-      paddingLeft: 12,
-      borderTopColor: props.configuration.from.color,
-      borderTopWidth: 1,
-    },
-  });
+  const containerStyleAllOs = () => {
+    return StyleSheet.create({
+      containerStyle: {
+        backgroundColor: 'white',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        marginTop: Platform.OS === 'ios' ? -10 : 0,
+        paddingTop: 10,
+        paddingLeft: 12,
+        borderTopColor: props.configuration.from.color,
+        borderTopWidth: 1,
+      },
+    });
+  };
 
   const containerStyleAndroid = StyleSheet.create({
     containerStyle: {
@@ -52,19 +54,19 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
     },
   });
 
-  const [containerStyle, setContainerStyle] = useState(containerStyleAllOs.containerStyle);
+  const [containerStyle, setContainerStyle] = useState(containerStyleAllOs().containerStyle);
 
   const keyboardDidShow = () => {
     if (Platform.OS !== 'ios') {
       const composedStyle: StyleProp<any> = StyleSheet.compose(
-        containerStyleAllOs.containerStyle,
+        containerStyleAllOs().containerStyle,
         containerStyleAndroid.containerStyle,
       );
       setContainerStyle(composedStyle);
     }
   };
   const keyboardDidHide = () => {
-    setContainerStyle(containerStyleAllOs.containerStyle);
+    setContainerStyle(containerStyleAllOs().containerStyle);
   };
 
   const onFromOptionClick = (option: FromOption): void => {
@@ -112,6 +114,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
 
   const fireConfigurationChange = (): void => {
     props.changeConfiguration(props.configuration.copy());
+    setContainerStyle(containerStyleAllOs().containerStyle);
   };
 
   const overlayStyle = StyleSheet.create({
