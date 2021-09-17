@@ -19,6 +19,13 @@ class WeightPercentageRangeStore {
     this.listeners.push(listener);
   };
 
+  public removePercentageListener = (listener: Function) => {
+    const index = this.listeners.indexOf(listener);
+    if (index > -1) {
+      this.listeners.splice(index, 1);
+    }
+  };
+
   public getRange() {
     return this.range;
   }

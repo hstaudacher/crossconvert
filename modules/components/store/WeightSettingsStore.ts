@@ -56,6 +56,13 @@ class WeightSettingsStore {
     this.listeners.push(listener);
   };
 
+  public removeSettingsListener = (listener: Function) => {
+    const index = this.listeners.indexOf(listener);
+    if (index > -1) {
+      this.listeners.splice(index, 1);
+    }
+  };
+
   public store = async (settings: WeightSettings) => {
     try {
       this.settings = settings;

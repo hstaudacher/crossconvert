@@ -1,6 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
-import {View, StyleSheet, TouchableOpacity, Pressable, Keyboard, KeyboardAvoidingView, Platform} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Pressable,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  Alert,
+} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
@@ -20,7 +29,12 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
   const [weightSettings] = useState(weightSettingsStore.getSettings());
   const [percentageRange, setPercentageRange] = useState(rangeStore.getRange());
 
-  rangeStore.addPercentageListener((r: WeightPercentageRange) => setPercentageRange(r));
+  useEffect(() => {
+    rangeStore.addPercentageListener(setPercentageRange);
+    return () => {
+      rangeStore.removePercentageListener(setPercentageRange);
+    };
+  }, [setPercentageRange]);
 
   const closePercentageMenu = (row: any, rows: any) => {
     if (rows[row.index]) {
@@ -110,8 +124,15 @@ WeightPercentagesScreen.options = () => {
               name: 'trash-o',
               type: 'font-awesome',
               color: DefaultStyle.barColor,
-              // TODO: add confirmation dialog
-              onPress: () => rangeStore.store(new WeightPercentageRange([])),
+              onPress: () => {
+                Alert.alert('Clear Percentages', 'Do you want to clear all percentages?', [
+                  {
+                    text: 'Cancel',
+                    style: 'cancel',
+                  },
+                  {text: 'OK', onPress: () => rangeStore.store(new WeightPercentageRange([]))},
+                ]);
+              },
             },
           },
         },
