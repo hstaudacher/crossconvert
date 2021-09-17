@@ -125,13 +125,15 @@ WeightPercentagesScreen.options = () => {
               type: 'font-awesome',
               color: DefaultStyle.barColor,
               onPress: () => {
-                Alert.alert('Clear Percentages', 'Do you want to clear all percentages?', [
-                  {
-                    text: 'Cancel',
-                    style: 'cancel',
-                  },
-                  {text: 'OK', onPress: () => rangeStore.store(new WeightPercentageRange([]))},
-                ]);
+                if (rangeStore.getRange().range.length !== 0) {
+                  Alert.alert('Clear Percentages', 'Do you want to clear all percentages?', [
+                    {
+                      text: 'Cancel',
+                      style: 'cancel',
+                    },
+                    {text: 'OK', onPress: () => rangeStore.store(new WeightPercentageRange([]))},
+                  ]);
+                }
               },
             },
           },
