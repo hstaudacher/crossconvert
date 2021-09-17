@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -11,7 +11,7 @@ import {
   Alert,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
-import {NavigationComponentProps} from 'react-native-navigation';
+import {Navigation, NavigationComponentProps} from 'react-native-navigation';
 import ConversionConfiguration from './ConversionConfiguration';
 import {WeightPercentager} from './weight/WeightPercentager';
 import {store as weightSettingsStore} from './store/WeightSettingsStore';
@@ -29,12 +29,71 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
   const [weightSettings] = useState(weightSettingsStore.getSettings());
   const [percentageRange, setPercentageRange] = useState(rangeStore.getRange());
 
+  const hideClearButton = useCallback(() => {
+    Navigation.mergeOptions(props.componentId, {
+      topBar: {
+        rightButtons: [],
+      },
+    });
+  }, [props]);
+
+  const showClearButton = useCallback(() => {
+    Navigation.mergeOptions(props.componentId, {
+      topBar: {
+        rightButtons: [
+          {
+            id: 'clearButton',
+            text: '',
+            showAsAction: 'always',
+            component: {
+              name: 'Icon',
+              width: 50,
+              passProps: {
+                name: 'trash-o',
+                type: 'font-awesome',
+                color: DefaultStyle.barColor,
+                onPress: () => {
+                  if (rangeStore.getRange().range.length !== 0) {
+                    Alert.alert('Clear Percentages', 'Do you want to clear all percentages?', [
+                      {
+                        text: 'Cancel',
+                        style: 'cancel',
+                      },
+                      {
+                        text: 'OK',
+                        onPress: () => {
+                          rangeStore.store(new WeightPercentageRange([]));
+                          if (rangeStore.getRange().range.length === 0) {
+                            hideClearButton();
+                          }
+                        },
+                      },
+                    ]);
+                  }
+                },
+              },
+            },
+          },
+        ],
+      },
+    });
+  }, [props, hideClearButton]);
+
+  const updateClearButton = useCallback(() => {
+    if (rangeStore.getRange().range.length === 0) {
+      hideClearButton();
+    } else {
+      showClearButton();
+    }
+  }, [hideClearButton, showClearButton]);
+
   useEffect(() => {
+    updateClearButton();
     rangeStore.addPercentageListener(setPercentageRange);
     return () => {
       rangeStore.removePercentageListener(setPercentageRange);
     };
-  }, [setPercentageRange]);
+  }, [setPercentageRange, props, updateClearButton, showClearButton, hideClearButton]);
 
   const closePercentageMenu = (row: any, rows: any) => {
     if (rows[row.index]) {
@@ -50,6 +109,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
     const range = new WeightPercentageRange(newRange);
     rangeStore.store(range);
     setPercentageRange(range);
+    updateClearButton();
   };
 
   const renderHiddenItem = (row: any, rows: any) => (
@@ -70,6 +130,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
     const range = new WeightPercentageRange(newPercentages.sort((a, b) => b - a));
     rangeStore.store(range);
     setPercentageRange(range);
+    updateClearButton();
   };
 
   const weightPercentager = new WeightPercentager(props.configuration);
@@ -112,33 +173,7 @@ const WeightPercentagesScreen = (props: WeightPercentagesScreenProperties) => {
 WeightPercentagesScreen.options = () => {
   return {
     topBar: {
-      rightButtons: [
-        {
-          id: 'clearButton',
-          text: '',
-          showAsAction: 'always',
-          component: {
-            name: 'Icon',
-            width: 50,
-            passProps: {
-              name: 'trash-o',
-              type: 'font-awesome',
-              color: DefaultStyle.barColor,
-              onPress: () => {
-                if (rangeStore.getRange().range.length !== 0) {
-                  Alert.alert('Clear Percentages', 'Do you want to clear all percentages?', [
-                    {
-                      text: 'Cancel',
-                      style: 'cancel',
-                    },
-                    {text: 'OK', onPress: () => rangeStore.store(new WeightPercentageRange([]))},
-                  ]);
-                }
-              },
-            },
-          },
-        },
-      ],
+      rightButtons: [],
     },
   };
 };
