@@ -2,7 +2,7 @@ enum Exercise {
   Row = 'Row',
   Run = 'Run',
   Bike = 'Bike',
-  Airbike = ' Airbike',
+  Assaultbike = ' Assaultbike',
   Echobike = ' Echobike',
   Ski = 'Ski',
   Burpee = 'Burpee',

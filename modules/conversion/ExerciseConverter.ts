@@ -20,7 +20,7 @@ const references: Array<ExerciseReference> = [
     new ExerciseReferenceValue(2000, Unit.Meter),
     new ExerciseReferenceValue(80, Unit.Calories),
   ]),
-  new ExerciseReference(Exercise.Airbike, [new ExerciseReferenceValue(60, Unit.Calories)]),
+  new ExerciseReference(Exercise.Assaultbike, [new ExerciseReferenceValue(60, Unit.Calories)]),
   new ExerciseReference(Exercise.Echobike, [new ExerciseReferenceValue(54, Unit.Calories)]),
   new ExerciseReference(Exercise.Ski, [
     new ExerciseReferenceValue(1000, Unit.Meter),
@@ -41,7 +41,7 @@ const references: Array<ExerciseReference> = [
 //     new ExerciseReferenceValue(200, Unit.Meter),
 //     new ExerciseReferenceValue(10, Unit.Calories),
 //   ]),
-//   new ExerciseReference(Exercise.Airbike, [new ExerciseReferenceValue(7, Unit.Calories)]),
+//   new ExerciseReference(Exercise.Assaultbike, [new ExerciseReferenceValue(7, Unit.Calories)]),
 //   new ExerciseReference(Exercise.Ski, [
 //     new ExerciseReferenceValue(125, Unit.Meter),
 //     new ExerciseReferenceValue(10, Unit.Calories),
