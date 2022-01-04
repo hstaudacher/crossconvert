@@ -9,8 +9,9 @@ const options: Array<FromOption> = [
   new ExerciseOption('Row', 'rower', 'crossfit', '#36aa40', 40, 40, Exercise.Row),
   new ExerciseOption('Ski', 'skierg', 'crossfit', '#33618f', 40, 40, Exercise.Ski),
   new ExerciseOption('Bike', 'bikeerg', 'crossfit', '#e8ae28', 35, 40, Exercise.Bike),
-  new ExerciseOption('Air Bike', 'airbike', 'crossfit', '#af2e33', 35, 40, Exercise.Airbike),
-  new ExerciseOption('Run', 'run', 'crossfit', 'coral', 32, 40, Exercise.Run),
+  new ExerciseOption('Assault Bike', 'assaultbike', 'crossfit', '#af2e33', 35, 40, Exercise.Airbike),
+  new ExerciseOption('Echo Bike', 'airbike', 'crossfit', 'orangered', 35, 40, Exercise.Echobike),
+  new ExerciseOption('Run', 'run', 'crossfit', 'mediumvioletred', 32, 40, Exercise.Run),
   new ExerciseOption('Burpee', 'burpee', 'crossfit', 'darkmagenta', 35, 40, Exercise.Burpee),
   new ExerciseOption('Double Under', 'doubleunder', 'crossfit', 'darkcyan', 35, 40, Exercise.DoubleUnder),
   new WeightOption('Weight', 'barbell', 'crossfit', DefaultStyle.barColor, 45, 40),
@@ -19,7 +20,7 @@ const options: Array<FromOption> = [
 
 export const fromOptions = (unit: string): Array<FromOption> => {
   if (unit === 'cal') {
-    return reduceOptions(['Row', 'Ski', 'Air Bike', 'Bike']);
+    return reduceOptions(['Row', 'Ski', 'Assault Bike', 'Echo Bike', 'Bike']);
   } else if (unit === 'm' || unit === 'mi') {
     return reduceOptions(['Row', 'Ski', 'Bike', 'Run', 'Distance']);
   } else if (unit === 'lb' || unit === 'kg') {
