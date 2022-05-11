@@ -44,6 +44,7 @@ MainScreen.options = (props: NavigationComponentProps) => {
           name: 'HwpoIcon',
           height: 30,
         },
+        color: DefaultStyle.barTitleColor,
       },
       backButton: {
         visible: false,
@@ -68,6 +69,7 @@ MainScreen.options = (props: NavigationComponentProps) => {
                       topBar: {
                         backButton: {
                           title: 'Back',
+                          color: DefaultStyle.barButtonColor,
                         },
                       },
                     },

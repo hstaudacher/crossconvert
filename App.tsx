@@ -39,10 +39,10 @@ const start = () => {
     topBar: {
       height: 50,
       title: {
-        color: DefaultStyle.baseColor,
+        color: DefaultStyle.barTitleColor,
       },
       backButton: {
-        color: DefaultStyle.baseColor,
+        color: DefaultStyle.barButtonColor,
       },
     },
   });

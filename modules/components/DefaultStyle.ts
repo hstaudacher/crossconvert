@@ -1,9 +1,9 @@
 import {Appearance} from 'react-native';
 
 class DefaultStyle {
-  public readonly baseColor;
-
   public readonly barColor;
+
+  public readonly barTitleColor;
 
   public readonly barButtonColor;
 
@@ -17,26 +17,34 @@ class DefaultStyle {
 
   public readonly converionUnitSelectionColor;
 
+  public readonly plateDotsColor;
+
+  public readonly settingsTitleBackgroundColor;
+
   constructor() {
     const colorScheme = Appearance.getColorScheme();
     if (colorScheme === 'dark') {
-      this.baseColor = '#fff';
       this.barColor = '#AE986B';
       this.barButtonColor = '#AE986B';
+      this.barTitleColor = '#fff';
       this.weightListItemColor = '#AE986B';
       this.weightPercentageAddColor = '#AE986B';
       this.weightLegendTextColor = '#AE986B';
       this.weigthCantDistributeColor = '#AE986B';
       this.converionUnitSelectionColor = '#AE986B';
+      this.plateDotsColor = '#AE986B';
+      this.settingsTitleBackgroundColor = '#AE986B';
     } else {
-      this.baseColor = '#AE986B';
       this.barColor = '#AE986B';
       this.barButtonColor = '#AE986B';
+      this.barTitleColor = '#AE986B';
       this.weightListItemColor = '#AE986B';
-      this.weightListItemColor = '#AE986B';
+      this.weightPercentageAddColor = '#AE986B';
       this.weightLegendTextColor = '#AE986B';
       this.weigthCantDistributeColor = '#AE986B';
       this.converionUnitSelectionColor = '#AE986B';
+      this.plateDotsColor = '#AE986B';
+      this.settingsTitleBackgroundColor = '#AE986B';
     }
   }
 }

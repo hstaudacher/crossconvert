@@ -52,7 +52,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
     if (plateGroups.length >= maxPlateGroups()) {
       return (
         <View style={{alignSelf: 'flex-end', marginLeft: 10}}>
-          <Icon type="ionicon" name="ellipsis-horizontal-outline" color={DefaultStyle.baseColor} />
+          <Icon type="ionicon" name="ellipsis-horizontal-outline" color={DefaultStyle.plateDotsColor} />
         </View>
       );
     }

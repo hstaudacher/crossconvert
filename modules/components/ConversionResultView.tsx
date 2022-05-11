@@ -46,42 +46,44 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
     return (
       <>
         <TouchableWithoutFeedback onPress={() => {}}>
-          <WeightPercentagesListItem percentage={percentage} settings={weigthSettings} displayInConversion={true} />
-          <ListItem bottomDivider containerStyle={styles.container} onPress={() => onOptionPress(convertedOption)}>
-            <View style={{flexDirection: 'row', width: 40, height: 40}}>
-              <Icon
-                name="plate"
-                type="crossfit"
-                color={getPlateColor(Plate.GREEN)}
-                size={32}
-                containerStyle={{position: 'absolute', left: 8, top: 0}}
-                iconProps={{name: 'plate', size: 32}}
-              />
-              <Icon
-                name="plate"
-                type="crossfit"
-                color={getPlateColor(Plate.BLUE)}
-                size={32}
-                containerStyle={{position: 'absolute', left: 5, top: 3}}
-                iconProps={{name: 'plate', size: 32}}
-              />
-              <Icon
-                name="plate"
-                type="crossfit"
-                color={getPlateColor(Plate.YELLOW)}
-                size={32}
-                containerStyle={{position: 'absolute', left: 2, top: 6}}
-                iconProps={{name: 'plate', size: 32}}
-              />
-            </View>
-            <ListItem.Content>
-              <ListItem.Title style={{fontSize: 25, color: DefaultStyle.weightListItemColor, marginLeft: 8}}>
-                % of {convertedOption.configuration.value}
-                {convertedOption.configuration.unit}
-              </ListItem.Title>
-            </ListItem.Content>
-            <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
-          </ListItem>
+          <View>
+            <WeightPercentagesListItem percentage={percentage} settings={weigthSettings} displayInConversion={true} />
+            <ListItem bottomDivider containerStyle={styles.container} onPress={() => onOptionPress(convertedOption)}>
+              <View style={{flexDirection: 'row', width: 40, height: 40}}>
+                <Icon
+                  name="plate"
+                  type="crossfit"
+                  color={getPlateColor(Plate.GREEN)}
+                  size={32}
+                  containerStyle={{position: 'absolute', left: 8, top: 0}}
+                  iconProps={{name: 'plate', size: 32}}
+                />
+                <Icon
+                  name="plate"
+                  type="crossfit"
+                  color={getPlateColor(Plate.BLUE)}
+                  size={32}
+                  containerStyle={{position: 'absolute', left: 5, top: 3}}
+                  iconProps={{name: 'plate', size: 32}}
+                />
+                <Icon
+                  name="plate"
+                  type="crossfit"
+                  color={getPlateColor(Plate.YELLOW)}
+                  size={32}
+                  containerStyle={{position: 'absolute', left: 2, top: 6}}
+                  iconProps={{name: 'plate', size: 32}}
+                />
+              </View>
+              <ListItem.Content>
+                <ListItem.Title style={{fontSize: 25, color: DefaultStyle.weightListItemColor, marginLeft: 8}}>
+                  % of {convertedOption.configuration.value}
+                  {convertedOption.configuration.unit}
+                </ListItem.Title>
+              </ListItem.Content>
+              <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
+            </ListItem>
+          </View>
         </TouchableWithoutFeedback>
       </>
     );
@@ -99,7 +101,7 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
               },
               backButton: {
                 title: 'Back',
-                color: DefaultStyle.baseColor,
+                color: DefaultStyle.barButtonColor,
               },
             },
           },

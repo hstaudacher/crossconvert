@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#fff',
-    backgroundColor: DefaultStyle.baseColor,
+    backgroundColor: DefaultStyle.settingsTitleBackgroundColor,
   },
   listIcon: {alignSelf: 'flex-end', width: 40},
 });
