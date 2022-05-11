@@ -62,7 +62,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
             containerStyle={{alignSelf: 'flex-end', width: 40}}
             reverse={false}
           />
-          <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: DefaultStyle.weigthCantDistributeColor}}>
+          <Text h4 style={{alignSelf: 'center', marginLeft: 8}}>
             not enough plates
           </Text>
         </View>
@@ -86,7 +86,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
           containerStyle={{alignSelf: 'flex-end', width: 40}}
           reverse={false}
         />
-        <Text h4 style={{alignSelf: 'center', marginLeft: 8}}>
+        <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: DefaultStyle.weightLegendTextColor}}>
           {barText}
         </Text>
       </View>
@@ -168,7 +168,7 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
                   style={{flexDirection: 'row', marginBottom: 10, marginHorizontal: 10}}
                   key={group.mapping.plate.toString()}>
                   {renderPlateIcon(group.mapping.plate, {alignSelf: 'flex-end', width: 40})}
-                  <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: DefaultStyle.weightLegendTextColor}}>
+                  <Text h4 style={{alignSelf: 'center', marginLeft: 8}}>
                     {group.amount}x{' '}
                   </Text>
                   <Text h4 style={{alignSelf: 'center', color: DefaultStyle.weightLegendTextColor}}>
