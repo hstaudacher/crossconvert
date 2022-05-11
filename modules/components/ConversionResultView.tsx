@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, Text, StyleSheet, FlatList, TouchableWithoutFeedback} from 'react-native';
 import ConversionConfiguration from './ConversionConfiguration';
 import {ListItem, Icon} from 'react-native-elements';
 import {fromOptions} from './options/FromOptions';
@@ -45,42 +45,44 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
     percentage = new WeightPercentage(percentage.percentage, percentage.conversion.onlyTo());
     return (
       <>
-        <WeightPercentagesListItem percentage={percentage} settings={weigthSettings} displayInConversion={true} />
-        <ListItem bottomDivider containerStyle={styles.container} onPress={() => onOptionPress(convertedOption)}>
-          <View style={{flexDirection: 'row', width: 40, height: 40}}>
-            <Icon
-              name="plate"
-              type="crossfit"
-              color={getPlateColor(Plate.GREEN)}
-              size={32}
-              containerStyle={{position: 'absolute', left: 8, top: 0}}
-              iconProps={{name: 'plate', size: 32}}
-            />
-            <Icon
-              name="plate"
-              type="crossfit"
-              color={getPlateColor(Plate.BLUE)}
-              size={32}
-              containerStyle={{position: 'absolute', left: 5, top: 3}}
-              iconProps={{name: 'plate', size: 32}}
-            />
-            <Icon
-              name="plate"
-              type="crossfit"
-              color={getPlateColor(Plate.YELLOW)}
-              size={32}
-              containerStyle={{position: 'absolute', left: 2, top: 6}}
-              iconProps={{name: 'plate', size: 32}}
-            />
-          </View>
-          <ListItem.Content>
-            <ListItem.Title style={{fontSize: 25, color: DefaultStyle.weightListItemColor, marginLeft: 8}}>
-              % of {convertedOption.configuration.value}
-              {convertedOption.configuration.unit}
-            </ListItem.Title>
-          </ListItem.Content>
-          <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
-        </ListItem>
+        <TouchableWithoutFeedback onPress={() => {}}>
+          <WeightPercentagesListItem percentage={percentage} settings={weigthSettings} displayInConversion={true} />
+          <ListItem bottomDivider containerStyle={styles.container} onPress={() => onOptionPress(convertedOption)}>
+            <View style={{flexDirection: 'row', width: 40, height: 40}}>
+              <Icon
+                name="plate"
+                type="crossfit"
+                color={getPlateColor(Plate.GREEN)}
+                size={32}
+                containerStyle={{position: 'absolute', left: 8, top: 0}}
+                iconProps={{name: 'plate', size: 32}}
+              />
+              <Icon
+                name="plate"
+                type="crossfit"
+                color={getPlateColor(Plate.BLUE)}
+                size={32}
+                containerStyle={{position: 'absolute', left: 5, top: 3}}
+                iconProps={{name: 'plate', size: 32}}
+              />
+              <Icon
+                name="plate"
+                type="crossfit"
+                color={getPlateColor(Plate.YELLOW)}
+                size={32}
+                containerStyle={{position: 'absolute', left: 2, top: 6}}
+                iconProps={{name: 'plate', size: 32}}
+              />
+            </View>
+            <ListItem.Content>
+              <ListItem.Title style={{fontSize: 25, color: DefaultStyle.weightListItemColor, marginLeft: 8}}>
+                % of {convertedOption.configuration.value}
+                {convertedOption.configuration.unit}
+              </ListItem.Title>
+            </ListItem.Content>
+            <ListItem.Chevron style={{marginLeft: 10}} name="chevron-forward-outline" type="ionicon" />
+          </ListItem>
+        </TouchableWithoutFeedback>
       </>
     );
   };
@@ -113,31 +115,33 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
   const renderConvertedItem = (convertedOption: ConvertedOption) => {
     return (
       <>
-        <ListItem bottomDivider containerStyle={styles.container}>
-          <Icon
-            name={convertedOption.option.icon}
-            type={convertedOption.option.type}
-            color={convertedOption.option.color}
-            size={36}
-            iconProps={{name: convertedOption.option.icon, size: convertedOption.option.resultIconSize}}
-          />
-          <ListItem.Content style={styles.content}>
-            <ListItem.Title style={[styles.title, {color: convertedOption.option.color}]}>
-              {convertedOption.option.title}
-            </ListItem.Title>
-            <ListItem.Subtitle style={styles.subTitle}>
-              <Text style={styles.textWrapper}>
-                {convertedOption.conversionResults.map((singelResult, j) => (
-                  <Text key={j} style={{fontSize: 25}} numberOfLines={2}>
-                    {renderSlash(j)}
-                    {singelResult.value}
-                    <Text style={styles.unitText}>{singelResult.unit}</Text>
-                  </Text>
-                ))}
-              </Text>
-            </ListItem.Subtitle>
-          </ListItem.Content>
-        </ListItem>
+        <TouchableWithoutFeedback onPress={() => {}}>
+          <ListItem bottomDivider containerStyle={styles.container}>
+            <Icon
+              name={convertedOption.option.icon}
+              type={convertedOption.option.type}
+              color={convertedOption.option.color}
+              size={36}
+              iconProps={{name: convertedOption.option.icon, size: convertedOption.option.resultIconSize}}
+            />
+            <ListItem.Content style={styles.content}>
+              <ListItem.Title style={[styles.title, {color: convertedOption.option.color}]}>
+                {convertedOption.option.title}
+              </ListItem.Title>
+              <ListItem.Subtitle style={styles.subTitle}>
+                <Text style={styles.textWrapper}>
+                  {convertedOption.conversionResults.map((singelResult, j) => (
+                    <Text key={j} style={{fontSize: 25}} numberOfLines={2}>
+                      {renderSlash(j)}
+                      {singelResult.value}
+                      <Text style={styles.unitText}>{singelResult.unit}</Text>
+                    </Text>
+                  ))}
+                </Text>
+              </ListItem.Subtitle>
+            </ListItem.Content>
+          </ListItem>
+        </TouchableWithoutFeedback>
       </>
     );
   };
