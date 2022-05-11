@@ -1,28 +1,34 @@
 import {Appearance} from 'react-native';
 
 class DefaultStyle {
-  public readonly barColor;
+  public barColor: string | undefined;
 
-  public readonly barTitleColor;
+  public barTitleColor: string | undefined;
 
-  public readonly barButtonColor;
+  public barButtonColor: string | undefined;
 
-  public readonly weightListItemColor;
+  public weightListItemColor: string | undefined;
 
-  public readonly weightPercentageAddColor;
+  public weightPercentageAddColor: string | undefined;
 
-  public readonly weightLegendTextColor;
+  public weightLegendTextColor: string | undefined;
 
-  public readonly weigthCantDistributeColor;
+  public weigthCantDistributeColor: string | undefined;
 
-  public readonly converionUnitSelectionColor;
+  public converionUnitSelectionColor: string | undefined;
 
-  public readonly plateDotsColor;
+  public plateDotsColor: string | undefined;
 
-  public readonly settingsTitleBackgroundColor;
+  public settingsTitleBackgroundColor: string | undefined;
 
   constructor() {
-    const colorScheme = Appearance.getColorScheme();
+    this.applyColorScheme(Appearance.getColorScheme());
+    Appearance.addChangeListener(preferences => {
+      this.applyColorScheme(preferences.colorScheme);
+    });
+  }
+
+  private applyColorScheme = (colorScheme: string | null | undefined) => {
     if (colorScheme === 'dark') {
       this.barColor = '#AE986B';
       this.barButtonColor = '#AE986B';
@@ -46,7 +52,7 @@ class DefaultStyle {
       this.plateDotsColor = '#AE986B';
       this.settingsTitleBackgroundColor = '#AE986B';
     }
-  }
+  };
 }
 
 export default new DefaultStyle();
