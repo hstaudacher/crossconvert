@@ -40,7 +40,10 @@ MainScreen.options = (props: NavigationComponentProps) => {
   return {
     topBar: {
       title: {
-        text: '3,2,1...GO',
+        component: {
+          name: 'HwpoIcon',
+          height: 30,
+        },
       },
       backButton: {
         visible: false,
@@ -56,7 +59,7 @@ MainScreen.options = (props: NavigationComponentProps) => {
             passProps: {
               name: 'sliders',
               type: 'font-awesome',
-              color: DefaultStyle.baseColor,
+              color: DefaultStyle.barButtonColor,
               onPress: () => {
                 Navigation.push(props.componentId, {
                   component: {

@@ -7,6 +7,7 @@ import CrossFitIcons from './fonts/CrossFitIcons';
 import {Navigation} from 'react-native-navigation';
 import DataStore from './modules/components/store/DataStore';
 import DefaultStyle from './modules/components/DefaultStyle';
+import HwpoIcon from './modules/components/hwpo/HwpoIcon';
 
 registerCustomIconType('crossfit', CrossFitIcons);
 
@@ -14,6 +15,7 @@ declare const global: {HermesInternal: null | {}};
 
 const start = () => {
   Navigation.registerComponent('Icon', () => Icon);
+  Navigation.registerComponent('HwpoIcon', () => HwpoIcon);
   Navigation.registerComponent('Main', () => MainScreen);
   Navigation.registerComponent('WeightPercentages', () => WeightPercentagesScreen);
   Navigation.registerComponent('Settings', () => SettingsScreen);

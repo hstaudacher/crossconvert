@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Keyboard, StyleSheet, Platform, StyleProp} from 'react-native';
 import {Input, Icon} from 'react-native-elements';
+import DefaultStyle from './DefaultStyle';
 
 export interface WeightPercentagesAddViewProperties {
   addPercentageCallback: Function;
@@ -31,7 +32,7 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
       paddingTop: 10,
       paddingLeft: 12,
       marginTop: Platform.OS === 'ios' ? -10 : 0,
-      borderTopColor: '#36aa40',
+      borderTopColor: DefaultStyle.weightPercentageAddColor,
       borderTopWidth: 1,
     },
   });
@@ -97,7 +98,7 @@ const WeightPercentagesAddView = (props: WeightPercentagesAddViewProperties) => 
             name={'add-outline'}
             onPress={addPercentage}
             reverse={true}
-            color={'#36aa40'}
+            color={DefaultStyle.weightPercentageAddColor}
             size={25}
             iconProps={{name: 'add-outline', size: 41}}
           />

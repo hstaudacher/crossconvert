@@ -3,19 +3,18 @@ import WeightOption from './WeightOption';
 import DistanceOption from './DistanceOption';
 import ExerciseOption from './ExerciseOption';
 import {Exercise} from '../../conversion';
-import DefaultStyle from '../DefaultStyle';
 
 const options: Array<FromOption> = [
-  new ExerciseOption('Row', 'rower', 'crossfit', '#36aa40', 40, 40, Exercise.Row),
-  new ExerciseOption('Ski', 'skierg', 'crossfit', '#33618f', 40, 40, Exercise.Ski),
-  new ExerciseOption('Bike', 'bikeerg', 'crossfit', '#e8ae28', 35, 40, Exercise.Bike),
-  new ExerciseOption('AssaultBike', 'assaultbike', 'crossfit', '#af2e33', 35, 40, Exercise.Assaultbike),
-  new ExerciseOption('Echo Bike', 'echobike', 'crossfit', 'darkorange', 35, 40, Exercise.Echobike),
-  new ExerciseOption('Run', 'run', 'crossfit', 'mediumvioletred', 32, 40, Exercise.Run),
-  new ExerciseOption('Burpee', 'burpee', 'crossfit', 'darkmagenta', 35, 40, Exercise.Burpee),
-  new ExerciseOption('Double Under', 'doubleunder', 'crossfit', 'darkcyan', 35, 40, Exercise.DoubleUnder),
-  new WeightOption('Weight', 'barbell', 'crossfit', DefaultStyle.barColor, 45, 40),
-  new DistanceOption('Distance', 'distance', 'crossfit', '#c3272e', 35, 40),
+  new ExerciseOption('Row', 'rower', 'crossfit', '#AE986B', 40, 40, Exercise.Row),
+  new ExerciseOption('Ski', 'skierg', 'crossfit', '#AE986B', 40, 40, Exercise.Ski),
+  new ExerciseOption('Bike', 'bikeerg', 'crossfit', '#AE986B', 35, 40, Exercise.Bike),
+  new ExerciseOption('AssaultBike', 'assaultbike', 'crossfit', '#AE986B', 35, 40, Exercise.Assaultbike),
+  new ExerciseOption('Echo Bike', 'echobike', 'crossfit', '#AE986B', 35, 40, Exercise.Echobike),
+  new ExerciseOption('Run', 'run', 'crossfit', '#AE986B', 32, 40, Exercise.Run),
+  new ExerciseOption('Burpee', 'burpee', 'crossfit', '#AE986B', 35, 40, Exercise.Burpee),
+  new ExerciseOption('Double Under', 'doubleunder', 'crossfit', '#AE986B', 35, 40, Exercise.DoubleUnder),
+  new WeightOption('Weight', 'barbell', 'crossfit', '#AE986B', 45, 40),
+  new DistanceOption('Distance', 'distance', 'crossfit', '#AE986B', 35, 40),
 ];
 
 export const fromOptions = (unit: string): Array<FromOption> => {

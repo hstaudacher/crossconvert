@@ -12,6 +12,7 @@ import {store} from './store/WeightSettingsStore';
 import DefaultStyle from './DefaultStyle';
 import {Plate} from './settings/Plates';
 import {getPlateColor} from './weight/PlateVisualization';
+import HwpoAdd from './hwpo/HwpoAdd';
 
 class ConvertedOption {
   conversionResults: Array<ConversionResult>;
@@ -73,7 +74,7 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
             />
           </View>
           <ListItem.Content>
-            <ListItem.Title style={{fontSize: 25, color: '#33618f', marginLeft: 8}}>
+            <ListItem.Title style={{fontSize: 25, color: DefaultStyle.weightListItemColor, marginLeft: 8}}>
               % of {convertedOption.configuration.value}
               {convertedOption.configuration.unit}
             </ListItem.Title>
@@ -179,6 +180,7 @@ const ConversionResultView = (props: ConversionResultViewProperties) => {
             .filter(option => shouldRender(option))}
           renderItem={info => renderItem(info.item)}
         />
+        <HwpoAdd />
       </View>
     </>
   );

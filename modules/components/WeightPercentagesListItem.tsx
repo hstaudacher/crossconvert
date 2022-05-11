@@ -57,12 +57,12 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
             key={'na'}
             name={'exclamation-triangle'}
             type={'font-awesome'}
-            color={DefaultStyle.baseColor}
+            color={DefaultStyle.weigthCantDistributeColor}
             size={25}
             containerStyle={{alignSelf: 'flex-end', width: 40}}
             reverse={false}
           />
-          <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: DefaultStyle.baseColor}}>
+          <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: DefaultStyle.weigthCantDistributeColor}}>
             not enough plates
           </Text>
         </View>
@@ -111,19 +111,19 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
         </View>
       );
     }
-    return <Text style={{fontSize: 25, color: DefaultStyle.baseColor}}>{props.percentage.percentage}%</Text>;
+    return <Text style={{fontSize: 25, color: DefaultStyle.weightListItemColor}}>{props.percentage.percentage}%</Text>;
   };
 
   const renderTitle = () => {
     if (!props.displayInConversion) {
       return (
         <ListItem.Title style={{fontSize: 25, opacity: 0.9}}>
-          <Text>
+          <Text style={{color: DefaultStyle.weightListItemColor}}>
             {props.percentage.conversion.fromWeight}
             {formatUnit(props.percentage.conversion.fromUnit)}
           </Text>
-          <Text style={{fontSize: 20, opacity: 0.6}}> / </Text>
-          <Text style={{fontSize: 20, opacity: 0.6}}>
+          <Text style={{fontSize: 20, opacity: 0.6, color: DefaultStyle.weightListItemColor}}> / </Text>
+          <Text style={{fontSize: 20, opacity: 0.6, color: DefaultStyle.weightListItemColor}}>
             {props.percentage.conversion.toWeight}
             {formatUnit(props.percentage.conversion.toUnit)}
           </Text>
@@ -163,15 +163,15 @@ const WeightPercentagesListItem = (props: WeightPercentageListItemProperties) =>
             <View style={{paddingTop: 10}}>
               {renderCantDistribute()}
               {renderBar()}
-              {distribution.getPlateGroups().map((group) => (
+              {distribution.getPlateGroups().map(group => (
                 <View
                   style={{flexDirection: 'row', marginBottom: 10, marginHorizontal: 10}}
                   key={group.mapping.plate.toString()}>
                   {renderPlateIcon(group.mapping.plate, {alignSelf: 'flex-end', width: 40})}
-                  <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: DefaultStyle.baseColor}}>
+                  <Text h4 style={{alignSelf: 'center', marginLeft: 8, color: DefaultStyle.weightLegendTextColor}}>
                     {group.amount}x{' '}
                   </Text>
-                  <Text h4 style={{alignSelf: 'center'}}>
+                  <Text h4 style={{alignSelf: 'center', color: DefaultStyle.weightLegendTextColor}}>
                     {getWeightText(group.mapping, props.percentage.conversion.fromUnit)}
                   </Text>
                 </View>

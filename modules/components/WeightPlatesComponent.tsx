@@ -28,7 +28,7 @@ const WeightPlatesComponent = (props: WeightPlatesComponentProperties) => {
             key={'na'}
             name={'exclamation-triangle'}
             type={'font-awesome'}
-            color={DefaultStyle.baseColor}
+            color={DefaultStyle.weigthCantDistributeColor}
             size={25}
             containerStyle={{alignSelf: 'center', marginRight: 20}}
             reverse={false}

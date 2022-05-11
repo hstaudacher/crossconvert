@@ -144,7 +144,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
               <TouchableOpacity onPress={toggleUnitSelectionOverlay}>
                 <View style={{flexDirection: 'row', marginTop: 5}}>
                   <Text
-                    style={{color: DefaultStyle.baseColor, marginBottom: 0, height: 40}}
+                    style={{color: DefaultStyle.converionUnitSelectionColor, marginBottom: 0, height: 40}}
                     h3
                     h3Style={{fontWeight: 'normal'}}>
                     {props.configuration.unit}
@@ -152,7 +152,7 @@ const ConversionConfigurationView = (props: ConversionConfigurationViewPropertie
                   <Icon
                     type="ionicon"
                     name="chevron-down-outline"
-                    color={DefaultStyle.baseColor}
+                    color={DefaultStyle.converionUnitSelectionColor}
                     size={20}
                     style={{paddingTop: 8}}
                   />
