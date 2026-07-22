@@ -12,6 +12,8 @@
 
 A mobile-first progressive web app for converting workout movements, distances, weights, and barbell percentages.
 
+[Open CrossConvert](https://crossconvert.toastingcode.com)
+
 </div>
 
 ## Features
@@ -70,6 +72,19 @@ npm run preview
 ```
 
 Service workers require a secure context in production, so deploy the app over HTTPS.
+
+## Deployment
+
+The [GitHub Pages workflow](.github/workflows/deploy-pages.yml) builds and deploys the app whenever a commit reaches `master`. It can also be started manually from the **Actions** tab.
+
+Complete this one-time setup before the first production deployment:
+
+1. In **Settings → Pages**, select **GitHub Actions** as the publishing source.
+2. In the same Pages settings, set the custom domain to `crossconvert.toastingcode.com`.
+3. At the DNS provider for `toastingcode.com`, create a `CNAME` record for `crossconvert` that points to `hstaudacher.github.io`.
+4. After GitHub provisions the certificate, enable **Enforce HTTPS** in the Pages settings.
+
+GitHub recommends verifying the domain before configuring DNS. DNS changes and certificate provisioning can take up to 24 hours.
 
 ## Tech stack
 

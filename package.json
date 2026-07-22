@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/hstaudacher/crossconvert/issues"
   },
-  "homepage": "https://github.com/hstaudacher/crossconvert#readme",
+  "homepage": "https://crossconvert.toastingcode.com",
   "type": "module",
   "scripts": {
     "font": "fantasticon",
