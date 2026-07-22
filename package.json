@@ -1,7 +1,18 @@
 {
   "name": "crossconvert",
   "version": "2.0.0",
+  "description": "A mobile-first PWA for functional fitness conversions and barbell loading.",
   "private": true,
+  "license": "MIT",
+  "author": "Holger Staudacher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hstaudacher/crossconvert.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hstaudacher/crossconvert/issues"
+  },
+  "homepage": "https://github.com/hstaudacher/crossconvert#readme",
   "type": "module",
   "scripts": {
     "dev": "vite",
