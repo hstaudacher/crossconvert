@@ -30,7 +30,7 @@ A mobile-first progressive web app for converting workout movements, distances, 
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) 20.19 or newer
+- [Node.js](https://nodejs.org/) 22.12 or newer
 - npm
 
 ### Run locally
@@ -46,15 +46,16 @@ Vite prints the local development URL when the server starts.
 
 ## Commands
 
-| Command              | Purpose                                  |
-| -------------------- | ---------------------------------------- |
-| `npm run dev`        | Start the development server             |
-| `npm run build`      | Type-check and create a production build |
-| `npm run preview`    | Preview the production build locally     |
-| `npm test`           | Run the test suite once                  |
-| `npm run test:watch` | Run tests in watch mode                  |
-| `npm run lint`       | Check the code with ESLint               |
-| `npm run format`     | Check formatting with Prettier           |
+| Command              | Purpose                                   |
+| -------------------- | ----------------------------------------- |
+| `npm run dev`        | Start the development server              |
+| `npm run build`      | Type-check and create a production build  |
+| `npm run preview`    | Preview the production build locally      |
+| `npm test`           | Run the test suite once                   |
+| `npm run test:watch` | Run tests in watch mode                   |
+| `npm run lint`       | Check the code with ESLint                |
+| `npm run format`     | Check formatting with Prettier            |
+| `npm run font`       | Regenerate the icon font from SVG sources |
 
 ## How the PWA works
 
