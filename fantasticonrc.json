@@ -1,0 +1,31 @@
+{
+  "inputDir": "./resources/crossfit-font",
+  "outputDir": "./src/assets",
+  "name": "CrossFit",
+  "fontTypes": ["ttf"],
+  "assetTypes": [],
+  "fontHeight": 1024,
+  "descent": 64,
+  "normalize": true,
+  "formatOptions": {
+    "svg": {
+      "fixedWidth": true,
+      "centerHorizontally": true,
+      "preserveAspectRatio": true
+    }
+  },
+  "codepoints": {
+    "airbike": 59648,
+    "assaultbike": 59659,
+    "barbell": 59655,
+    "bikeerg": 59649,
+    "burpee": 59652,
+    "distance": 59657,
+    "doubleunder": 59658,
+    "percent": 59656,
+    "plate": 59654,
+    "rower": 59650,
+    "run": 59653,
+    "skierg": 59651
+  }
+}
