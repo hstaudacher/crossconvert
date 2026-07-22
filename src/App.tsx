@@ -3,7 +3,7 @@ import {colors, configurationTitle, type ConversionConfiguration} from './domain
 import {type WeightSettings} from './domain/weights';
 import {loadPercentages, loadWeightSettings, storePercentages, storeWeightSettings} from './storage';
 import {CrossFitIcon} from './components/CrossFitIcon';
-import {TrashIcon} from './components/UiIcons';
+import {MovementConversionIcon, TrashIcon} from './components/UiIcons';
 import {ConverterScreen} from './screens/ConverterScreen';
 import {EquipmentScreen} from './screens/EquipmentScreen';
 import {PercentagesScreen} from './screens/PercentagesScreen';
@@ -113,7 +113,7 @@ export default function App() {
             onClick={() => setScreen('convert')}
             aria-current={screen === 'convert' ? 'page' : undefined}
           >
-            <CrossFitIcon name="distance" color={screen === 'convert' ? colors.base : '#86858a'} size={25} />
+            <MovementConversionIcon className="conversion-nav-icon" />
             <span>Convert</span>
           </button>
           <button

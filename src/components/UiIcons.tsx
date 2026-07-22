@@ -17,3 +17,12 @@ export function TrashIcon({className}: IconProps) {
     </svg>
   );
 }
+
+export function MovementConversionIcon({className}: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 28 28" aria-hidden="true">
+      <path d="M4 8.5h16.5M17 5l3.5 3.5L17 12M24 19.5H7.5M11 16l-3.5 3.5L11 23" />
+      <path d="M7.5 14h3l1.5-3 3.25 6 1.75-3h3.5" />
+    </svg>
+  );
+}

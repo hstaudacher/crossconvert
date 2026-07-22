@@ -3,6 +3,12 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 
 describe('CrossConvert app', () => {
+  test('uses a fitness conversion icon in the primary navigation', () => {
+    render(<App />);
+
+    expect(screen.getByRole('button', {name: 'Convert'}).querySelector('.conversion-nav-icon')).toBeInTheDocument();
+  });
+
   test('converts calories and changes the source movement', async () => {
     const user = userEvent.setup();
     render(<App />);
