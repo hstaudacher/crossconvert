@@ -65,29 +65,32 @@ export function ConverterScreen({
       </div>
 
       <div className="conversion-controls" style={{borderColor: selectedOption.color}}>
-        <label className="value-field">
-          <span className="sr-only">Value to convert</span>
-          <input
-            aria-label="Value to convert"
-            inputMode="decimal"
-            maxLength={4}
-            placeholder="0"
-            value={configuration.value}
-            onFocus={() => {
-              if (configuration.value === '0') {
-                onConfigurationChange({...configuration, value: ''});
-              }
-            }}
-            onChange={event => {
-              const value = event.target.value.replace(/[^0-9.,]/g, '').replace(',', '.');
-              onConfigurationChange({...configuration, value});
-            }}
-          />
-        </label>
-        <button className="unit-button" type="button" onClick={() => setUnitSheetVisible(true)}>
-          {configuration.unit}
-          <span className="chevron-down" aria-hidden="true" />
-        </button>
+        <div className="value-unit-field">
+          <label className="value-field">
+            <span className="sr-only">Value to convert</span>
+            <input
+              aria-label="Value to convert"
+              inputMode="decimal"
+              enterKeyHint="done"
+              maxLength={4}
+              placeholder="0"
+              value={configuration.value}
+              onFocus={() => {
+                if (configuration.value === '0') {
+                  onConfigurationChange({...configuration, value: ''});
+                }
+              }}
+              onChange={event => {
+                const value = event.target.value.replace(/[^0-9.,]/g, '').replace(',', '.');
+                onConfigurationChange({...configuration, value});
+              }}
+            />
+          </label>
+          <button className="unit-button" type="button" onClick={() => setUnitSheetVisible(true)}>
+            {configuration.unit}
+            <span className="chevron-down" aria-hidden="true" />
+          </button>
+        </div>
         <button
           className="movement-button"
           type="button"

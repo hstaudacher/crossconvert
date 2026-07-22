@@ -65,6 +65,7 @@ export function PercentagesScreen({configuration, settings, percentages, onPerce
           <input
             aria-label="Percentage to add"
             inputMode="numeric"
+            enterKeyHint="done"
             maxLength={4}
             placeholder="%"
             value={newPercentage}

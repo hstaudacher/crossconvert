@@ -7,6 +7,7 @@ import {TrashIcon} from './components/UiIcons';
 import {ConverterScreen} from './screens/ConverterScreen';
 import {EquipmentScreen} from './screens/EquipmentScreen';
 import {PercentagesScreen} from './screens/PercentagesScreen';
+import {useVisualViewport} from './useVisualViewport';
 
 type Screen = 'convert' | 'equipment' | 'percentages';
 
@@ -17,6 +18,7 @@ const initialConfiguration: ConversionConfiguration = {
 };
 
 export default function App() {
+  useVisualViewport();
   const [screen, setScreen] = useState<Screen>('convert');
   const [configuration, setConfiguration] = useState(initialConfiguration);
   const [settings, setSettings] = useState<WeightSettings>(loadWeightSettings);
